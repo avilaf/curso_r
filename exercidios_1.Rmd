@@ -1,0 +1,194 @@
+---
+title: "Exercicios"
+output: html_exercicios
+---
+## Exercícios
+### Introdução à linguagem R
+
+
+Esse é um arquivo escrito em [R Markdown](http://rmarkdown.rstudio.com), um R Notebook. Ele tem áreas determinadas para texto e áreas para código. Quando você executar o código dentro do notebook, os resultados dos comandos vão aparecer abaixo do código.
+
+Use os espaços de código para resolver os exercícios.
+
+Você pode executar o código clicando no botão *Run* ou posicionando seu cursor dentro do bloco de código e pressionando *Ctrl + Shift + Enter*. Faça isso no exemplo abaixo:
+
+```{r}
+
+plot(cars)
+
+
+```
+
+
+### 1- Vetores atômicos:
+
+Crie um vetor atômico e atribua a um objeto. Printe no console e confira se ele é de fato um vetor:
+
+```{r vetores atomicos}
+
+# Criar vetor:
+
+Vetor <- 10 
+
+
+# Printar vetor:
+
+Vetor 
+
+
+# Checar: 
+
+is.vector(Vetor) # [1] TRUE
+
+```
+
+### 2- Vetores atômicos: Numéricos, Inteiros, Caracteres, Lógicos e fatores
+
+#### 2a- Vetores numéricos e inteiros:
+
+Crie dois vetores atômicos, atribuidos cada um a um objeto.
+Um deles deve ser um vetor numérico decimal (com ponto flutuante) e o outro deve ser um valor inteiro.
+
+Printe-os no console e avalie a que classes pertencem.
+
+```{r numericos inteiros}
+
+# Criar:
+
+Numerico <- 10.5 # Criar vetor numércio decimal
+
+Inteiro <- 10L # Criar vetor numércio inteiro
+
+
+# Printar:
+
+Numerico # Printar numérico decimal
+
+Inteiro # Printar numérico inteiro
+
+
+# Checar classe:
+
+class(Numerico) # Checar classe do numérico decimal
+
+class(Inteiro) # Checar classe do numérico inteiro
+
+
+
+```
+
+
+#### 2b- Vetores caracteres:
+
+Crie um vetor que armazene texto, atribua a um objeto, printe no console, confira a qual classe ele pertence:
+
+```{r caracteres}
+
+# Criar vetor de texto:
+Texto <- "Physalaemus"
+
+
+# Printar vetor de texto:
+Texto
+
+# Checar a classe:
+class(Texto) #"character"
+
+```
+
+#### 2c- Vetores lógicos:
+
+Construa um objeto vetor chamado Verdadeiro e armazene nele a informação para vetor lógico verdadeiro.
+
+Construa um objeto vetor de nome Falso e armazene nele a informação para vetor lógico falso.
+
+Printe os valores no console e confira se ambos pertencem à categoria lógico. 
+
+
+```{r logicos}
+
+# Criar vetores lógicos:
+
+Verdadeiro <- TRUE   # Criar Verdadeiro
+
+Falso <- FALSE  # Criar Falso
+
+
+# Printar vetores lógicos:
+
+Verdadeiro # Printar Verdadeiro
+
+Falso # Printar Falso
+
+
+# Checar vetores lógicos:
+
+is.logical(c(Verdadeiro, Falso)) # Checar Verdadeiro e Falso
+
+
+
+
+```
+
+#### 2d- Vetores de fator:
+
+Crie um vetor categórico e o atribua a um objeto. Printe no console, confira se ele é de fato um vetor e avalie a qual classe ele pertence:
+
+```{r fator}
+
+
+# Criar fator: 
+
+f <- factor(c("Physalaemus", "Elachistocleis", "Odontophrynus")) 
+
+
+# Printar fator:
+
+f
+
+
+# Checar fator:
+
+class(f) # "factor"
+
+```
+
+
+### 3- Estruturas de dados compostas:
+
+#### 3a- Listas:
+
+Crie 3 listas atribuidas a objetos: uma com elementos numéricos, outra com elementos de texto e uma terceira lista com dados mistos.
+
+Printe as três no console, certifique-se de que são listas:
+
+```{r listas}
+
+# Criando listas:
+
+lista_num <- list(1, 2, 3) # Numérica
+
+lista_tex <- list("a", "b", "c") # Texto
+
+lista_mis <- list(1, "a", 2, "b", 3, "c") # Mista
+
+
+# Printando listas:
+
+lista_num # Printar lista numérica
+
+lista_tex # Printar lista de texto
+
+lista_mis # Printar lista mista
+
+
+# Checando as listas:
+
+is.list(c(lista_num, lista_tex, lista_mis))
+
+
+```
+
+
+
+
