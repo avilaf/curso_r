@@ -1,0 +1,286 @@
+---
+title: "R para no programadores"
+subtitle: "Aplicado a estudios herpetológicos"
+author: "Fernanda Rodrigues de Avila"
+institute: "Lab. de Herpetología - FCIEN, UDELAR"
+date: "10/06/2025"
+encoding: "UTF-8"
+output:
+  xaringan::moon_reader:
+    # chakra: libs/remark-latest.min.js  
+    # css: ["rladies", "rladies-fonts"]
+    seal: false
+    css: xaringan-themer.css
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+
+```{r xaringan-themer, include = FALSE, warning = FALSE}
+library(xaringanthemer)
+style_mono_accent(
+  # Colors:
+  base_color = "#40C9A2",
+  black_color = "#4E1F00",
+  link_color = "#F0BB78",
+  
+  # Fonts:
+  header_font_google = google_font("Sora", "Bold", "700"),
+  text_font_google   = google_font("Sora", "Thin", "100"),
+  code_font_google   = google_font("Fira Mono")
+)
+```
+$~$
+
+<h3 style="text-align:center;">Bienvenidas(os) a R para no programadores</h3>
+<h3 style="text-align:center;">*Aplicado a estudios herpetológicos*</h3>
+$~$
+
+--
+<p style="text-align:center;">Hola :)</p>
+
+$~$
+```{r echo = FALSE, fig.align = 'center', fig.cap = "avilaf.github.io/esp", out.width = "70%"}
+
+
+url <- "index_files/figures/site.png"
+
+knitr::include_graphics(url)
+
+
+```
+
+<p style="text-align:center;">fernandar.avila@gmail.com</p>
+<p style="text-align:center;">Lab. de Herpetología - FCIEN, UDELAR</p>
+
+
+
+---
+# también puedes llamaro de...
+
+$~$
+
+$~$
+```{r, warning = FALSE, message = FALSE, align = 'center'}
+
+
+
+print("R es amigo :)")
+
+```
+
+
+---
+
+## Qué hacer con R
+.pull-left[
+- Poderosa herramienta para análisys de datos
+]
+
+```{r echo = FALSE, fig.align = 'right', fig.cap = "", out.width = "50%"}
+
+
+url <- "index_files/figures/tidyr.png"
+
+knitr::include_graphics(url)
+
+
+```
+--
+.pull-left[
+- **Solo** una herramienta
+]
+---
+
+### Plan de trabajo:
+
+
+$~$
+
+```{r echo = FALSE, out.width = "70%"}
+
+
+library(tibble)
+library(kableExtra)
+
+cab <- c("Lunes", "Martes", "Miércoles", "Jueves", "Viernes")
+
+lu <- c("Intro", "Bases y prácticas")
+
+ma <- c("Base de gráficos", "Práctica + Tarea (pt. 1/2)")
+
+mi <- c("Biocústica", "Bioinformática + mapas")
+
+ju <- c("Modelos en ecología", "Revisión + Avaliación conceptual")
+
+vi <- c("Tarea (pt. 2/2)", "Presentación final")
+
+row_names <- c("Mañana", "Tarde")
+
+dt <- data.frame(cbind(lu, ma, mi, ju, vi),
+                 row.names = row_names)
+
+colnames(dt) <- cab
+
+dt %>%
+  kbl() %>%
+  kable_styling(row_label_position = "l")
+
+```
+
+
+$~$
+
+$~$
+
+```{r echo = FALSE, fig.align = 'center', fig.cap = "", out.width = "50%"}
+
+
+url <- "index_files/figures/sapo_pc.jpg"
+
+knitr::include_graphics(url)
+
+
+```
+---
+
+## Temas abordados:
+
+$~$
+
+.pull-left[
+- Ambiente R: herramienta y aplicaciones generales
+]
+--
+.pull-left[
+- Lenguage R/S y programación orientada a objectos
+]
+
+--
+.pull-left[
+- Organización del trabajo: Scripts y RNotebooks 
+]
+
+--
+.pull-left[
+- Análisis de datos
+]
+
+--
+.pull-left[
+- Gráficos y mapas en R
+]
+
+$~$
+
+$~$
+
+$~$
+
+```{r echo = FALSE, fig.align = 'right', fig.cap = "", out.width = "40%"}
+
+
+url <- "index_files/figures/sapo.jpg"
+
+knitr::include_graphics(url)
+
+
+```
+
+---
+
+## Mapas interactivos
+
+```{r echo=FALSE, fig.align='right', fig.cap="", message=FALSE, warning=FALSE, out.width="80%"}
+
+# 
+# # Directory ------------------------------------------------------------
+# 
+# path <- "D:/biologa/00_beca_posdoctoral_UY/05_disciplina_R"
+# setwd(path)
+
+# Data -----------------------------------------------------------------
+
+require(dplyr)
+require(leaflet)
+
+data <- read.csv("D:/biologa/00_beca_posdoctoral_UY/05_disciplina_R/complete_data_pulchella.csv", 
+                 h = T)
+
+df <- data %>%
+  dplyr::mutate_at(vars(level.1, level.2), factor)
+
+
+# get the palette
+my_colors <- c("#af7ac5", 
+               "#a2d9ce", 
+               "#fcf3cf", 
+               "#e6b0aa")
+
+# Prepare the text for the tooltip:
+mytext <- paste(
+  "Local: ", data$local, "<br/>",
+  "Level 1: ", data$level.1, "<br/>", 
+  "Level 2: ", data$level.2, "<br/>"
+  ) %>%
+  lapply(htmltools::HTML)
+
+
+# Create a proper color palette function
+color_pal <- leaflet::colorFactor(palette = my_colors, 
+                                  domain = df$level.1)
+
+
+
+# Full map -------------------------------------------------------------
+
+m <- leaflet:: leaflet(data = df) %>%
+  
+  leaflet::addTiles() %>% 
+  
+  leaflet::setView(lat = -35, lng = -50, zoom = 4) %>%
+  
+  leaflet::addProviderTiles("Esri.WorldImagery") %>%
+  
+  leaflet::addCircleMarkers(~long, ~lat,
+                            fillColor = ~color_pal(level.1),
+                            fillOpacity = 0.9,
+                            color = "white",
+                            radius = 8,
+                            stroke = FALSE,
+                            label = mytext,
+                            labelOptions = labelOptions(
+                              style = list("font-weight" = "normal", 
+                                  padding = "3px 8px"),
+                              textsize = "13px",
+                              direction = "auto")) %>%
+  
+  leaflet::addLegend(pal = color_pal,
+                     values = ~df$level.1,
+                     opacity = 0.9,
+                     title = "Cluster",
+                     position = "bottomright")
+
+# Display the map
+m
+
+
+```
+
+---
+## Slides
+
+$~$
+
+```{r echo=FALSE, fig.align='left', fig.cap="", message=FALSE, warning=FALSE, out.width="80%"}
+
+url <- "index_files/figures/slides.png"
+
+knitr::include_graphics(url)
+
+```
+
+
