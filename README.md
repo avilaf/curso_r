@@ -24,7 +24,7 @@ al final, presentarán sus análisis y resultados en forma de seminario.
 
 #### **Módulo 1: Bases del ambiente R y aplicaciones para el estudio de la herpetofauna**
 
-[Contenido]{.underline}: Presentación de las herramientas y potencialidades del
+Contenido: Presentación de las herramientas y potencialidades del
 ambiente R. Introducción a el lenguaje R y conceptos básicos de lógica de
 programación, con actividades prácticas. Presentación de ejemplos de estudio y
 aplicaciones de las herramientas implementadas en ambiente R para el estudio de
@@ -40,14 +40,14 @@ ecológicos. Ejemplos prácticos y ejercicios.
 
 #### **Módulo 3: Recursos gráficos avanzados** 
 
-[Contenido]{.underline}: Nociones básicas de la sintaxis modular de gráficos en
+Contenido: Nociones básicas de la sintaxis modular de gráficos en
 el paquete “ggplot2”. Recursos gráficos esenciales: geometries, aesthetics,
 scales, stratistical transformations, coordinate system, facets y visual themes.
 Ejemplos prácticos con datos uni y multivariados. Ejercicios prácticos.
 
 #### **Módulo 4: Prácticas asistidas**
 
-[Contenido:]{.underline} Delineamiento estadístico y ejecución de análisis a
+Contenido: Delineamiento estadístico y ejecución de análisis a
 partir de datos ecológicos reales. Manejo de datos, elección de paquetes y
 funciones adecuados para los datos, elaboración de script completo de análisis y
 presentación oral de los resultados.
@@ -99,12 +99,12 @@ Dra. Fernanda Rodrigues de Avila (*fernandar.avila\@gmail.com*). Laboratorio de
 Sistemática e Historia Natural de Vertebrados - Herpetología - Facultad de
 Ciencias (UdelaR)
 
-[**Dirección para consultas o preguntas**]{.underline}:
+**Dirección para consultas o preguntas**:
 herpetologia\@fcien.edu.uy
 
-[**Fechas**]{.underline}: 4 al 8 de agosto de 2025
+**Fechas**: 4 al 8 de agosto de 2025
 
-[**Horarios**]{.underline}:
+**Horarios**:
 
 Mañana: 9:00 a 12:00
 
@@ -112,12 +112,12 @@ Tarde: 14:00 a 17:00
 
 Carga Horaria: 30 hrs
 
-[**Reunión inicial**]{.underline}: lunes, 4 de agosto. 9:00 hrs
+**Reunión inicial**: lunes, 4 de agosto. 9:00 hrs
 
-[**Ganancia del curso**]{.underline}: Asistencia al 75% de las clases y
+**Ganancia del curso**: Asistencia al 75% de las clases y
 presentación de artículos
 
-[**Aprobación del curso**]{.underline}: Examen Final
+**Aprobación del curso**: Examen Final
 
 
 ## **Materiales de apoyo:**
