@@ -86,7 +86,7 @@ Carga Horaria: 30 hrs.
 **Slides:**
 - [Classe 1: Introducción](https://avilaf.github.io/00_slides/curso_r_slides_clase_1.html)
 - [Classe 2: Objetos](https://avilaf.github.io/00_slides/curso_r_slides_clase_2.html)
-- [Instrucciones para tarea](https://avilaf.github.io/00_slides/curso_r_tarea.html)
+- [Instrucciones para la tarea](https://avilaf.github.io/00_slides/curso_r_tarea.html)
 
 Los demás materiales, cómo scripts y archivos, los puede descargar en este mismo directorio:
 [curso_r.rar]()
