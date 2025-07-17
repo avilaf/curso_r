@@ -1,0 +1,1982 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>R para no programadores</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Fernanda Rodrigues de Avila" />
+    <meta name="date" content="2025-04-08" />
+    <script src="libs/header-attrs-2.29/header-attrs.js"></script>
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+    <link href="libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+    <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+    <script src="libs/leaflet-1.3.1/leaflet.js"></script>
+    <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+    <script src="libs/proj4-2.6.2/proj4.min.js"></script>
+    <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+    <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+    <script src="libs/leaflet-binding-2.2.2/leaflet.js"></script>
+    <script src="libs/leaflet-providers-2.0.0/leaflet-providers_2.0.0.js"></script>
+    <script src="libs/leaflet-providers-plugin-2.2.2/leaflet-providers-plugin.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+&lt;h3 style="text-align:center;"&gt;Bienvenidas(os) a R para no programadores&lt;/h3&gt;
+&lt;h3 style="text-align:center;"&gt;Aplicado a estudios herpetológicos&lt;/h3&gt;
+
+--
+&lt;p style="text-align:center;"&gt;Fernanda R. de Avila&lt;/p&gt;
+
+&lt;img src="index_files/figures/cry.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+---
+&lt;h3 style="text-align:center;"&gt;Bienvenidas(os) a R para no programadores&lt;/h3&gt;
+&lt;h3 style="text-align:center;"&gt;*Aplicado a estudios herpetológicos*&lt;/h3&gt;
+`\(~\)`
+
+
+&lt;p style="text-align:center;"&gt;Hola :)&lt;/p&gt;
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="index_files/figures/site.png" alt="avilaf.github.io/esp" width="70%" /&gt;
+&lt;p class="caption"&gt;avilaf.github.io/esp&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p style="text-align:center;"&gt;fernandar.avila@gmail.com - Lab. de Herpetología - FCIEN, UDELAR&lt;/p&gt;
+
+
+---
+# también puedes llamarlo de...
+
+`\(~\)`
+
+`\(~\)`
+
+
+
+``` r
+print("R es amigo :)")
+```
+
+```
+## [1] "R es amigo :)"
+```
+
+
+---
+
+## Qué hacer con R
+
+.pull-left[
+- Poderosa herramienta para análisis de datos ]
+
+&lt;img src="index_files/figures/tidyr.png" width="50%" style="display: block; margin: auto 0 auto auto;" /&gt;
+--
+.pull-left[
+- **Solo** una herramienta]
+
+---
+
+`\(~\)`
+
+`\(~\)`
+
+- El **R** es un **lenguaje de programación** y un **entorno de software libre**.
+--
+`\(~\)`
+
+- Debido a su poder y flexibilidad, se utiliza ampliamente para **análisis
+estadístico**, **manipulación de datos** y **visualización gráfica**.
+--
+`\(~\)`
+
+- Es posible encontrar una amplia gama de paquetes que facilitan la realización de **análisis complejos** y la creación de **gráficos sofisticados**.
+--
+`\(~\)`
+
+- Dominar el lenguaje R = autonomía en la investigación.
+
+&lt;img src="index_files/figures/no-oh-no.gif" width="40%" style="display: block; margin: auto;" /&gt;
+
+---
+# Sobre esta clase
+
+-   El objetivo de este material es proporcionar una **base sólida**, una
+    comprensión amplia del funcionamiento del lenguaje R.
+--
+
+`\(~\)`
+
+-   Fue elaborado para que incluso personas sin experiencia en
+    lógica de programación sean capaces de ejecutar todos los ejemplos y
+    comprender sus significados.
+
+&lt;img src="index_files/figures/kermit_sad.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+---
+
+### Plan de trabajo
+
+
+`\(~\)`
+
+&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Lunes &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Martes &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Miércoles &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Jueves &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Viernes &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Mañana &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Presentación &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Base de gráficos &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Ecología de comunidades &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Bioinformática + mapas &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Revisión + evaluación &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Tarde &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Bases y prácticas &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Práctica + tarea (pt. 1/2) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Moroflogía + biocústica &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Tarea (pt. 2/2) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Presentación final &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+`\(~\)`
+
+`\(~\)`
+
+&lt;img src="index_files/figures/sapo_pc.jpg" width="40%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Temas abordados:
+
+`\(~\)`
+
+.pull-left[
+- Ambiente R: herramienta y aplicaciones generales
+]
+--
+.pull-left[
+- Lenguage R/S y programación orientada a objetos
+]
+
+--
+.pull-left[
+- Organización del trabajo: Scripts y RNotebooks 
+]
+
+--
+.pull-left[
+- Análisis de datos
+]
+
+--
+.pull-left[
+- Gráficos y mapas en R
+]
+
+`\(~\)`
+
+`\(~\)`
+
+`\(~\)`
+
+&lt;img src="index_files/figures/sapo.jpg" width="40%" style="display: block; margin: auto 0 auto auto;" /&gt;
+
+---
+
+## Mapas interactivos
+
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-7e2e3dd25ba2b492daae" style="width:80%;height:504px;"></div>
+<script type="application/json" data-for="htmlwidget-7e2e3dd25ba2b492daae">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addProviderTiles","args":["Esri.WorldImagery",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addCircleMarkers","args":[[-34.88589017,-38.12804411,-34.32937239,-32.39435582,-37.15826829,-29.33158172,-28.10371863,-27.47439357,-33.9655499,-34.37621068,-37.88461364,-37.88461364,-32.39435582,-34.32079309,-29.16379654,-34.91101339,-38.12934132,-26.99686377,-29.03145328],[-57.93823655,-61.79193903,-58.75588595,-58.86740102,-56.90694276,-50.3215797,-54.68360763,-55.14410936,-53.63045189,-55.60188093,-57.98586142,-57.98586142,-58.86740102,-58.75612096,-58.86196896,-57.89543779,-61.78758161,-51.55747358,-50.20785255],8,null,null,{"interactive":true,"className":"","stroke":false,"color":"white","weight":5,"opacity":0.5,"fill":true,"fillColor":["#E6B0AA","#FCF3CF","#E6B0AA","#E6B0AA","#E6B0AA","#E6B0AA","#FCF3CF","#FCF3CF","#A2D9CE","#A2D9CE","#E6B0AA","#E6B0AA","#E6B0AA","#E6B0AA","#E6B0AA","#E6B0AA","#FCF3CF","#AF7AC5","#AF7AC5"],"fillOpacity":0.9},null,null,null,null,["Local:  Argentina: Buenos Aires, La Plata <br/> Level 1:  4 <br/> Level 2:  6 <br/>","Local:  Argentina: Buenos Aires, Sierra de la Ventana <br/> Level 1:  3 <br/> Level 2:  3 <br/>","Local:  Argentina: Buenos Aires, Escobar, El Cazador <br/> Level 1:  4 <br/> Level 2:  5 <br/>","Local:  Argentina: Entre Rios, Dto. Uruguay, Basavilbaso <br/> Level 1:  4 <br/> Level 2:  5 <br/>","Local:  Argentina: Buenos Aires, Carilo <br/> Level 1:  4 <br/> Level 2:  5 <br/>","Local:  Brazil: Rio Grande do Sul, Sao Francisco de Paula <br/> Level 1:  4 <br/> Level 2:  6 <br/>","Local:  Brazil: Rio Grande do Sul, Cerro Largo <br/> Level 1:  3 <br/> Level 2:  4 <br/>","Local:  Argentina: Misiones, Obera, San Martin <br/> Level 1:  3 <br/> Level 2:  4 <br/>","Local:  Uruguay: Rocha, Laguna Negra <br/> Level 1:  2 <br/> Level 2:  2 <br/>","Local:  Uruguay: San Jose, Libertad, Campo Experimental Facultad de Veterinaria <br/> Level 1:  2 <br/> Level 2:  2 <br/>","Local:  Argentina: Buenos Aires, Balcarce, Laguna La Brava <br/> Level 1:  4 <br/> Level 2:  5 <br/>","Local:  Argentina: Buenos Aires, Balcarce, Laguna La Brava <br/> Level 1:  4 <br/> Level 2:  5 <br/>","Local:  Argentina: Entre Rios, Uruguay, Basavilbaso <br/> Level 1:  4 <br/> Level 2:  5 <br/>","Local:  Argentina: Buenos Aires, Escobar, El Cazador <br/> Level 1:  4 <br/> Level 2:  5 <br/>","Local:  Argentina: Corrientes, Lavalle, Ruta Nacional 12, km 853 <br/> Level 1:  4 <br/> Level 2:  5 <br/>","Local:  Argentina: Buenos Aires, La Plata <br/> Level 1:  4 <br/> Level 2:  6 <br/>","Local:  Argentina: Buenos Aires, Sierra de la Ventana <br/> Level 1:  3 <br/> Level 2:  3 <br/>","Local:  Brazil: Santa Catarina, agua Doce <br/> Level 1:  1 <br/> Level 2:  1 <br/>","Local:  Brazil: Rio Grande do Sul, Cambara do Sul <br/> Level 1:  1 <br/> Level 2:  1 <br/>"],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"13px","textOnly":false,"style":{"font-weight":"normal","padding":"3px 8px"},"className":"","sticky":true},null]},{"method":"addLegend","args":[{"colors":["#AF7AC5","#A2D9CE","#FCF3CF","#E6B0AA"],"labels":["1","2","3","4"],"na_color":null,"na_label":"NA","opacity":0.9,"position":"bottomright","type":"factor","title":"Cluster","extra":null,"layerId":null,"className":"info legend","group":null}]}],"setView":[[-35,-50],4,[]],"limits":{"lat":[-38.12934132,-26.99686377],"lng":[-61.79193903,-50.20785255]}},"evals":[],"jsHooks":[]}</script>
+
+---
+## Slides
+
+`\(~\)`
+
+&lt;img src="index_files/figures/slides.png" width="80%" style="display: block; margin: auto auto auto 0;" /&gt;
+
+---
+layout: false
+class: inverse, middle, center
+
+# Cuanto sabemos y qué buscamos aprender?
+
+---
+layout: false
+class: inverse, middle, center
+
+# Instalando R
+
+---
+### Instalando R
+
+R puede descargarse e instalarse desde el sitio oficial del CRAN (Comprehensive
+R Archive Network).
+--
+
+#### Pasos para la instalación de R
+
+1.  **Accede al sitio de CRAN**: [CRAN](https://cran.r-project.org/).
+--
+
+2.  **Elige tu sistema**:
+      -   **Windows**: Haz clic en "Download R for Windows" y luego en "base" para descargar el instalador.
+      -   **macOS**: Haz clic en "Download R for macOS" y elige el archivo .pkg más reciente.
+      -   **Linux**: Sigue las instrucciones específicas para tu distribución (como Ubuntu, Fedora, etc.) en la sección "Download R for Linux".
+--
+3.  **Descarga el instalador**:
+    -   Sigue las instrucciones para descargar el archivo de instalación.
+--
+4.  **Instala R**:
+    -   Ejecuta el instalador descargado y sigue las instrucciones en pantalla para completar la instalación.
+        
+---
+layout: false
+class: inverse, middle, center
+
+# Instalando RStudio
+
+---
+
+### Instalando RStudio
+
+RStudio es un entorno de desarrollo integrado (IDE) para R que facilita la
+programación y el análisis de datos.
+--
+
+#### Pasos para la instalación de RStudio
+
+**1.  Accede al sitio de RStudio:**
+
+-   Ve a [RStudio Download](https://www.rstudio.com/products/rstudio/download/).
+
+--
+
+
+**2.  Elige la versión:**
+
+-   Desplázate hacia abajo hasta la sección "Installers" y selecciona la versión de tu sistema:
+-   **RStudio Desktop** (versión gratuita) es la opción más común.
+-   Haz clic en el botón de descarga para Windows, macOS o Linux.
+
+---
+
+#### Pasos para la instalación de RStudio pt. 2
+
+**3.  Descarga el instalador:**
+
+-   Después de hacer clic en el botón de descarga, se descargará el archivo de instalación.
+
+--
+
+**4.  Instala RStudio:**
+
+-   Ejecuta el instalador descargado y sigue las instrucciones en pantalla para completar la instalación.
+
+---
+layout: false
+class: inverse, middle, center
+
+# Verificando la instalación
+
+---
+
+### Verificando la instalación
+
+Después de instalar R y RStudio:
+
+--
+
+**1. Abre RStudio:**
+
+-   RStudio debería abrir automáticamente R como una consola en la parte inferior de la interfaz.
+
+--
+
+**2. Verifica que la instalación haya sido exitosa:**
+
+-   Puedes probar la instalación escribiendo `R.version` en la consola de
+RStudio y presionando Enter. Esto debería mostrar información sobre la versión de R instalada. 
+
+
+---
+layout: false
+class: inverse, middle, center
+
+# Lenguaje R y comandos
+
+---
+## Lenguaje R y comandos
+
+Para trabajar en R necesitamos **escribir los comandos que queremos que se ejecuten**. 
+
+Así es como nos "comunicamos" con el programa. 
+
+Para eso es necesario utilizar el **lenguaje nativo del intérprete** R: el lenguaje R (o S).
+
+--
+
+.center[
+Aprender un nuevo idioma, al principio puede parecer más difícil, pero, una vez aprendidas las bases del lenguaje, notarás que puedes entender la mayoría de los comandos.
+]
+
+&lt;img src="index_files/figures/sapo_pc.jpg" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+layout: false
+class: inverse, middle, center
+
+# Entendiendo RStudio
+
+---
+
+## Entendiendo RStudio
+
+&lt;img src="index_files/figures/rstudio.JPG" width="80%" style="display: block; margin: auto auto auto 0;" /&gt;
+
+---
+
+### 1. Panel del Script (Editor de Código)
+
+`\(~\)`
+
+.pull-left[
+- escribir y editar scripts 
+- crear nuevos archivos 
+- abrir scripts existentes
+- trabajar con varias pestañas simultáneamente
+
+Puedes ejecutar código directamente desde este panel
+]
+
+.pull-right[
+
+&lt;img src="index_files/figures/rstudioA.JPG" width="100%" style="display: block; margin: auto auto auto 0;" /&gt;
+]
+
+---
+
+### 2. Console
+
+`\(~\)`
+
+.pull-left[
+Muestra la salida de los comandos R ejecutados. 
+
+- interactuar directamente con el lenguaje R
+- ejecutar comandos línea por línea 
+- ver resultados instantáneamente
+]
+
+.pull-right[
+
+&lt;img src="index_files/figures/rstudioB.JPG" width="100%" style="display: block; margin: auto auto auto 0;" /&gt;
+]
+
+---
+
+### 3. Environment y History
+
+`\(~\)`
+
+Dos secciones principales:
+
+--
+.pull-left[
+
+**Environment:** lista de objetos actualmente cargados en la sesión, permite visualizar tus datos
+
+**History:** historico de los comandos ejecutados en la sesión, facilita la revisión y reutilización de código
+
+]
+
+.pull-right[
+&lt;img src="index_files/figures/rstudioC.JPG" width="80%" style="display: block; margin: auto auto auto 0;" /&gt;
+]
+
+---
+
+### 4. File, Plots, Packages and Help
+
+`\(~\)`
+
+.pull-left[
+
+**Files:**  navegar por directorios, abrir y gestionar archivos
+
+**Plots:** visualizar, guardar y exportar gráficos
+
+**Packages:** visualizar los paquetes R instalados, cargar o instalar nuevos paquetes fácilmente
+
+**Help:** buscar ayuda sobre funciones y paquetes
+
+]
+
+.pull-right[
+&lt;img src="index_files/figures/rstudioD.JPG" width="100%" style="display: block; margin: auto auto auto 0;" /&gt;
+]
+
+
+
+---
+layout: false
+class: inverse, middle, center
+
+# Trabajando con scripts
+
+---
+
+## Trabajando con scripts
+
+&lt;img src="index_files/figures/rstudio_script.jpg" width="80%" style="display: block; margin: auto auto auto 0;" /&gt;
+
+---
+## Trabajando con scripts
+
+
+**scripts** &lt;- archivos de **texto simple** (extensión **.R**) con comandos e instrucciones
+
+--
+
+Un script puede contener una **secuencia de comandos** 
+
+--
+
+Permite que **escribas y guardes un flujo de trabajo completo**
+
+--
+
+`\(~\)`
+
+`\(~\)`
+
+.center[
+**Ejecutar los mismos análisis nuevamente y compartir el archivo para que otros usuarios ejecuten esos análisis.**
+]
+
+---
+## Crear un script
+
+**Dentro de RStudio**, para crear un script nuevo puedes usar uno de estos
+atajos:
+
+`\(~\)`
+
+--
+
+* 1.  En la esquina superior izquierda de la pantalla, hacer clic en la figura que está debajo de la palabra File.
+
+&lt;img src="index_files/figures/rstudio_novo_scipt.jpg" width="80%" style="display: block; margin: auto auto auto 0;" /&gt;
+
+
+`\(~\)`
+
+* 2.  Usar el atajo en el teclado: `Ctrl + Shift + N`.
+
+---
+
+## Ejecutar líneas de código
+
+
+**Ejecutar línea por línea:** 
+
+1. Selecciona la línea que contiene el código 
+2. Presiona `Ctrl + Enter` (Windows/Linux) o `Cmd + Enter` (Mac) 
+3. El código se enviará a la consola y se ejecutará inmediatamente
+
+--
+
+**Ejecutar todo el script:** 
+
+1. Haz clic en el botón "Run" en la esquina superior derecha del panel de scripts 
+2. O presiona `Ctrl + Shift + Enter` (Windows/Linux) o `Cmd + Shift + Enter` (Mac)
+
+---
+
+`\(~\)`
+
+`\(~\)`
+
+`\(~\)`
+
+**Consejos adicionales:**
+
+- Para ejecutar un bloque de código seleccionado, usa el mismo atajo después de seleccionar el texto 
+
+- `Ctrl + Alt + R` (Windows/Linux) o `Cmd + Option + R` (Mac) para ejecutar todo el script 
+
+- Los resultados aparecerán en la consola inferior de RStudio
+
+--
+
+`\(~\)`
+
+
+.center[
+**Asegúrate de que tu cursor esté posicionado correctamente o hayas
+seleccionado el código que deseas ejecutar.**
+]
+
+---
+layout: false
+class: inverse, middle, center
+
+
+
+# Primeros pasos
+
+---
+
+## Enviando un comando al intérprete de R
+
+`\(~\)`
+
+
+`Ctrl + C` 
+
+`Ctrl + V`
+
+
+`\(~\)`
+
+
+``` r
+print("Hello, world!")
+```
+
+```
+## [1] "Hello, world!"
+```
+
+--
+
+`RUN` -&gt; enviamos el comando `print("Hello,world!")` al intérprete de R y recibimos el resultado de esa operación.
+
+---
+`\(~\)`
+
+
+``` r
+print("Hello, world!")
+```
+
+```
+## [1] "Hello, world!"
+```
+
+`\(~\)`
+
+**Conceptos básicos de la sintaxis:**
+
+Lo que está entre `"comillas"` = caracteres. 
+
+--
+
+Parece obvio, pero mira qué pasa al ejecutar el siguiente código:
+
+
+``` r
+print(Hello)
+```
+
+```
+## Error: objeto 'Hello' não encontrado
+```
+
+``` r
+print("Hello")
+```
+
+```
+## [1] "Hello"
+```
+
+---
+
+## Hacer comentarios en el script
+
+Texto precedido por `#` = comentario. 
+
+Es decir, *no es código R y no será interpretado*. 
+
+--
+
+## Para qué sirve?
+
+--
+
+Facilitar la interpretación del script por parte del **usuario**.
+
+Ejemplo...
+---
+
+`\(~\)`
+
+
+`\(~\)`
+
+.center[
+**Avisos, mensajes, recordatorios y explicaciones importantes para tu comprensión del código**
+]
+
+`\(~\)`
+
+`\(~\)`
+
+
+``` r
+# Esto es un comentario y no será interpretado por R
+# solo sirve para informar al usuario
+```
+
+---
+layout: false
+class: inverse, middle, center
+
+# Objetos
+
+---
+
+## Programación orientada a objetos
+
+Interesante para análisis de datos
+
+--
+
+**Qué son los objetos?**
+
+--
+
+**Cualquier entidad que pueda almacenar datos e informaciones** y sobre la cual se pueda realizar **operaciones**
+
+O sea: **casi todo en R es un objeto**.
+
+--
+
+Entender los **tipos de objetos en R**. 
+
+Diferentes classes, con **métodos** ou **funciones** específicas.
+
+---
+
+## Vectores atómicos
+
+**Formas más básicas** de representación de datos
+
+Puedes encontrarlos como **Atomic vectors**
+
+`\(~\)`
+
+.center[
+Caracteristicas: 
+
+**homogeneidad** (todos los elementos de un vector atómico deben ser del mismo tipo) 
+y
+**unidimensionalidad** (son datos unidimensionales)
+]
+
+--
+
+
+``` r
+# Ejemplo:
+
+v &lt;- c(1, 2, 3)  # Vector numérico: todos los elementos son valores numéricos
+v # para imprimir el vector "v" en la consola
+```
+
+```
+## [1] 1 2 3
+```
+
+``` r
+is.vector(v) # muestra "TRUE"
+```
+
+```
+## [1] TRUE
+```
+
+---
+
+## Verificar si un objeto pertenece a una categoría específica
+
+Funciones predefinidas con el formato `is.`
+
+Muestran un valor lógico (`TRUE` si es verdadero o `FALSE` si es falso)
+
+--
+
+``` r
+# Ejemplo:
+
+is.vector(v) # muestra "TRUE"
+```
+
+```
+## [1] TRUE
+```
+
+``` r
+is.data.frame(v) # muestra "FALSE", ya que "v" es un vector y no un "data frame"
+```
+
+```
+## [1] FALSE
+```
+
+---
+layout: false
+class: inverse, middle, center
+
+# Principales tipos de vectores/datos en R
+
+---
+
+### 1. Numeric
+
+Representa números (decimales o enteros).
+
+Por definición, los números se tratan como números de punto flotante (decimales).
+
+--
+
+
+``` r
+# Ejemplo:
+
+x &lt;- 10.5  # Numérico (punto flotante)
+x # para imprimir el valor en la consola
+```
+
+```
+## [1] 10.5
+```
+
+``` r
+y &lt;- 5     # Numérico (entero tratado como decimal)
+y # para imprimir el valor en la consola
+```
+
+```
+## [1] 5
+```
+
+---
+
+### Identificar tipo de de objeto
+
+Muchas funciones disponibles,
+
+Ejemplo: `class()`
+
+**Argumento**  = objeto (vector) que creamos conteniendo el valor
+
+
+``` r
+y &lt;- 5     
+y # para mostrar el valor en la consola
+```
+
+```
+## [1] 5
+```
+
+``` r
+class(y) # muestra "numeric"
+```
+
+```
+## [1] "numeric"
+```
+
+---
+
+### 2. Integer
+
+Representa números enteros. Puedes crear valores explícitamente enteros usando
+el sufijo L.
+
+
+``` r
+# Ejemplo:
+
+z &lt;- 10L  # Entero
+
+z # para mostrar el valor en la consola
+```
+
+```
+## [1] 10
+```
+
+``` r
+class(z) # muestra "integer"
+```
+
+```
+## [1] "integer"
+```
+
+---
+
+### 3. Character
+
+
+`\(~\)`
+
+`\(~\)`
+
+
+Representa cadenas de **texto** (secuencias de caracteres).
+
+Las cadenas en R se crean usando comillas dobles (") o simples ('), da igual la
+elección entre ambas, pero es importante mantener la **uniformidad para una mejor organización**
+
+---
+
+`\(~\)`
+
+
+
+``` r
+# Ejemplo:
+
+texto &lt;- "¡Los sapos son geniales!"  # Carácter
+
+texto # para mostrar el valor en la consola
+```
+
+```
+## [1] "¡Los sapos son geniales!"
+```
+
+``` r
+class(texto) # muestra "character"
+```
+
+```
+## [1] "character"
+```
+--
+
+``` r
+texto2 &lt;- '¡Los sapos son geniales!'  # Carácter
+
+texto2 # para mostrar el valor en la consola
+```
+
+```
+## [1] "¡Los sapos son geniales!"
+```
+
+``` r
+class(texto2) # muestra "character"
+```
+
+```
+## [1] "character"
+```
+
+---
+
+### 4. Logical
+
+Representa valores booleanos: verdadero (`TRUE`) o falso (`FALSE`)
+
+
+``` r
+# Ejemplo:
+
+b &lt;- TRUE   # Verdadero
+c &lt;- FALSE  # Falso
+
+b # para mostrar el valor del objeto "b" en la consola
+```
+
+```
+## [1] TRUE
+```
+
+``` r
+c # para mostrar el valor del objeto "c" en la consola
+```
+
+```
+## [1] FALSE
+```
+
+``` r
+class(b) # muestra "logical"
+```
+
+```
+## [1] "logical"
+```
+
+---
+
+### 5. Factor
+
+Se utilizan para representar **datos categóricos**, como **niveles** de una
+**variable cualitativa**. Los factores son esencialmente enteros con etiquetas.
+
+`\(~\)`
+
+
+``` r
+# Ejemplo:
+
+f &lt;- factor(c("pequeño", "grande", "mediano"))  # Factor categórico
+
+f # para mostrar el factor "f" en la consola
+```
+
+```
+## [1] pequeño grande  mediano
+## Levels: grande mediano pequeño
+```
+
+``` r
+is.factor(f) # muestra "TRUE"
+```
+
+```
+## [1] TRUE
+```
+
+---
+layout: false
+class: inverse, middle, center
+
+# Estructuras de Datos Compuestas
+
+---
+
+## Estructuras de Datos Compuestas
+
+`\(~\)`
+
+`\(~\)`
+
+A diferencia de los vectores atómicos, las estructuras de datos compuestas
+agrupan tipos de **datos heterogéneos**, es decir, pueden contener elementos de
+diferentes tipos o formatos.
+
+
+---
+
+### Listas
+
+Una lista es un tipo de vector. Las listas son estructuras que pueden contener
+**diferentes tipos de datos**, incluyendo otros objetos como vectores, matrices
+e incluso otras listas. Las listas son muy flexibles y pueden almacenar
+**cualquier tipo de objeto**.
+
+
+``` r
+# Ejemplo:
+
+l &lt;- list(1, "texto", TRUE)  # Lista con tipos mixtos
+l # para mostrar la lista "l" en la consola
+```
+
+```
+## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] "texto"
+## 
+## [[3]]
+## [1] TRUE
+```
+
+``` r
+is.list(l) # muestra "TRUE"
+```
+
+```
+## [1] TRUE
+```
+
+---
+
+`\(~\)`
+
+
+``` r
+# puedes usar el índice de la lista para acceder a un elemento:
+
+l[1] # primer elemento
+```
+
+```
+## [[1]]
+## [1] 1
+```
+
+``` r
+l[2] # segundo elemento
+```
+
+```
+## [[1]]
+## [1] "texto"
+```
+
+``` r
+l[3] # tercer elemento
+```
+
+```
+## [[1]]
+## [1] TRUE
+```
+
+---
+layout: false
+class: inverse, middle, center
+# Estructuras de datos compuestas multidimensionales
+
+---
+
+### Estructuras de datos compuestas multidimensionales
+
+`\(~\)`
+
+`\(~\)`
+
+
+Organizan datos en **más de una dimensión**, como tablas (filas y columnas) o
+matrices de múltiples dimensiones.
+
+---
+
+### Matrix
+
+Estructuras **bidimensionales** que contienen elementos de un solo tipo. Son
+esencialmente vectores con dimensiones (filas y columnas).
+
+
+``` r
+# Ejemplo:
+
+m &lt;- matrix(1:6, nrow = 2, ncol = 3)  # Matriz 2x3 (2 filas × 3 columnas)
+
+m # para mostrar la matriz "m" en la consola
+```
+
+```
+##      [,1] [,2] [,3]
+## [1,]    1    3    5
+## [2,]    2    4    6
+```
+
+``` r
+is.matrix(m) # muestra "TRUE"
+```
+
+```
+## [1] TRUE
+```
+
+---
+`\(~\)`
+
+`\(~\)`
+
+`\(~\)`
+
+
+``` r
+# Puedes usar índices para seleccionar rows o columns en una matriz:
+
+m[1, 2] # fila 1 y columna 2
+```
+
+```
+## [1] 3
+```
+
+``` r
+m[, 2]  # columna 2 completa
+```
+
+```
+## [1] 3 4
+```
+
+``` r
+m[1, ]  # fila 1 completa
+```
+
+```
+## [1] 1 3 5
+```
+
+---
+
+### Array
+
+Objetos con **más de dos dimensiones**, como una generalización de las matrices.
+Los arrays pueden tener cualquier número de dimensiones.
+
+
+``` r
+# Ejemplo:
+
+a &lt;- array(1:12, dim = c(2, 3, 2))  # Array con 3 dimensiones
+
+a # para mostrar el array "a" en la consola
+```
+
+```
+## , , 1
+## 
+##      [,1] [,2] [,3]
+## [1,]    1    3    5
+## [2,]    2    4    6
+## 
+## , , 2
+## 
+##      [,1] [,2] [,3]
+## [1,]    7    9   11
+## [2,]    8   10   12
+```
+
+---
+
+`\(~\)`
+
+
+
+``` r
+is.array(a) # muestra "TRUE"
+```
+
+```
+## [1] TRUE
+```
+
+``` r
+# Al igual que con matrices y listas, puedes seleccionar partes del array usando índices de dimensión:
+
+a[1:2, 1:3, 1] # seleccionar un bloque completo
+```
+
+```
+##      [,1] [,2] [,3]
+## [1,]    1    3    5
+## [2,]    2    4    6
+```
+
+``` r
+a[1:2, 2, 1] # o una porción específica
+```
+
+```
+## [1] 3 4
+```
+
+---
+
+### Dataframe
+
+Un tipo especial de **lista** donde todos los elementos son **vectores de la misma longitud**. Son ampliamente utilizados para representar datos tabulares.
+Es decir, son como tablas donde cada columna puede tener un tipo de dato
+diferente.
+
+
+``` r
+# Ejemplo:
+
+df &lt;- data.frame(
+  gen = c("Phylodryas", "Helicops"),  # Columna de caracteres
+  n = c(10, 9)                        # Columna numérica
+)  
+
+df # para mostrar el dataframe "df" en la consola
+```
+
+```
+##          gen  n
+## 1 Phylodryas 10
+## 2   Helicops  9
+```
+
+---
+
+`\(~\)`
+
+
+``` r
+is.data.frame(df) # muestra "TRUE"
+```
+
+```
+## [1] TRUE
+```
+
+``` r
+# Puedes seleccionar partes de un dataframe usando índices de fila y columna
+df[1, 1]  # Primera fila, primera columna
+```
+
+```
+## [1] "Phylodryas"
+```
+
+``` r
+# O seleccionar columnas específicas usando [[]] o el operador $
+df[["gen"]]  # Columna "gen"
+```
+
+```
+## [1] "Phylodryas" "Helicops"
+```
+
+``` r
+df$gen       # Alternativa para acceder a la columna "gen"
+```
+
+```
+## [1] "Phylodryas" "Helicops"
+```
+
+---
+layout: false
+class: inverse, middle, center
+
+# Otros tipos de objetos
+
+---
+
+### Function
+
+Incluso las **funciones** son objetos en R. Pueden asignarse a variables y pasarse como argumentos a otras funciones. 
+
+*No es necesario profundizar en los detalles de las funciones en este primer momento, basta con saber que también son objetos.*
+
+
+``` r
+# Ejemplo:
+
+funcion &lt;- function(x) x^2  # Función que calcula el cuadrado de un número
+
+funcion # para mostrar la función "f" en la consola
+```
+
+```
+## function (x) 
+## x^2
+```
+
+---
+
+`\(~\)`
+
+`\(~\)`
+
+
+``` r
+is.function(funcion) # muestra "TRUE"
+```
+
+```
+## [1] TRUE
+```
+
+``` r
+funcion(2) # ejecuta la función y muestra el resultado (2 al cuadrado es igual a 4)
+```
+
+```
+## [1] 4
+```
+
+---
+
+### Valores especiales
+
+R incluye valores especiales como: 
+- `NA` para datos faltantes 
+- `NULL` para objetos vacíos 
+- `Inf` para infinito 
+- `NaN` para operaciones matemáticas indefinidas
+
+
+``` r
+# Ejemplos:
+
+log(-1)  # muestra NaN
+```
+
+```
+## Warning in log(-1): NaNs produzidos
+```
+
+```
+## [1] NaN
+```
+
+``` r
+1/0      # muestra Inf
+```
+
+```
+## [1] Inf
+```
+
+---
+
+### Modelos estadísticos
+
+
+``` r
+# Ejemplo de modelo lineal
+
+modelo &lt;- lm(mpg ~ wt, data = mtcars)
+
+modelo
+```
+
+```
+## 
+## Call:
+## lm(formula = mpg ~ wt, data = mtcars)
+## 
+## Coefficients:
+## (Intercept)           wt  
+##      37.285       -5.344
+```
+
+``` r
+class(modelo)  # muestra "lm"
+```
+
+```
+## [1] "lm"
+```
+
+---
+
+### Sistemas de orientación a objetos
+
+
+``` r
+# Ejemplo de objeto S4 (requiere definir una clase primero)
+
+setClass("Persona",
+         slots = c(nombre = "character", edad = "numeric"))
+
+p &lt;- new("Persona", nombre = "Ana", edad = 30)
+
+p
+```
+
+```
+## An object of class "Persona"
+## Slot "nombre":
+## [1] "Ana"
+## 
+## Slot "edad":
+## [1] 30
+```
+
+``` r
+class(p)
+```
+
+```
+## [1] "Persona"
+## attr(,"package")
+## [1] ".GlobalEnv"
+```
+
+---
+
+### Objetos especializados
+
+-   Series temporales (`ts`)
+-   Objetos espaciales (`sp`, `sf`)
+-   Redes neuronales (`nnet`)
+
+
+``` r
+# No es necesario profundizar en estos objetos en esta etapa
+# Nuestro objetivo ahora es familiarizarnos con los fundamentos de R
+```
+
+**Nota:** Estos objetos avanzados los exploraremos más adelante. Por ahora, nos
+enfocaremos en comprender bien las estructuras básicas de datos y las
+operaciones fundamentales en R.
+---
+
+## Verificar el tipo de dato en R
+
+Hasta ahora conoces dos formas de verificar tipos de datos en R:
+
+1.  La función `class()`
+2.  Las funciones predefinidas con formato `is.*`, como `is.numeric()` e
+    `is.vector()`
+---
+## Verificar el tipo de dato en R
+
+Otra opción es la función **`typeof()`**: 
+
+- Mientras `class()` muestra la *clase* del objeto
+- `typeof()` muestra el *tipo interno* del dato
+
+
+``` r
+# Ejemplo:
+
+x &lt;- 42  # asigna el valor 42 al objeto "x"
+
+typeof(x)  # muestra "double" (punto flotante)
+```
+
+```
+## [1] "double"
+```
+
+``` r
+class(x)   # muestra "numeric"
+```
+
+```
+## [1] "numeric"
+```
+
+---
+
+### Diferencias clave
+
+1.  **Nivel de detalle**:
+
+    -   `typeof()` muestra cómo R almacena internamente el dato
+    -   `class()` muestra la abstracción conceptual
+    
+---
+
+2.  **Casos comunes**:
+
+
+``` r
+y &lt;- 42L
+typeof(y)  # "integer"
+```
+
+```
+## [1] "integer"
+```
+
+``` r
+class(y)   # "integer"
+```
+
+```
+## [1] "integer"
+```
+
+``` r
+z &lt;- "texto" 
+typeof(z)  # "character"
+```
+
+```
+## [1] "character"
+```
+
+``` r
+class(z)   # "character"
+```
+
+```
+## [1] "character"
+```
+
+---
+
+
+3.  **Cuando difieren**:
+
+
+``` r
+f &lt;- factor(c("a","b"))
+typeof(f)  # "integer" (almacenamiento interno)
+```
+
+```
+## [1] "integer"
+```
+
+``` r
+class(f)   # "factor"  (clase conceptual)
+```
+
+```
+## [1] "factor"
+```
+
+---
+layout: false
+class: inverse, middle, center
+
+# Asignación de objetos en R
+
+---
+
+## Almacenar objetos en memoria
+
+Hemos hablado mucho sobre objetos, pero no hemos explicado cómo guardarlos en la
+memoria temporal de R. El operador de **asignación** (`&lt;-`) nos permite almacenar valores bajo nombres específicos.
+
+---
+
+### Conceptos básicos
+
+1.  **Comandos sin asignación**:
+
+
+``` r
+# Al ejecutar sin asignación, solo se muestra el resultado
+1 + 1  # Aparece en consola pero no se guarda
+```
+
+```
+## [1] 2
+```
+
+Esto no crea ningún objeto en el Environment (panel superior derecho de
+RStudio).
+
+&lt;img src="index_files/figures/rstudio_environment.jpg" width="50%" style="display: block; margin: auto auto auto 0;" /&gt;
+
+---
+
+2.  **Asignando resultados**:
+
+
+``` r
+suma &lt;- 1 + 1  # Guarda el resultado en el objeto "suma"
+```
+
+--
+3.  **Visualizando objetos almacenados**:
+
+
+``` r
+suma  # Muestra el contenido del objeto en consola
+```
+
+```
+## [1] 2
+```
+
+---
+
+### Operaciones con objetos almacenados
+
+
+``` r
+# Usar objetos en nuevos cálculos
+Multiplicacion &lt;- suma * 2
+
+# Trabajar con vectores
+vector1 &lt;- c(1, 2, 3, 4, 4.5)  # Creamos un vector numérico
+vector2 &lt;- c(vector1 * 2)       # Creamos nuevo vector multiplicando por 2
+
+vector1  # El vector original permanece intacto
+```
+
+```
+## [1] 1.0 2.0 3.0 4.0 4.5
+```
+
+``` r
+vector2  # Muestra el nuevo vector
+```
+
+```
+## [1] 2 4 6 8 9
+```
+
+---
+
+### Características importantes
+
+-   Los objetos persisten en la sesión hasta que los borres o cierres R
+-   Puedes reutilizarlos en múltiples operaciones
+-   Cada asignación crea un nuevo objeto independiente
+-   El Environment muestra todos tus objetos disponibles
+
+--
+
+Forma de una flecha apuntando hacia el nombre del objeto. En realidad, también podemos usar el signo de asignación invertido, aunque no es una práctica común
+
+
+``` r
+c("George", "Ringo", "Paul", "John") -&gt; nombres  
+
+nombres
+```
+
+```
+## [1] "George" "Ringo"  "Paul"   "John"
+```
+
+---
+
+## Diferenciación entre mayúsculas y minúsculas
+
+R distingue entre mayúsculas y minúsculas (ej: 'a' y 'A' son elementos diferentes)
+
+
+
+``` r
+# En bloques de código anteriores realizamos un cálculo de multiplicación y lo almacenamos en un objeto con ese nombre.
+# Supongamos que necesitemos usarlo nuevamente para un cálculo de división:
+
+division &lt;- multiplicacion/2
+```
+
+```
+## Error: objeto 'multiplicacion' não encontrado
+```
+--
+
+Recibimos como respuesta un error.
+No hay que alarmarse por los errores, son una buena **oportunidad para aprender.**
+
+--
+El objeto "multiplicacion" no existe.
+
+Si has estado atento(a) a nuestro trabajo, habrás notado que el objeto que
+creamos anteriormente no se llamaba "multiplicacion" sino "Multiplicacion" con M mayúscula. *Puedes verificarlo en la ventana "Environment" en la esquina superior derecha.*
+
+---
+
+## Corrijamos el código
+
+
+``` r
+division &lt;- Multiplicacion/2  # Cálculo correcto
+
+division  # Mostrar resultado almacenado en "division"
+```
+
+```
+## [1] 2
+```
+
+---
+
+## Consejos prácticos
+
+`\(~\)`
+
+`\(~\)`
+
+1. **Revisa** siempre los nombres exactos de tus objetos en el Environment 
+
+--
+
+2. Usa **nombres consistentes** (preferiblemente todo en minúsculas)
+
+--
+
+3. El **autocompletado** de RStudio puede ayudarte a evitar estos errores 
+
+--
+
+4. Los **mensajes de error** son tus aliados para entender qué salió mal 
+
+---
+# Revisión
+
+--
+### Objetos
+
+-   El lenguaje R nos permite manipular objetos
+-   Los objetos **almacenan información** que utilizamos en nuestros análisis
+
+---
+
+### Tipos comunes de datos atómicos en R
+
+`\(~\)`
+
+`\(~\)`
+
+#### Vectores
+
+- Base para el trabajo con datos y construcción de estructuras más complejas en R.
+
+- Son **homogéneos** y **unidimensionales**
+
+- **Tipos:**
+
+  -   **Numeric:** Números decimales o enteros (punto flotante)
+  -   **Integer:** Números enteros
+  -   **Character:** Cadenas de texto
+  -   **Logical:** Valores booleanos (TRUE o FALSE)
+  -   **Factor:** Valores categóricos
+
+---
+#### Listas
+
+`\(~\)`
+
+`\(~\)`
+
+- Pueden contener cualquier tipo de objeto
+
+- Permiten organizar datos complejos
+
+- Ideales para almacenar resultados de análisis que incluyen diferentes tipos de salida
+
+---
+#### Matrices
+
+`\(~\)`
+
+`\(~\)`
+
+- **Bidimensionales:** Tienen filas y columnas
+
+- **Homogéneas:** Todos los elementos deben ser del mismo tipo
+
+- **Indexadas:** Cada elemento tiene una posición específica [fila, columna]
+
+
+---
+
+#### Dataframes
+
+`\(~\)`
+
+`\(~\)`
+
+- **Bidimensionales:** Organizados en filas y columnas
+
+- **Heterogéneos:** Cada columna puede contener un tipo de dato diferente
+
+- **Columnas con nombres:** Cada columna tiene un nombre descriptivo
+
+- **Filas numeradas:** Cada fila tiene un índice único
+
+---
+
+#### Arrays
+
+`\(~\)`
+
+`\(~\)`
+
+- **Multidimensionales:** Pueden tener 3, 4, 5 o más dimensiones
+
+- **Homogéneos:** Todos los elementos deben ser del mismo tipo
+
+- **Indexados:** Cada elemento se accede mediante múltiples índices
+
+- **Flexibles:** Útiles para datos complejos con estructura dimensional
+
+---
+
+
+# Ejercicios
+
+`\(~\)`
+
+
+.center[
+Ahora que conocemos los elementos basicos en R podemos aventurarnos un poco y practicar algunos comandos con los ejercicios de esta etapa.
+
+
+`ejercicios_1.Rmd`
+
+]
+
+&lt;img src="index_files/figures/kermit_tranqui.png" width="50%" style="display: block; margin: auto 0 auto auto;" /&gt;
+
+---
+
+`\(~\)`
+
+`\(~\)`
+
+&lt;img src="index_files/figures/kermit-typing.gif" width="50%" style="display: block; margin: auto;" /&gt;
+---
+
+`\(~\)`
+
+`\(~\)`
+
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="index_files/figures/site.png" alt="avilaf.github.io/esp" width="70%" /&gt;
+&lt;p class="caption"&gt;avilaf.github.io/esp&lt;/p&gt;
+&lt;/div&gt;
+&lt;p style="text-align:center;"&gt;fernandar.avila@gmail.com&lt;/p&gt;
+&lt;p style="text-align:center;"&gt;Lab. de Herpetología - FCIEN, UDELAR&lt;/p&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false,
+  "ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
