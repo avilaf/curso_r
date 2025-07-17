@@ -130,7 +130,11 @@ presentación de artículos
 - [Clase 2: Objetos](https://avilaf.github.io/00_slides/curso_r_slides_clase_2.html)
 - [Instrucciones para la tarea](https://avilaf.github.io/00_slides/curso_r_slides_tarea.html)
 
-Los demás materiales, cómo scripts y archivos, los puede descargar en este mismo directorio:
+### **Preparación para clase 3 (Gráficos):**
+- [Início y datos para gráficos](avilaf.github.io/03_graficos_pt1.html)
+
+
+Los demás materiales, cómo scripts, datos y ejercícios, los puede descargar en este mismo directorio:
 [curso_r.rar]()
 
 
