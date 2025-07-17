@@ -125,14 +125,11 @@ presentación de artículos
 ### **Tutorial de instalación:**
 - [Instalación de R, RStudio y paquetes](https://avilaf.github.io/00_instalacion.html)
 
-### **Slides:**
-- [Clase 1: Introducción](https://avilaf.github.io/00_slides/curso_r_slides_clase_1.html)
-- [Clase 2: Objetos](https://avilaf.github.io/00_slides/curso_r_slides_clase_2.html)
-- [Instrucciones para la tarea](https://avilaf.github.io/00_slides/curso_r_slides_tarea.html)
-
-### **Preparación para clase 3 (Gráficos):**
-- [Início y datos para gráficos](avilaf.github.io/03_graficos_pt1.html)
-
+### **Clases:**
+- [Clase 1 Introducción (Slides)](https://avilaf.github.io/00_slides/curso_r_slides_clase_1.html)
+- [Clase 2 Objectos y datos (Slides)](https://avilaf.github.io/00_slides/curso_r_slides_clase_2.html)
+- [Clase 3 Gráficos (Tutorial para inserir datos)](avilaf.github.io/03_graficos_pt1.html)
+- [Clase 3 (Instrucciones para la tarea)](https://avilaf.github.io/00_slides/curso_r_slides_tarea.html)
 
 Los demás materiales, cómo scripts, datos y ejercícios, los puede descargar en este mismo directorio:
 [curso_r.rar]()
