@@ -32,7 +32,7 @@ la herpetofauna.
 
 #### **Módulo 3: Trabajo con datos ecológicos**
 
-[Contenido]{.underline}: Configuración de un proyecto en R: ambiente de trabajo,
+Contenido: Configuración de un proyecto en R: ambiente de trabajo,
 instalación de paquetes, buscar ayuda en R. Principios básicos y herramientas
 para manipulación de datos ecológicos. Análisis esenciales en el estudio de la
 ecología de la herpetofauna. Principales paquetes para análisis de datos
