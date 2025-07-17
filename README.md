@@ -1,89 +1,131 @@
 # Ecología de la herpetofauna en el ambiente R para no programadores
 
-## Programa del curso
+## **Programa del curso**
 
+### **PERFIL DEL CURSO**: 
 
-**PERFIL DEL CURSO:** El curso tratará de proporcionar una basis sólida para un entendimiento amplio del funcionamiento del lenguaje R para biólogos no programadores. El contenido fue elaborado para que mismo personas sin experiencia en lógica de programación sean capaces de ejecutar todos los ejemplos y comprender sus significados. Al largo del curso, los estudiantes trabajarán con datos reales de estudios de ecología de la herpetofauna y, al final, presentarán sus análisis y resultados en forma de seminario. 
+El curso busca proporcionar una base sólida para un entendimiento amplio del
+funcionamiento del lenguaje R para biólogos no programadores. A lo largo del
+mismo, se brindarán conocimientos para la construcción y ejecución de scripts
+como herramientas de análisis de temáticas específicas en ecología de la
+herpetofauna.El contenido fue elaborado pensando en personas que, sin
+experiencia en lógica de programación, puedan ser capaces de elaborar y ejecutar
+los ejemplos propuestos así cómo comprender sus significados. Los estudiantes
+trabajarán con datos reales de estudios de ecología de anfibios y/o reptiles y,
+al final, presentarán sus análisis y resultados en forma de seminario.
 
+**CARGA HORARIA TOTAL**: 30 hs.
 
+**CRÉDITOS SUGERIDOS**: 4
 
-CARGA HORARIA TOTAL: 30 hs.
+## **PROGRAMA**
 
-CRÉDITOS SUGERIDOS: 4 
+### **MÓDULOS TEMÁTICOS:**
 
+#### **Módulo 1: Bases del ambiente R y aplicaciones para el estudio de la herpetofauna**
 
-## PROGRAMA
+[Contenido]{.underline}: Presentación de las herramientas y potencialidades del
+ambiente R. Introducción a el lenguaje R y conceptos básicos de lógica de
+programación, con actividades prácticas. Presentación de ejemplos de estudio y
+aplicaciones de las herramientas implementadas en ambiente R para el estudio de
+la herpetofauna.
 
-### MÓDULOS TEMÁTICOS:
+#### **Módulo 3: Trabajo con datos ecológicos**
 
-**Módulo 1:** Bases del ambiente R y aplicaciones para el estudio de la herpetofauna
-Contenido: Presentación de las herramientas e potencialidades del ambiente R. Introducción a el lenguaje R y conceptos básicos de lógica de programación, con actividades prácticas. Presentación de ejemplos de estudio y aplicaciones de las herramientas implementadas en ambiente R para el estudio de la herpetofauna.
+[Contenido]{.underline}: Configuración de un proyecto en R: ambiente de trabajo,
+instalación de paquetes, buscar ayuda en R. Principios básicos y herramientas
+para manipulación de datos ecológicos. Análisis esenciales en el estudio de la
+ecología de la herpetofauna. Principales paquetes para análisis de datos
+ecológicos. Ejemplos prácticos y ejercicios.
 
-**Módulo 3:** Trabajo con datos ecológicos
-Contenido: Configuración de un proyecto en R: ambiente de trabajo, instalación de paquetes, buscar ayuda en R. Principios básicos y herramientas para manipulación de datos ecológicos. Análisis esenciales en el estudio de la ecología de la herpetofauna. Principales paquetes para análisis de datos ecológicos. Ejemplos prácticos y ejercicios. 
+#### **Módulo 3: Recursos gráficos avanzados** 
 
-**Módulo 3:** Recursos gráficos avanzados 
-Contenido: Nociones básicas de la sintaxis modular de gráficos en el paquete “ggplot2”. Recursos gráficos esenciales: geometries, aesthetics, scales, stratistical transformations, coordinate system, facets y visual themes. Ejemplos prácticos con datos uni y multivariados. Ejercicios prácticos. 
+[Contenido]{.underline}: Nociones básicas de la sintaxis modular de gráficos en
+el paquete “ggplot2”. Recursos gráficos esenciales: geometries, aesthetics,
+scales, stratistical transformations, coordinate system, facets y visual themes.
+Ejemplos prácticos con datos uni y multivariados. Ejercicios prácticos.
 
-**Módulo 4:** Practicas asistidas
-Contenido: Delineamiento estadístico y ejecución de análisis a partir de datos ecológicos reales. Manipulación de datos, elección de paquetes y funciones adecuados para los datos, elaboración de script completo de análisis y presentación oral de los resultados.
+#### **Módulo 4: Prácticas asistidas**
 
-### DINÁMICA DEL CURSO
-El curso se dictará todos los días en los horarios de mañana y tarde intercalando actividades teóricas y prácticas. La asistencia a las clases será obligatoria admitiéndose hasta un 25% de inasistencias. Cada estudiante deberá presentar los análisis y resultados de las actividades prácticas asistidas, en modalidad de seminario.
+[Contenido:]{.underline} Delineamiento estadístico y ejecución de análisis a
+partir de datos ecológicos reales. Manejo de datos, elección de paquetes y
+funciones adecuados para los datos, elaboración de script completo de análisis y
+presentación oral de los resultados.
 
+### **DINÁMICA DEL CURSO:**
 
-### MÉTODO DE GANANCIA DEL CURSO
-Presentación final de la actividad práctica y asistencia al 75% de las clases teóricas, prácticas y seminarios.
+El curso se dictará todos los días en los horarios de mañana y tarde
+intercalando actividades teóricas y prácticas. La asistencia a las clases será
+obligatoria admitiéndose hasta un 25% de inasistencias. Cada estudiante deberá
+presentar los análisis y resultados de las actividades prácticas asistidas, en
+modalidad de seminario.
 
-### MECANISMO DE APROBACIÓN DEL CURSO 
+#### **MÉTODO DE GANANCIA DEL CURSO**
+
+Presentación final de la actividad práctica y asistencia al 75% de las clases
+teóricas, prácticas y seminarios.
+
+#### **MECANISMO DE APROBACIÓN DEL CURSO** 
+
 El curso se aprobará a través de la realización de un examen final.
 
+## **BIBLIOGRAFÍA** 
 
-## BIBLIOGRAFÍA 
+### **Libros de apoyo para el Curso:**
 
-Libros de apoyo para el Curso:
+CRAWLEY, M. J. **The R book**. John Wiley & Sons, 2012.
 
-CRAWLEY, M. J. The R book. John Wiley & Sons, 2012.
+DA SILVA, F. R, GONÇALVES-SOUZA, T, PATERNO, G. B., PROVETE, D. B., VANCINE, M.
+H. **Análises ecológicas no R.** Nupeea, Recife, 2022.
 
-DA SILVA, F. R, GONÇALVES-SOUZA, T, PATERNO, G. B., PROVETE, D. B., VANCINE, M. H. Análises ecológicas no R. Nupeea, Recife, 2022.
+KOHL, M. **Introduction to statistical data analysis with R**. bookboon.com,
+London, 2015.
 
-KOHL, M. Introduction to statistical data analysis with R. bookboon.com, London, 2015.
+LANDEIRO, V. L. **Introdução ao uso do programa R.** Manaus: Instituto Nacional
+de Pesquisas da Amazônia, 2011.
 
-LANDEIRO, V. L. Introdução ao uso do programa R. Manaus: Instituto Nacional de Pesquisas da Amazônia, 2011.
+RAHLF, T. **Data Visualisation with R**. Springer International Publishing, New
+York, 2017.
 
-RAHLF, T. Data Visualisation with R. Springer International Publishing, New York, 2017.
+VENABLES, W. N., and B. D. RIPLEY. **Modern applied statistics with S.**
+Springer-Verlag, 2002. 
 
-VENABLES, W. N., and B. D. RIPLEY. Modern applied statistics with S. Springer-Verlag, 2002. 
+## **Docentes responsables**: 
+
+Dr. Raúl Maneyro (*rmaneyro\@fcien.edu.uy*). Laboratorio de Sistemática e
+Historia Natural de Vertebrados - Herpetología - Facultad de Ciencias (UdelaR)
+
+Dra. Fernanda Rodrigues de Avila (*fernandar.avila\@gmail.com*). Laboratorio de
+Sistemática e Historia Natural de Vertebrados - Herpetología - Facultad de
+Ciencias (UdelaR)
+
+[**Dirección para consultas o preguntas**]{.underline}:
+herpetologia\@fcien.edu.uy
+
+[**Fechas**]{.underline}: 4 al 8 de agosto de 2025
+
+[**Horarios**]{.underline}:
+
+Mañana: 9:00 a 12:00
+
+Tarde: 14:00 a 17:00
+
+Carga Horaria: 30 hrs
+
+[**Reunión inicial**]{.underline}: lunes, 4 de agosto. 9:00 hrs
+
+[**Ganancia del curso**]{.underline}: Asistencia al 75% de las clases y
+presentación de artículos
+
+[**Aprobación del curso**]{.underline}: Examen Final
 
 
+## **Materiales de apoyo:**
 
-## Docentes responsables: 
-
-Dr. Raúl Maneyro (rmaneyro@fcien.edu.uy). Laboratorio de Sistemática e Historia Natural de Vertebrados - Herpetología - Facultad de Ciencias (UdelaR)
-
-Dra. Fernanda Rodrigues de Avila (fernandar.avila@gmail.com). Laboratorio de Sistemática e Historia Natural de Vertebrados - Herpetología - Facultad de Ciencias (UdelaR)
-
-
-**Dirección para consultas o preguntas:** herpetologia@fcien.edu.uy
-
-**Fechas:** 4 al 8 de Agosto de 2025
-
-## Horarios: 
-
-**Mañana:** 9:00 a 12:00
-**Tarde:** 14:00 a 17:00
-Carga Horaria: 30 hrs.
-
-**Ganancia del curso:** Asistencia al 75% de las clases y presentación de artículos
-
-**Aprobación del curso:** Examen Final.
-
-## Materiales de apoyo:
-
-**Tutorial de instalación:**
+### **Tutorial de instalación:**
 - [Instalación de R, RStudio y paquetes](https://avilaf.github.io/00_instalacion.html)
 
-**Slides:**
+### **Slides:**
 - [Clase 1: Introducción](https://avilaf.github.io/00_slides/curso_r_slides_clase_1.html)
 - [Clase 2: Objetos](https://avilaf.github.io/00_slides/curso_r_slides_clase_2.html)
 - [Instrucciones para la tarea](https://avilaf.github.io/00_slides/curso_r_slides_tarea.html)
