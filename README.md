@@ -80,9 +80,8 @@ Carga Horaria: 30 hrs.
 
 ## Materiales de apoyo:
 
-**Tutoriales de instalación:**
-- [Instalación de R y RStudio](https://avilaf.github.io/00_instalacion.html)
-- [Instalación de paquetes](https://avilaf.github.io/02_paquetes.html)
+**Tutorial de instalación:**
+- [Instalación de R, RStudio y paquetes](https://avilaf.github.io/00_instalacion.html)
 
 **Slides:**
 - [Classe 1: Introducción](https://avilaf.github.io/00_slides/curso_r_slides_clase_1.html)
