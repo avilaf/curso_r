@@ -127,8 +127,8 @@ presentación de artículos
 
 ### **Clases:**
 - [Clase 1 Introducción (Presentación)](https://avilaf.github.io/00_slides/curso_r_slides_clase_1.html)
-- [Clase 2 Objectos y datos (Presentación)](https://avilaf.github.io/00_slides/curso_r_slides_clase_2.html)
-- [Clase 3 Gráficos (Tutorial para inserir datos)](https://avilaf.github.io/03_graficos_pt1.html)
+- [Clase 2 Objetos y datos (Presentación)](https://avilaf.github.io/00_slides/curso_r_slides_clase_2.html)
+- [Clase 3 Gráficos (Tutorial para insertar datos)](https://avilaf.github.io/03_graficos_pt1.html)
 - [Clase 3 (Instrucciones para la tarea)](https://avilaf.github.io/00_slides/curso_r_slides_tarea.html)
 
 Los demás materiales, cómo scripts, datos y ejercícios, los puede descargar en este mismo directorio:
