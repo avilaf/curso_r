@@ -1,0 +1,197 @@
+###########################################################################
+# Ecología de la herpetofauna en el ambiente R para no programadores ######
+# Exercícios 2 ############################################################
+###########################################################################
+
+###########################################################################
+# Fernanda R. de Avila ####################################################
+# https://avilaf.github.io/ ###############################################
+# 21/05/25 ################################################################
+###########################################################################
+
+
+
+# Instalar y cargar paquetes: --------------------------------------------
+
+# install.packages("readr")
+library(readr)
+
+
+
+# Cargar datos: ---------------------------------------------------------
+
+
+# Aquí vamos abrir directamente desde el repositorio en línea de GitHub:
+
+url <- "https://raw.githubusercontent.com/avilaf/curso_r/main/dados_odonto.csv"
+
+datos_odonto <- readr::read_csv(url, locale = locale(encoding = "UTF-8"))
+
+
+# Verificar visualmente si los datos fueron ingresados correctamente:
+
+head(datos_odonto) # evaluar encabezado
+
+datos_odonto$vol_total # evaluar variable respuesta
+
+datos_odonto$sex # evaluar variable predictora sexo
+
+datos_odonto$pop # evaluar variable predictora población
+
+
+
+# Visualizar datos: -------------------------------------------------------
+
+# Graficar los diagramas de caja (boxplot) para inspección visual de los valores:
+
+# Factor sexo:
+(sex_plot <- boxplot(vol_total ~ sex,
+                     data = datos_odonto,
+                     col = c("indianred", "cadetblue")
+)
+)
+
+# Factor población: 
+(pop_plot <- boxplot(vol_total ~ pop,
+                     data = datos_odonto,
+                     col = c("darkseagreen", "plum4")
+)
+)
+
+# Análisis: ---------------------------------------------------------------
+
+# Probar los supuestos para el test T:
+
+# Graficar la probabilidad de la distribución normal:
+
+qqnorm(datos_odonto$vol_total, pch = 1, frame = FALSE) # dados
+qqline(datos_odonto$vol_total, col = "steelblue", lwd = 2) # reta
+# Parece que los datos NO se ajustan bien a la normalidad
+
+# Probar la normalidad con Shapiro-Wilk
+# H0: los datos de la muestra provienen de una población con distribución normal
+
+shapiro.test(x = datos_odonto$vol_total)
+# p < 0,05: RECHAZAMOS el supuesto de normalidad de los datos (H0)
+
+# Ahora la prueba NO PARAMÉTRICA
+
+# Factor sexo:
+(w_res_sex <- wilcox.test(vol_total ~ sex, 
+                          data = datos_odonto,
+                          conf.int = TRUE))
+# No hay diferencia entre los sexos
+# p-valor = 0.9838
+
+(w_res_pop <- wilcox.test(vol_total ~ pop, 
+                          data = datos_odonto,
+                          conf.int = TRUE))
+# Hay diferencia entre las poblaciones
+# p-valor = 0.005989
+
+# Exportar los gráficos: ---------------------------------------------------
+
+# Para el factor sexo:
+
+# 1- Crear la imagen
+jpg('~/02_resultados/grafico_odonto_sex.jpg')
+
+# 2- Graficar:
+sex_plot
+
+# 3- Cerrar el archivo
+dev.off()
+
+# Para el factor población:
+
+# 1- Crear la imagen
+jpg('~/02_resultados/grafico_odonto_pop.jpg')
+
+# 2- Graficar:
+pop_plot 
+
+# 3- Cerrar el archivo
+dev.off()
+
+# Citas: ---------------------------------------------------------------
+
+citation("readr")
+
+citation()
+
+RStudio.Version()
+
+
+###########################################################################
+# Bonus: Otra opción de análisis ##########################################
+###########################################################################
+
+# Instalar y cargar paquetes: --------------------------------------------
+
+# install.packages(c("ggplot2", "car", "MASS", "lme4"))
+
+library(ggplot2)
+library(car)
+library(MASS)
+
+require(lme4) # require?
+
+
+# Datos: ------------------------------------------------------------------
+
+head(datos_odonto)
+datos_odonto$pop
+
+
+
+# Distribución de los datos: ----------------------------------------------
+
+# Sabemos que la distribución de los datos no es normal
+# Vamos a visualizar los datos antes que nada
+
+ggplot(datos_odonto, 
+       aes(pop, vol_total)) +
+  geom_point(size = 4, alpha = 0.7) +
+  labs(x = "Población", 
+       y = "Volumen total") +
+  theme_bw()
+
+# Verificar distribución:
+
+# Poisson:
+poisson <- MASS::fitdistr(datos_odonto$vol_total,
+                          "Poisson")
+
+car::qqp(datos_odonto$vol_total,
+         "pois",
+         lambda = poisson$estimate)
+
+# Binomial Negativa:
+nbinom <- MASS::fitdistr(datos_odonto$vol_total,
+                         "Negative Binomial")
+
+car::qqPlot(datos_odonto$vol_total,
+            "nbinom",
+            size = nbinom$estimate[[1]],
+            mu = nbinom$estimate[[2]])
+
+
+# Modelar: ----------------------------------------------------------------
+
+modelo <- lme4::glmer.nb(formula = vol_total ~ pop + (1|sex),
+                         data = datos_odonto)
+
+summary(modelo)
+
+# Citas adicionales: ------------------------------------------------------
+
+citation("ggplot2")
+citation("car")
+citation("MASS")
+citation("lme4")
+
+###########################################################################
+# Fin :) ##################################################################
+# Fernanda R. de Avila ####################################################
+# https://avilaf.github.io/ ###############################################
+###########################################################################

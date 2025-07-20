@@ -1,0 +1,384 @@
+---
+title: "Exercicios"
+output: html_exercicios
+---
+
+## Exercícios 1
+
+### Introdução à linguagem R
+
+Esse é um arquivo escrito em [R Markdown](http://rmarkdown.rstudio.com), um R Notebook. Ele tem áreas determinadas para texto e áreas para código. Quando você executar o código dentro do notebook, os resultados dos comandos vão aparecer abaixo do código.
+
+Use os espaços de código para resolver os exercícios.
+
+Você pode executar o código clicando no botão *Run* ou posicionando seu cursor dentro do bloco de código e pressionando *Ctrl + Shift + Enter*. Faça isso no exemplo abaixo:
+
+```{r}
+
+plot(cars)
+
+
+```
+
+### 1- Vetores atômicos:
+
+Crie um vetor atômico e atribua a um objeto. Printe no console e confira se ele é de fato um vetor:
+
+```{r vetores atomicos}
+
+# Criar vetor:
+
+Vetor <- 10 
+
+
+# Printar vetor:
+
+Vetor 
+
+
+# Checar: 
+
+is.vector(Vetor) # [1] TRUE
+
+```
+
+### 2- Vetores atômicos: Numéricos, Inteiros, Caracteres, Lógicos e fatores
+
+#### 2a- Vetores numéricos e inteiros:
+
+Crie dois vetores atômicos, atribuidos cada um a um objeto. Um deles deve ser um vetor numérico decimal (com ponto flutuante) e o outro deve ser um valor inteiro.
+
+Printe-os no console e avalie a que classes pertencem.
+
+```{r numericos inteiros}
+
+# Criar:
+
+Numerico <- 10.5 # Criar vetor numércio decimal
+
+Inteiro <- 10L # Criar vetor numércio inteiro
+
+
+# Printar:
+
+Numerico # Printar numérico decimal
+
+Inteiro # Printar numérico inteiro
+
+
+# Checar classe:
+
+class(Numerico) # Checar classe do numérico decimal
+
+class(Inteiro) # Checar classe do numérico inteiro
+
+
+
+```
+
+#### 2b- Vetores caracteres:
+
+Crie um vetor que armazene texto, atribua a um objeto, printe no console, confira a qual classe ele pertence:
+
+```{r caracteres}
+
+# Criar vetor de texto:
+Texto <- "Physalaemus"
+
+
+# Printar vetor de texto:
+Texto
+
+# Checar a classe:
+class(Texto) #"character"
+
+```
+
+#### 2c- Vetores lógicos:
+
+Construa um objeto vetor chamado Verdadeiro e armazene nele a informação para vetor lógico verdadeiro.
+
+Construa um objeto vetor de nome Falso e armazene nele a informação para vetor lógico falso.
+
+Printe os valores no console e confira se ambos pertencem à categoria lógico.
+
+```{r logicos}
+
+# Criar vetores lógicos:
+
+Verdadeiro <- TRUE   # Criar Verdadeiro
+
+Falso <- FALSE  # Criar Falso
+
+
+# Printar vetores lógicos:
+
+Verdadeiro # Printar Verdadeiro
+
+Falso # Printar Falso
+
+
+# Checar vetores lógicos:
+
+is.logical(c(Verdadeiro, Falso)) # Checar Verdadeiro e Falso
+
+
+
+
+```
+
+#### 2d- Vetores de fator:
+
+Crie um vetor categórico e o atribua a um objeto. Printe no console, confira se ele é de fato um vetor e avalie a qual classe ele pertence:
+
+```{r fator}
+
+
+# Criar fator: 
+
+f <- factor(c("Physalaemus", "Elachistocleis", "Odontophrynus")) 
+
+
+# Printar fator:
+
+f
+
+
+# Checar fator:
+
+class(f) # "factor"
+
+```
+
+### 3- Estruturas de dados compostas:
+
+#### 3a- Listas:
+
+Crie 3 listas atribuidas a objetos: uma com elementos numéricos, outra com elementos de texto e uma terceira lista com dados mistos.
+
+Printe as três no console e certifique-se de que são listas.
+
+Selecione e printe no console os segundos elementos de cada lista:
+
+```{r listas}
+
+# Criando listas:
+
+lista_num <- list(1, 2, 3) # Numérica
+
+lista_tex <- list("a", "b", "c") # Texto
+
+lista_mis <- list(1, "a", 2, "b", 3, "c") # Mista
+
+
+# Printando listas:
+
+lista_num # Printar lista numérica
+
+lista_tex # Printar lista de texto
+
+lista_mis # Printar lista mista
+
+
+# Checando as listas:
+
+is.list(c(lista_num, lista_tex, lista_mis))
+
+
+# Printar o segundo elemento das listas:
+
+lista_num[2]
+
+lista_tex[2]
+
+lista_mis[2]
+
+
+```
+
+#### 3b- Matrizes:
+
+Crie uma matriz com 8 linhas e 10 colunas. Atribua sua matriz a um objeto.
+
+Printe sua matriz no console e cheque qual a classe do seu objeto.
+
+Selecione e printe no console os seguintes elementos:
+
+-   linha 3;
+
+-   coluna 8;
+
+-   célula na intersecção da coluna 8 e linha 3.
+
+```{r matrizes}
+
+# Criar matriz:
+
+matriz <- matrix(1:80, nrow = 10, ncol = 8)  # Matriz 10x8 (10 linhas x 8 colunas)
+
+
+# Printar a matriz:
+
+matriz 
+
+
+# Checar:
+
+is.matrix(matriz)
+
+
+# Printar elementos:
+
+matriz[3,] # linha 3
+
+matriz[,8] # coluna 8
+
+matriz[3,8] # linha 3 e coluna 8
+
+
+```
+
+#### 3c- Arrays:
+
+Crie 3 matrizes atribuidas a objetos: uma somente com elementos numéricos, outra somente com elementos de texto e uma terceira matriz com dados mistos. As matrizes devem ter cada uma duas linhas e três colunas.
+
+Use essas matrizes para compor um array. Printe seu array no console e cheque qual a classe do seu objeto.
+
+Uma fez finalizado o arrey, selecione pelo índice do array e printe no console:
+
+-   A primeira, a segunda e a terceira matriz inteiras;
+
+-   As células:
+
+    -   linha 1, coluna 1 da primeira matriz;
+    -   linha 1, coluna 1 da segunda matriz;
+    -   linha 2, coluna 3 da terceira matriz.
+
+```{r matrizes}
+
+# Criar listas: 
+
+matriz_tex <- matrix(c("a", "b", "c", "d", "e", "f"), nrow = 2, ncol = 3) # Texto
+
+matriz_mis <- matrix(c(1, "a", 2, "b", 3, "c"), nrow = 2, ncol = 3) # Mista
+
+matriz_num <- matrix(1:6, nrow = 2, ncol = 3)  # Matriz 10x8 (10 linhas x 8 colunas)
+
+
+
+# Criar array:
+
+ar <- array(c(matriz_tex, matriz_mis, matriz_num), dim = c(2,3,3))  # Array com 3 dimensões
+
+
+# BÔNUS: nomear dimensões
+
+dimnames(ar)[[1]] <- c("a", "b")
+
+attributes(ar) # Checar nomes
+
+
+
+dimnames(ar)[[2]] <- c("V1", "V2", "V3")
+
+attributes(ar) # Checar nomes
+
+
+dimnames(ar)[[3]] <- c("matriz_tex", "matriz_mis", "matriz_num")
+
+attributes(ar) # Checar nomes
+
+
+# Printar
+ar
+
+
+# Checar:
+
+is.array(ar)
+
+
+
+# Printar matrizes:
+
+ar[1:2, 1:3, 1] # primeira
+
+ar[1:2, 1:3,"matriz_tex"]
+
+
+
+ar[1:2, 1:3, 2] # segunda
+
+ar[1:2, 1:3,"matriz_mis"]
+
+
+
+ar[1:2, 1:3, 3] # terceira
+
+ar[1:2, 1:3,"matriz_num"]
+
+
+
+# Printar células:
+
+
+ar[1, 1, 1]  # Primeira da matriz_tex
+
+ar[1, 1,"matriz_tex"]
+
+
+
+ar[1, 1, 2] # primeira da matriz_mis
+
+ar[1, 1,"matriz_mis"]
+
+
+
+ar[2, 3, 3] # última da matriz_num
+
+ar[2, 3,"matriz_mis"]
+
+
+
+```
+
+#### 3d- Dataframes:
+
+Gere um dataframe com seis linhas (observações) e três colunas (variáveis) que contenha os seguintes dados:
+
+`Locais_de_coleta: ponto_1, ponto_2, ponto_3, ponto_4, ponto_5, ponto_6` `Tipo_de_lavoura: convencional, convencional, convencional, organica, organica, organica` `Riqueza: 3, 1, 0, 15, 11, 20`
+
+Printe no console o objeto criado e, aplicando uma função, avalie a que classe ele pertence.
+
+Selecione a coluna "Riqueza" e crie um objeto que contenha somente ela.
+
+```{r dataframes}
+
+
+df <- data.frame(Locais_de_coleta = c( "ponto_1", "ponto_2", "ponto_3", "ponto_4", "ponto_5", "ponto_6"), Tipo_de_lavoura = c("convencional", "convencional", "convencional", "organica", "organica", "organica"), Riqueza = c(3, 1, 0, 15, 11, 20))  
+
+df # para printar a data frame "df" no console
+
+is.data.frame(df) # retorna "TRUE"
+
+riq <- df$Riqueza
+
+riq
+
+class(riq)
+
+is.vector(riq)
+
+
+```
+
+# 4- Funções:
+
+A partir dos elementos criados no exercício anterior, utilize a função `mean()` para calcular a média geral da riqueza:
+
+```{r functions}
+
+mean(riq)
+
+
+```

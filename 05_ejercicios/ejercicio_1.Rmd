@@ -1,0 +1,165 @@
+---
+title: "Ejercicios 1"
+output: html_ejercicios
+---
+
+## Ejercicio 1
+
+### Introducción al lenguaje R
+
+Este es un archivo escrito en [R Markdown](http://rmarkdown.rstudio.com), un R Notebook. Tiene áreas determinadas para texto y áreas para código. Cuando ejecutes el código dentro del notebook, los resultados de los comandos aparecerán debajo del código.
+
+Usa los espacios de código para resolver los ejercicios.
+
+Puedes ejecutar el código haciendo clic en el botón *Run* o posicionando tu cursor dentro del bloque de código y presionando *Ctrl + Shift + Enter*. Hazlo en el ejemplo siguiente:
+
+```{r}
+
+plot(cars)
+
+
+```
+
+### 1- Vectores atómicos:
+
+Crea un vector atómico y asígnalo a un objeto. Imprímelo en la consola y verifica si es efectivamente un vector:
+
+```{r vectores atomicos}
+
+
+```
+
+### 2- Vectores atómicos: Numéricos, Enteros, Caracteres, Lógicos y factores
+
+#### 2a- Vectores numéricos y enteros:
+
+Crea dos vectores atómicos, asignados cada uno a un objeto. Uno de ellos debe ser un vector numérico decimal (con punto flotante) y el otro debe ser un valor entero.
+
+Imprímelos en la consola y evalúa a qué clases pertenecen.
+
+```{r numericos enteros}
+
+
+
+
+
+
+```
+
+#### 2b- Vectores caracteres:
+
+Crea un vector que almacene texto, asígnalo a un objeto, imprímelo en la consola, verifica a qué clase pertenece:
+
+```{r caracteres}
+
+
+
+```
+
+#### 2c- Vectores lógicos:
+
+Construye un objeto vector llamado Verdadero y almacena en él la información para vector lógico verdadero.
+
+Construye un objeto vector de nombre Falso y almacena en él la información para vector lógico falso.
+
+Imprime los valores en la consola y verifica si ambos pertenecen a la categoría lógico.
+
+```{r logicos}
+
+
+
+```
+
+#### 2d- Vectores de factor:
+
+Crea un vector categórico y asígnalo a un objeto. Imprímelo en la consola, verifica si es efectivamente un vector y evalúa a qué clase pertenece:
+
+```{r fator}
+
+
+
+```
+
+### 3- Estructuras de datos compuestas:
+
+#### 3a- Listas:
+
+Crea 3 listas asignadas a objetos: una con elementos numéricos, otra con elementos de texto y una tercera lista con datos mixtos.
+
+Imprime las tres en la consola y asegúrate de que sean listas.
+
+Selecciona e imprime en la consola los segundos elementos de cada lista:
+
+```{r listas}
+
+
+
+```
+
+#### 3b- Matrices:
+
+Crea una matriz con 8 líneas y 10 columnas. Asigna tu matriz a un objeto.
+
+Imprime tu matriz en la consola y verifica cuál es la clase de tu objeto.
+
+Selecciona e imprime en la consola los siguientes elementos:
+
+-   línea 3;
+
+-   columna 8;
+
+-   celda en la intersección de la columna 8 y línea 3.
+
+```{r matrices}
+
+
+```
+
+#### 3c- Arrays:
+
+Crea 3 matrices asignadas a objetos: una solamente con elementos numéricos, otra solamente con elementos de texto y una tercera matriz con datos mixtos. Las matrices deben tener cada una dos líneas y tres columnas.
+
+Usa esas matrices para componer un array. Imprime tu array en la consola y verifica cuál es la clase de tu objeto.
+
+Una vez finalizado el array, selecciona por el índice del array e imprime en la consola:
+
+-   La primera, la segunda y la tercera matriz completas;
+
+-   Las celdas:
+
+    -   línea 1, columna 1 de la primera matriz;
+    -   línea 1, columna 1 de la segunda matriz;
+    -   línea 2, columna 3 de la tercera matriz.
+
+```{r matrices}
+
+
+
+
+```
+
+#### 3d- Dataframes:
+
+Genera un dataframe con seis líneas (observaciones) y tres columnas (variables) que contenga los siguientes datos:
+
+`Locales_de_colecta: punto_1, punto_2, punto_3, punto_4, punto_5, punto_6` `Tipo_de_cultivo: convencional, convencional, convencional, organico, organico, organico` `Riqueza: 3, 1, 0, 15, 11, 20`
+
+Imprime en la consola el objeto creado y, aplicando una función, evalúa a qué clase pertenece.
+
+Selecciona la columna "Riqueza" y crea un objeto que contenga solamente ella.
+
+```{r dataframes}
+
+
+
+```
+
+# 4- Funciones:
+
+A partir de los elementos creados en el ejercicio anterior, utiliza la función `mean()` para calcular la media general de la riqueza:
+
+```{r functions}
+
+
+
+```

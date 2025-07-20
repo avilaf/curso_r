@@ -1,0 +1,29 @@
+---
+title: "Exercicio 2"
+output: html_exercicios_2
+---
+
+## Ejercicio 2
+
+### Introducción al lenguaje R
+
+### Clase 2: Trabajando con datos :)
+
+En este ejercicio vas a tener un poco más de autonomía en tu trabajo con R. A diferencia del primer ejemplo, donde teníamos un R Notebook para ejecutar nuestros comandos, aquí vas a crear tu propio script.
+
+### Tu script:
+
+Tu script debe estar organizado de acuerdo con las recomendaciones de la clase y debe realizar las siguientes tareas:
+
+-   Importar los datos almacenados en: <https://raw.githubusercontent.com/avilaf/curso_r/main/datos_odonto.csv>\
+    Son los datos de la dieta de *Odontophrynus americanus* que ya hemos utilizado en otros momentos.
+
+-   Generar un boxplot comparando el volumen total ingerido por hembras y machos.
+
+-   Generar un boxplot comparando el volumen total ingerido por las poblaciones "A" y "B".
+
+-   Probar estadísticamente si existe realmente una diferencia en el volumen total ingerido entre sexos. Realizar lo mismo para las poblaciones.
+
+No existe un único camino correcto para llegar a los resultados. Puedes determinar la secuencia de comandos que consideres más eficiente y adecuada.
+
+Obs.: Muchas veces realizar análisis univariados en secuencia no es la forma más eficiente para responder preguntas biológicas. ¿Tienes alguna idea de una prueba que sea más elegante para comparar el volumen ingerido por diferentes sexos y poblaciones en un único análisis? ¿Puedes implementarla? Si puedes, incluye también esa opción en el script.
