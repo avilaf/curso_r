@@ -1,9 +1,4 @@
----
-title: "Exercicios 2"
-output: html_exercicios_2
----
-
-## Ejercicio
+## Ejercicio 2
 
 ### Introducción al lenguaje R
 
