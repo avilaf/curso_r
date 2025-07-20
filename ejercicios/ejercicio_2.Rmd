@@ -9,7 +9,7 @@ output: html_exercicios_2
 
 ### Clase 2: Trabajando con datos :)
 
-En este ejercicio vas a tener un poco más de autonomía en tu trabajo con R. A diferencia del primer ejemplo cuando teníamos un R Notebook para ejecutar nuestros comandos, aquí vas a crear tu propio script y tu proyecto.
+En este ejercicio vas a tener un poco más de autonomía en tu trabajo con R. A diferencia del primer ejemplo cuando teníamos un R Notebook para ejecutar nuestros comandos, aquí vas a crear tu propio script.
 
 ### Tu script:
 
