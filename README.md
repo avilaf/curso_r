@@ -8,7 +8,7 @@ El curso busca proporcionar una base sólida para un entendimiento amplio del
 funcionamiento del lenguaje R para biólogos no programadores. A lo largo del
 mismo, se brindarán conocimientos para la construcción y ejecución de scripts
 como herramientas de análisis de temáticas específicas en ecología de la
-herpetofauna.El contenido fue elaborado pensando en personas que, sin
+herpetofauna. El contenido fue elaborado pensando en personas que, sin
 experiencia en lógica de programación, puedan ser capaces de elaborar y ejecutar
 los ejemplos propuestos así cómo comprender sus significados. Los estudiantes
 trabajarán con datos reales de estudios de ecología de anfibios y/o reptiles y,
