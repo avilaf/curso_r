@@ -1,0 +1,45 @@
+---
+title: "Ejercicio 3"
+output: html_ejercicios_3
+---
+
+## Ejercicio 3
+
+### Introducción al lenguaje R
+
+### Clase 3: Gráficos :)
+
+El objetivo de este ejercicio es trabajar como si fuéramos a elaborar la figura de una publicación, es decir, sin que sean necesarias más ediciones fuera de R para finalizar la figura.
+
+Vamos a las etapas:
+
+1)  Boxplot con los datos de *Odontophrynus asper* del ejercicio 2, ahora con `ggplot2`:
+
+    1)  Cargar los datos
+
+    2)  Definir el conjunto de datos (`data =` ) y los ejes (x = población, y = volumen total)
+
+    3)  Definir `geom_boxplot()`
+
+2)  Editar:
+
+    1)  Cambiar el `theme()`
+
+    2)  Editar colores de línea (`color`)
+
+    3)  Editar colores de relleno (argumento `fill`)
+
+    4)  Formatear título, leyenda y títulos de los ejes
+
+3)  DESAFÍO: Es posible ilustrar en un mismo boxplot los valores para los dos factores que existen en este conjunto de datos (sexo y población). ¿Puedes pensar en una estrategia para construir este gráfico?
+
+BONUS:
+
+Sugerencia para un gráfico más informativo :)
+
+```{r}
+
+
+
+
+```
