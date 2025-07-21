@@ -129,7 +129,7 @@ presentación de artículos
 - [Clase 1 Introducción (Presentación)](https://avilaf.github.io/00_slides/curso_r_slides_clase_1.html)
 - [Clase 2 Objetos y datos (Presentación)](https://avilaf.github.io/00_slides/curso_r_slides_clase_2.html)
 - [Clase 3 Gráficos (Tutorial)](https://avilaf.github.io/03_graficos_pt1.html)
-- [Clase 3 (Instrucciones para la tarea)](https://avilaf.github.io/00_slides/curso_r_slides_tarea.html)
+- [Clase 3 Instrucciones para la tarea (Presentación)](https://avilaf.github.io/00_slides/curso_r_slides_tarea.html)
 - [Clase 4 Ecología de Comunidades (Script)]()
 - [Clase 5 Morfología (Script)]()
 - [Clase 5 Bioacustica (Script)]()
