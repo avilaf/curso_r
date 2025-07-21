@@ -133,7 +133,7 @@ presentación de artículos
 - [Clase 4 Ecología de Comunidades (Script)]()
 - [Clase 5 Morfología (Script)]()
 - [Clase 5 Bioacustica (Script)]()
-- [Clase 6 Bioinformática(Script)]()
+- [Clase 6 Bioinformática (Script)]()
 - [Clase 6 Mapas (Script)]()
 
 ### **Ejercicícios:**
