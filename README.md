@@ -130,6 +130,11 @@ presentación de artículos
 - [Clase 2 Objetos y datos (Presentación)](https://avilaf.github.io/00_slides/curso_r_slides_clase_2.html)
 - [Clase 3 Gráficos (Tutorial para insertar datos)](https://avilaf.github.io/03_graficos_pt1.html)
 - [Clase 3 (Instrucciones para la tarea)](https://avilaf.github.io/00_slides/curso_r_slides_tarea.html)
+- [Clase 4 Ecología de Comunidades]()
+- [Clase 5 Morfología]()
+- [Clase 5 Bioacustica]()
+- [Clase 6 Bioinformática]()
+- [Clase 6 Mapas]() 
 
 ### **Ejercicícios:**
 - [Ejercício 1 Introducción](ejercicios/ejercicio_1.Rmd)
@@ -139,11 +144,12 @@ presentación de artículos
 ### **Datos:**
 - [Dieta de *Odontophrynus asper*](datos/dados_odonto.csv)
 - [Datos Chicago (para gráficos)](datos/chicago-nmmaps-custom.csv)
-- [Bioacustica](datos/vocalizaciones)
-- [Sequencias de ADN](datos/adn.fasta)
-- 
+- [Ecología de comunidades]()
+- [Morfología]()
+- Bioacustica:[Vocalizaciones](datos/vocalizaciones)
+- Bioinformática: [Sequencias de ADN](datos/sequence_boana.fa)
+- Bioinformática: [Datos para mapa](datos/dados_boana.csv)
 
-Los demás materiales, cómo scripts, datos y ejercícios, los puede descargar en este mismo directorio:
-[curso_r.rar]()
+
 
 
