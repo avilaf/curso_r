@@ -137,10 +137,10 @@ presentación de artículos
 - [Ejercício 3 Gráficos](ejercicios/ejercicio_3.Rmd)
 
 ### **Datos:**
-- [Dieta de *Odontophrynus asper*](dados_odonto.csv)
-- [Datos Chicago (para gráficos)](mentoria_ggplot/chicago-nmmaps-custom.csv)
-- [Bioacustica](vocalizaciones)
-- [Sequencias de ADN](adn.fasta)
+- [Dieta de *Odontophrynus asper*](datos/dados_odonto.csv)
+- [Datos Chicago (para gráficos)](datos/chicago-nmmaps-custom.csv)
+- [Bioacustica](datos/vocalizaciones)
+- [Sequencias de ADN](datos/adn.fasta)
 - 
 
 Los demás materiales, cómo scripts, datos y ejercícios, los puede descargar en este mismo directorio:
