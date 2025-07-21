@@ -131,6 +131,18 @@ presentación de artículos
 - [Clase 3 Gráficos (Tutorial para insertar datos)](https://avilaf.github.io/03_graficos_pt1.html)
 - [Clase 3 (Instrucciones para la tarea)](https://avilaf.github.io/00_slides/curso_r_slides_tarea.html)
 
+### **Ejercicícios:**
+- [Ejercício 1 Introducción](ejercicios/ejercicio_1.Rmd)
+- [Ejercício 2 Objetos y datos](ejercicios/ejercicio_2.Rmd)
+- [Ejercício 3 Gráficos](ejercicios/ejercicio_3.Rmd)
+
+### **Datos:**
+- [Dieta de *Odontophrynus asper*](dados_odonto.csv)
+- [Datos Chicago (para gráficos)](mentoria_ggplot/chicago-nmmaps-custom.csv)
+- [Bioacustica](vocalizaciones)
+- [Sequencias de ADN](adn.fasta)
+- 
+
 Los demás materiales, cómo scripts, datos y ejercícios, los puede descargar en este mismo directorio:
 [curso_r.rar]()
 
