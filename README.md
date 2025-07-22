@@ -134,7 +134,7 @@ presentación de artículos
 - **Clase 2:**
   - [Objetos y datos (Presentación)](https://avilaf.github.io/00_slides/curso_r_slides_clase_2.html)
     - Datos: [Dieta de *Odontophrynus asper*](datos/dados_odonto.csv)
-    - [Ejercício 2 Objetos y datos](ejercicios/ejercicio_2.Rmd)
+      - [Ejercício 2 Objetos y datos](ejercicios/ejercicio_2.Rmd)
       
 - **Clase 3:**
   - [Gráficos (Tutorial)](https://avilaf.github.io/03_graficos_pt1.html)
@@ -151,7 +151,7 @@ presentación de artículos
 - **Clase 5:**
   - [Bioacustica (Tutorial 'soundshape')](https://avilaf.github.io/sound_shape.html)
   - [Bioacustica (Script)](scripts/bioacustica_soundshape_ejemplo_boana.R)
-    - Bioacustica:[Vocalizaciones](datos/vocalizaciones)
+    - Datos:[Vocalizaciones](datos/vocalizaciones)
       
 - **Clase 6:**
   - [Bioinformática (Script)]()
