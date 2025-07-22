@@ -151,13 +151,13 @@ presentación de artículos
 - **Clase 5:**
   - [Bioacustica (Tutorial 'soundshape')](https://avilaf.github.io/sound_shape.html)
   - [Bioacustica (Script)](scripts/bioacustica_soundshape_ejemplo_boana.R)
-    - Datos:[Vocalizaciones](datos/vocalizaciones)
+    - Datos: [Vocalizaciones](datos/vocalizaciones)
       
 - **Clase 6:**
   - [Bioinformática (Script)]()
     - Datos: [Sequencias de ADN](datos/sequence_boana.fa)
   - [Mapas (Script)]()
-    -Datos: [Datos para mapa](datos/dados_boana.csv)
+    - Datos: [Datos para mapa](datos/dados_boana.csv)
 
 
 
