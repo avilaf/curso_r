@@ -144,8 +144,8 @@ presentación de artículos
     - [Ejemplo Tarea (Script)]()
     
 - **Clase 4:**
-  - [Ecología de Comunidades (Script)]()
-    - Datos: [Ecología de comunidades]()
+  - [Ecología de Comunidades (Script)](scripts/diversidad_beta.R)
+    - Datos: [Ecología de comunidades](datos/dados_beta.csv)
   - [Morfología (Script)]()
     - Datos: [Morfología]()
       
