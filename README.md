@@ -141,6 +141,7 @@ presentación de artículos
     - Datos: [Datos Chicago (para gráficos)](datos/chicago-nmmaps-custom.csv)
     - [Ejercício 3 Gráficos](ejercicios/ejercicio_3.Rmd)
   - [Instrucciones para la tarea (Presentación)](https://avilaf.github.io/00_slides/curso_r_slides_tarea.html)
+    - [Ejemplo Tarea (Script)]()
     
 - **Clase 4:**
   - [Ecología de Comunidades (Script)]()
