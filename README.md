@@ -125,31 +125,42 @@ presentación de artículos
 ### **Tutorial de instalación:**
 - [Instalación de R, RStudio y paquetes](https://avilaf.github.io/00_instalacion.html)
 
-### **Clases:**
-- [Clase 1 Introducción (Presentación)](https://avilaf.github.io/00_slides/curso_r_slides_clase_1.html)
-- [Clase 2 Objetos y datos (Presentación)](https://avilaf.github.io/00_slides/curso_r_slides_clase_2.html)
-- [Clase 3 Gráficos (Tutorial)](https://avilaf.github.io/03_graficos_pt1.html)
-- [Clase 3 Instrucciones para la tarea (Presentación)](https://avilaf.github.io/00_slides/curso_r_slides_tarea.html)
-- [Clase 4 Ecología de Comunidades (Script)]()
-- [Clase 5 Morfología (Script)]()
-- [Clase 5 Bioacustica (Tutorial 'soundshape')](https://avilaf.github.io/sound_shape.html)
-- [Clase 5 Bioacustica (Script)](scripts/bioacustica_soundshape_ejemplo_boana.R)
-- [Clase 6 Bioinformática (Script)]()
-- [Clase 6 Mapas (Script)]()
+### **Clases y temas:**
+  
+- **Clase 1:**
+  -  [Introducción (Presentación)](https://avilaf.github.io/00_slides/curso_r_slides_clase_1.html)
+    -  [Ejercício 1 Introducción](ejercicios/ejercicio_1.Rmd)
+    
+- **Clase 2:**
+  - [Objetos y datos (Presentación)](https://avilaf.github.io/00_slides/curso_r_slides_clase_2.html)
+    - Datos: [Dieta de *Odontophrynus asper*](datos/dados_odonto.csv)
+    - [Ejercício 2 Objetos y datos](ejercicios/ejercicio_2.Rmd)
+      
+- **Clase 3:**
+  - [Gráficos (Tutorial)](https://avilaf.github.io/03_graficos_pt1.html)
+    - Datos: [Datos Chicago (para gráficos)](datos/chicago-nmmaps-custom.csv)
+    - [Ejercício 3 Gráficos](ejercicios/ejercicio_3.Rmd)
+  - [Instrucciones para la tarea (Presentación)](https://avilaf.github.io/00_slides/curso_r_slides_tarea.html)
+    
+- **Clase 4:**
+  - [Ecología de Comunidades (Script)]()
+    - Datos: [Ecología de comunidades]()
+  - [Morfología (Script)]()
+    - Datos: [Morfología]()
+      
+- **Clase 5:**
+  - [Bioacustica (Tutorial 'soundshape')](https://avilaf.github.io/sound_shape.html)
+  - [Bioacustica (Script)](scripts/bioacustica_soundshape_ejemplo_boana.R)
+    - Bioacustica:[Vocalizaciones](datos/vocalizaciones)
+      
+- **Clase 6:**
+  - [Bioinformática (Script)]()
+    - Datos: [Sequencias de ADN](datos/sequence_boana.fa)
+  - [Mapas (Script)]()
+    -Datos: [Datos para mapa](datos/dados_boana.csv)
 
-### **Ejercicícios:**
-- [Ejercício 1 Introducción](ejercicios/ejercicio_1.Rmd)
-- [Ejercício 2 Objetos y datos](ejercicios/ejercicio_2.Rmd)
-- [Ejercício 3 Gráficos](ejercicios/ejercicio_3.Rmd)
 
-### **Datos:**
-- [Dieta de *Odontophrynus asper*](datos/dados_odonto.csv)
-- [Datos Chicago (para gráficos)](datos/chicago-nmmaps-custom.csv)
-- [Ecología de comunidades]()
-- [Morfología]()
-- Bioacustica:[Vocalizaciones](datos/vocalizaciones)
-- Bioinformática: [Sequencias de ADN](datos/sequence_boana.fa)
-- Bioinformática: [Datos para mapa](datos/dados_boana.csv)
+
 
 
 
