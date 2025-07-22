@@ -1,0 +1,337 @@
+---
+title: "Tutorial de instalación"
+author: "Dra. Fernanda Rodrigues de Avila"
+date: "`r Sys.Date()`"
+self_contained: true
+output: 
+  html_document
+editor_options: 
+  markdown: 
+    wrap: 80
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{css echo = FALSE}
+h1, h2, h3, h4, h5, h6 {
+  color: #8b5e5e; /* Cor específica para os títulos */
+}
+
+strong {
+  color: #bf4080; /* Cor específica para o texto em negrito */
+}
+```
+
+### 1. Instalando R
+
+R puede descargarse e instalarse desde el sitio oficial del CRAN (Comprehensive
+R Archive Network).
+
+**Pasos para la instalación de R:**
+
+1.  **Accede al sitio de CRAN**:
+    -   Ve a [CRAN](https://cran.r-project.org/).
+2.  **Elige tu sistema operativo**:
+    -   Haz clic en la opción correspondiente a tu sistema operativo:
+        -   **Windows**: Haz clic en "Download R for Windows" y luego en "base"
+            para descargar el instalador.
+        -   **macOS**: Haz clic en "Download R for macOS" y elige el archivo
+            .pkg más reciente.
+        -   **Linux**: Sigue las instrucciones específicas para tu distribución
+            (como Ubuntu, Fedora, etc.) en la sección "Download R for Linux".
+3.  **Descarga el instalador**:
+    -   Después de hacer clic en la opción correspondiente, sigue las
+        instrucciones para descargar el archivo de instalación.
+4.  **Instala R**:
+    -   Ejecuta el instalador descargado y sigue las instrucciones en pantalla
+        para completar la instalación.
+
+### 2. Instalando RStudio
+
+RStudio es un entorno de desarrollo integrado (IDE) para R que facilita la
+programación y el análisis de datos.
+
+**Pasos para la instalación de RStudio:**
+
+1.  **Accede al sitio de RStudio**:
+    -   Ve a [RStudio
+        Download](https://www.rstudio.com/products/rstudio/download/).
+2.  **Elige la versión**:
+    -   Desplázate hacia abajo hasta la sección "Installers" y selecciona la
+        versión correspondiente a tu sistema operativo:
+        -   **RStudio Desktop** (versión gratuita) es la opción más común.
+        -   Haz clic en el botón de descarga para Windows, macOS o Linux.
+3.  **Descarga el instalador**:
+    -   Después de hacer clic en el botón de descarga, se descargará el archivo
+        de instalación.
+4.  **Instala RStudio**:
+    -   Ejecuta el instalador descargado y sigue las instrucciones en pantalla
+        para completar la instalación.
+
+### 3. Verificando la instalación
+
+Después de instalar R y RStudio:
+
+1.  **Abre RStudio**:
+    -   RStudio debería abrir automáticamente R como una consola en la parte
+        inferior de la interfaz.
+2.  **Verifica que la instalación haya sido exitosa**:
+    -   Puedes probar la instalación escribiendo `R.version` en la consola de
+        RStudio y presionando Enter. Esto debería mostrar información sobre la
+        versión de R instalada. Pero te sugiero que antes de probar, leas toda
+        esta parte introductoria del material.
+
+## Trabajando con scripts
+
+En nuestra rutina de estudios vamos a utilizar *scripts*, que son archivos de
+texto que contienen una serie de comandos e instrucciones escritas.\
+Es un archivo de **texto simple**, guardado con la extensión **.R**, que puede
+editarse en cualquier editor de texto, pero podemos usarlo con más eficiencia en
+RStudio.\
+Un script puede contener una secuencia de comandos que se ejecutan en el orden
+en que aparecen. Esto permite que escribas y guardes un flujo de trabajo
+completo, como los ejemplos disponibles en esta clase.
+
+Un script en R es una herramienta poderosa que facilita la programación y el
+análisis de datos, permitiendo a los usuarios organizar, automatizar y compartir
+su trabajo de manera eficiente. Una vez que tengas tu script guardado, podrás
+ejecutar los mismos análisis nuevamente e incluso compartir el archivo para que
+otros usuarios ejecuten esos análisis.
+
+**Dentro de RStudio**, para crear un script nuevo puedes usar uno de estos
+atajos:
+
+-   
+
+    1.  En la esquina superior izquierda de la pantalla, hacer clic en la figura
+        que está debajo de la palabra File.
+
+-   
+
+    2.  Usar el atajo en el teclado: Ctrl + Shift + N.
+
+## Entendiendo RStudio
+
+RStudio presenta muchos paneles que pueden intimidar a los usuarios nuevos. No
+es necesario preocuparse por entender el funcionamiento detallado de todos ellos
+al principio.
+
+![Captura de pantalla mostrando los paneles de RStudio](figuras/rstudio.JPG)\
+Vamos a analizar cuadro por cuadro la apariencia de esta ventana e identificar
+los elementos básicos importantes para comenzar a trabajar en RStudio.
+
+#### 1. Panel del Script (Editor de Código)
+
+Ubicado en la parte superior izquierda, este panel es donde puedes escribir y
+editar scripts en R. Permite crear nuevos archivos, abrir scripts existentes y
+trabajar con varias pestañas simultáneamente. Puedes ejecutar código
+directamente desde este panel.
+
+![Panel de scripts (A) resaltado en rojo. Aquí se encuentran los archivos de
+texto que puedes editar, organizar y guardar como en cualquier otro editor de
+texto al que ya estás acostumbrado/a.](figuras/rstudioA.JPG)
+
+#### 2. Consola
+
+Debajo del panel del script, la consola muestra la salida de los comandos R
+ejecutados. Es donde puedes interactuar directamente con el lenguaje R, ejecutar
+comandos línea por línea y ver resultados instantáneamente.
+
+![Panel de la consola (B) resaltado en rojo. Todo lo que es interpretado por R
+aparecerá aquí, así como los resultados, advertencias y mensajes de
+error.](figuras/rstudioB.JPG)
+
+#### 3. Panel de Ambiente e Historial
+
+Ubicado en la parte superior derecha, este panel está dividido en dos secciones
+principales:
+
+*Ambiente:* Muestra una lista de objetos actualmente cargados en la sesión, como
+data frames, vectores y listas, permitiéndote visualizar tus variables y datos.
+
+*Historial:* Muestra un historial de los comandos que se han ejecutado en la
+sesión actual, facilitando la revisión y reutilización de código.
+
+![Panel Ambiente e Historial (C) resaltado en rojo. En este espacio podrás ver
+todos los datos que importes o crees en R y revisar los comandos ejecutados en
+la sesión.](figuras/rstudioC.JPG)
+
+#### 4. Panel de Archivos, Gráficos, Paquetes y Ayuda
+
+Este panel, en la parte inferior derecha, está dividido en varias pestañas
+importantes:
+
+*Archivos:* Permite navegar por directorios (carpetas), abrir y gestionar
+archivos en tu sistema.
+
+*Gráficos:* Muestra los gráficos generados en la sesión. Puedes visualizar,
+guardar y exportar gráficos desde esta pestaña.
+
+*Paquetes:* Muestra los paquetes R instalados, permitiéndote cargar o instalar
+nuevos paquetes fácilmente.
+
+*Ayuda:* Proporciona acceso a la documentación de R y de paquetes específicos.
+Puedes buscar ayuda sobre funciones y paquetes directamente en esta pestaña.
+Aquí encontrarás la solución para muchas dudas.
+
+![Panel Archivos, Gráficos, Paquetes y Ayuda (D) resaltado en rojo. Aquí se
+reúnen varios recursos importantes que pueden ayudar en el aprendizaje y en el
+uso autónomo del lenguaje R.](figuras/rstudioD.JPG)
+
+### Ejecutar líneas de código en la consola de R
+
+Una vez que tienes el código en tu script, es muy fácil ejecutarlo. Puedes
+ejecutarlo directamente en la consola o ejecutar todo el script completo.
+
+**Ejecutar línea por línea:** 1. Selecciona la línea que contiene el código 2.
+Presiona `Ctrl + Enter` (Windows/Linux) o `Cmd + Enter` (Mac) 3. El código se
+enviará a la consola y se ejecutará inmediatamente
+
+**Ejecutar todo el script:** 1. Haz clic en el botón "Run" en la esquina
+superior derecha del panel de scripts 2. O presiona `Ctrl + Shift + Enter`
+(Windows/Linux) o `Cmd + Shift + Enter` (Mac)
+
+**Consejos adicionales:** - Para ejecutar un bloque de código seleccionado, usa
+el mismo atajo después de seleccionar el texto - Puedes usar `Ctrl + Alt + R`
+(Windows/Linux) o `Cmd + Option + R` (Mac) para ejecutar todo el script - Los
+resultados aparecerán en la consola inferior de RStudio
+
+*Nota:* Asegúrate de que tu cursor esté posicionado correctamente o hayas
+seleccionado el código que deseas ejecutar.
+
+# Instalación de paquetes necesarios para el curso
+
+Durante nuestro curso utilizaremos diferentes paquetes desarrollados para R.
+Para evitar inconvenientes y garantizar que todo esté listo antes de comenzar,
+debes instalar estos paquetes en el computador que usarás durante la formación.
+
+## Procedimiento de instalación
+
+Sigue estos pasos (con conexión a internet activa):
+
+1.  **Instalación de paquetes**:
+
+```{r, eval = FALSE, warning = FALSE, instalar}
+# Ejecuta estos comandos uno por uno:
+install.packages("car")       # Análisis de regresión
+install.packages("readr")     # Lectura de datos
+install.packages("ggplot2")   # Visualización avanzada
+install.packages("dplyr")     # Manipulación de datos
+install.packages("lme4")      # Modelos lineales mixtos
+install.packages("MASS")      # Métodos estadísticos
+install.packages("EcoSimR")   # Nicho ecológico
+
+
+```
+
+2.  **Verificación de la instalación**:
+
+```{r, eval = FALSE, carregar}
+# Carga los paquetes para confirmar la instalación
+library(car)
+library(readr) 
+library(ggplot2)
+library(dplyr)
+library(lme4)
+library(MASS)
+require(EcoSimR)
+
+```
+
+### Notas importantes:
+
+-   Si aparece el mensaje "There is no package called..." significa que hubo un
+    error en la instalación
+-   En Windows, si te pide instalar RTools, acepta la instalación
+-   La primera instalación puede tardar varios minutos
+-   Recomendamos ejecutar los comandos uno por uno para identificar posibles
+    errores
+
+**Solución de problemas**:
+
+-   Si falla algún paquete, intenta:
+
+1.  Verificar tu conexión a internet
+2.  Ejecutar`install.packages("nombre_paquete", dependencies = TRUE)`
+3.  Reiniciar RStudio e intentar nuevamente
+
+## Primeros Pasos: Verificación Básica del Sistema
+
+Después de completar la instalación, te recomendamos ejecutar este código de
+verificación para confirmar que todo funciona correctamente:
+
+```{r, warning = FALSE, eval = FALSE, verificacion_inicial}
+
+# Verificación básica del sistema
+cat("=== Información del Sistema ===\n")
+sessionInfo()
+
+cat("\n=== Prueba de Gráficos ===\n")
+try({
+  plot(1:10, main="Gráfico de Prueba")
+  cat("✅ Gráficos funcionando correctamente\n")
+})
+
+cat("\n=== Prueba de Paquetes ===\n")
+paquetes <- c("car", "readr", "ggplot2", "dplyr", "lme4", "MASS")
+sapply(paquetes, function(pkg) {
+  if(requireNamespace(pkg, quietly = TRUE)) {
+    cat("✅", pkg, "correctamente instalado\n")
+  } else {
+    cat("❌", pkg, "no está instalado\n")
+  }
+})
+```
+
+## Troubleshooting: Errores Comunes y Soluciones
+
+### 1. Problemas de Instalación de Paquetes
+
+**Error:** `Warning: unable to access index for repository`\
+*Solución:* - Verifica tu conexión a internet - Intenta cambiar el repositorio
+CRAN:
+
+```{r, warning = FALSE, eval = FALSE}
+
+chooseCRANmirror() # Selecciona un espejo diferente
+
+```
+
+**Error:** `package 'XXXX' is not available for this version of R`\
+*Solución:*
+
+-   Actualiza R a la versión más reciente
+
+-   Verifica el nombre correcto del paquete
+
+-   Para paquetes en desarrollo:
+
+```{r, warning = FALSE, eval = FALSE}
+
+  install.packages("devtools")
+  devtools::install_github("autor/paquete")
+
+```
+
+### 2. Problemas con RStudio
+
+**Error:** RStudio no reconoce la instalación de R\
+*Solución:* - Ve a Tools \> Global Options \> General - Verifica la ubicación
+correcta de R en "R version"
+
+## Conclusión y Próximos Pasos
+
+¡Felicitaciones! Ahora tienes todo configurado para comenzar tu viaje en R.
+
+**Quedo a disposición para aclarar cualquier duda o inquietud que puedas
+tener.**
+
+--------------------------------------------------------------------------------
+
+Dra. Fernanda Rodrigues de Avila
+
+<https://avilaf.github.io/>
+
+[fernandar.avila\@gmail.com](mailto:fernandar.avila@gmail.com){.email}
