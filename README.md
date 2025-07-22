@@ -132,7 +132,8 @@ presentación de artículos
 - [Clase 3 Instrucciones para la tarea (Presentación)](https://avilaf.github.io/00_slides/curso_r_slides_tarea.html)
 - [Clase 4 Ecología de Comunidades (Script)]()
 - [Clase 5 Morfología (Script)]()
-- [Clase 5 Bioacustica (Script)]()
+- [Clase 5 Bioacustica (Tutorial 'soudshape')](https://avilaf.github.io/sound_shape.html)
+- [Clase 5 Bioacustica (Script)](scripts/bioacustica_soundshape_ejemplo_boana.R)
 - [Clase 6 Bioinformática (Script)]()
 - [Clase 6 Mapas (Script)]()
 
