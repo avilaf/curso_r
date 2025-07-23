@@ -725,8 +725,8 @@ my_colors <- c("#af7ac5",
 # Prepare the text for the tooltip:
 mytext <- paste(
   "Local: ", data$local, "<br/>",
-  "Level 1: ", data$level.1, "<br/>", 
-  "Level 2: ", data$level.2, "<br/>"
+  "Level 1: ", data$level.1.x, "<br/>", 
+  "Level 2: ", data$level.2.x, "<br/>"
 ) %>%
   lapply(htmltools::HTML)
 
