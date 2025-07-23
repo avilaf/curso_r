@@ -13,7 +13,7 @@
 
 
 ## Clean memory ------------------------------------------------------------
- 
+
 rm(list = ls())
 
 
@@ -92,7 +92,7 @@ library("leaflet")
 
 ## Define directory --------------------------------------------------------
 
-path <- "D:/biologa/00_beca_posdoctoral_UY/curso_R"
+path <- "D:/biologa/00_beca_posdoctoral_UY/05_disciplina_R/curso_r-main"
 
 setwd(path)
 
@@ -207,7 +207,7 @@ pheatmap::pheatmap(D_K80,
                    show_colnames = F)
 
 ## Ultrametric tree -----------------------------------------------------
-  
+
 # Distance Calculation
 # Calculate the Hamming distance matrix for the given aligned sequences
 # This serves as a measure of pairwise sequence dissimilarity for tree construction
@@ -332,7 +332,7 @@ fig <- plotly::plot_ly(hb_results_export,
                        type = 'bar',
                        name = 'Cluster 1',
                        marker = list(color = '#cc0000')
-                       ) 
+) 
 # second layer:
 fig <- fig %>% plotly::add_trace(y = ~Cluster.2, name = 'Cluster 2',
                                  marker = list(color = '#82A92D'))
@@ -358,28 +358,28 @@ fig
 tree_UPGMA$tip.label <- (hb_results$partition.df$Isolate)
 
 {
-p <- ggtree(tree_UPGMA, branch.length = "none") + 
-  geom_tiplab(geom = "text", size = 3) + theme(legend.position='none')
-
-df <- cbind.data.frame(hb_results$partition.df$Isolate,
-                       hb_results$cluster.assignment.prob[[1]])
-
-
-df <- melt(df, id = "hb_results$partition.df$Isolate")
-
-p2 <- p + geom_facet(panel = 'bar', 
-                     data = df, 
-                     geom = geom_bar, 
-                     mapping = aes(x = value, 
-                                   fill = as.factor(variable)), 
-                     orientation = 'y', 
-                     width = 0.8, 
-                     stat='identity') + 
-  xlim_tree(14)
-
-
-facet_widths(p2, widths = c(3, 1))
-
+  p <- ggtree(tree_UPGMA, branch.length = "none") + 
+    geom_tiplab(geom = "text", size = 3) + theme(legend.position='none')
+  
+  df <- cbind.data.frame(hb_results$partition.df$Isolate,
+                         hb_results$cluster.assignment.prob[[1]])
+  
+  
+  df <- melt(df, id = "hb_results$partition.df$Isolate")
+  
+  p2 <- p + geom_facet(panel = 'bar', 
+                       data = df, 
+                       geom = geom_bar, 
+                       mapping = aes(x = value, 
+                                     fill = as.factor(variable)), 
+                       orientation = 'y', 
+                       width = 0.8, 
+                       stat='identity') + 
+    xlim_tree(14)
+  
+  
+  facet_widths(p2, widths = c(3, 1))
+  
 }
 
 
@@ -457,8 +457,8 @@ g1 <- ggplot(color_data, aes(x = x, y = y, fill = colors)) +
   theme_minimal() + 
   
   theme(axis.text.y = element_blank(),  # Remove y-axis labels
-                          axis.title.y = element_blank(),
-                          panel.grid = element_blank())  # Remove y-axis title
+        axis.title.y = element_blank(),
+        panel.grid = element_blank())  # Remove y-axis title
 
 g1 <- g1 + 
   guides(fill = "none")
@@ -566,7 +566,7 @@ hb_pulchella <- rhierbaps::hierBAPS(data_pulc,
                                     quiet = T,
                                     n.extra.rounds = Inf,
                                     assignment.probs = T
-                                    )
+)
 
 
 clust <- hb_pulchella$partition.df
@@ -591,7 +591,7 @@ readr::write_csv(hb_results_export, "datos/bioinfo/hb_pulchella.csv")
 
 
 # Load occurences data
-occ_data <- read.csv("datos/maps/datos/mapas/complete_data_pulchella.csv", 
+occ_data <- read.csv("datos/mapas/complete_data_pulchella.csv", 
                      header = T)
 head(occ_data) # view data
 
@@ -607,7 +607,7 @@ readr::write_csv(occ_data2, "datos/mapas/complete_data_pulchella.csv")
 # Load base maps
 worldmap <- rnaturalearth::ne_countries(scale = 'medium', 
                                         type = 'map_units',
-                         returnclass = 'sf') # world countries
+                                        returnclass = 'sf') # world countries
 
 
 ggplot() + geom_sf(data = worldmap) + theme_bw() # plot basemap
@@ -628,22 +628,22 @@ ggplot() + geom_sf(data = sa_cropped) + theme_bw() # plot cropped sa
 # Plot sa + sample occ
 
 (map <- ggplot() + 
-  
-  geom_sf(data = worldmap) +
-  
-  coord_sf(xlim = c(-65, -45), 
-           ylim = c(-40, -26), 
-           expand = FALSE) +
-  
-  geom_point(data = occ_data2, 
-             aes(x = long, y = lat,
-                 colour = factor(level.1)),
-             size = 3) +
+    
+    geom_sf(data = worldmap) +
+    
+    coord_sf(xlim = c(-65, -45), 
+             ylim = c(-40, -26), 
+             expand = FALSE) +
+    
+    geom_point(data = occ_data2, 
+               aes(x = long, y = lat,
+                   colour = factor(level.1)),
+               size = 3) +
     
     scale_colour_brewer(palette = "Set1") +
     
-  theme_bw()
-
+    theme_bw()
+  
 )
 
 
@@ -665,39 +665,39 @@ neotrop_croped <- sf::st_crop(neotrop_valid,
 # Plot Neotropical Provinces:
 
 (mapa_neotrop <- ggplot(neotrop_croped) + 
-  
-  geom_sf(data = neotrop_croped,
-          aes(fill = Provincias)) +
-  
-  scale_fill_viridis_d(alpha = 0.4) +
-  
-  coord_sf(xlim = c(-64, -48), 
-           ylim = c(-38.5, -26.5), 
-           expand = FALSE) +
-
-  labs(fill = "Provinces",
-       colour = "Clusters") +
-  
-  theme_bw()
+    
+    geom_sf(data = neotrop_croped,
+            aes(fill = Provincias)) +
+    
+    scale_fill_viridis_d(alpha = 0.4) +
+    
+    coord_sf(xlim = c(-64, -48), 
+             ylim = c(-38.5, -26.5), 
+             expand = FALSE) +
+    
+    labs(fill = "Provinces",
+         colour = "Clusters") +
+    
+    theme_bw()
 )
 
 
 # Plot Neotropical map + samples clusters:
 
 (mapa_neotrop_amostras <-   
-  
-  mapa_neotrop +
-  
-  geom_point(data = occ_data2, 
-             aes(x = long, y = lat,
-             colour = factor(level.1)),
-             size = 4,
-             show.legend = T) +
-  
-  scale_colour_brewer(palette = "Set1") +
-  
-  guides(fill = guide_legend(override.aes = list(colour = NA)))
-  )
+    
+    mapa_neotrop +
+    
+    geom_point(data = occ_data2, 
+               aes(x = long, y = lat,
+                   colour = factor(level.1.x)),
+               size = 4,
+               show.legend = T) +
+    
+    scale_colour_brewer(palette = "Set1") +
+    
+    guides(fill = guide_legend(override.aes = list(colour = NA)))
+)
 
 
 # Interative plots --------------------------------------------------------
@@ -709,7 +709,7 @@ data <- read.csv("datos/mapas/complete_data_pulchella.csv",
                  h = T)
 
 df <- data %>%
-  dplyr::mutate_at(vars(level.1, level.2), factor)
+  dplyr::mutate_at(vars(level.1.x, level.2.x), factor)
 
 
 summary(data)
@@ -749,7 +749,7 @@ m <- leaflet:: leaflet(data = df) %>%
   leaflet::addProviderTiles("Esri.WorldImagery") %>%
   
   leaflet::addCircleMarkers(~long, ~lat,
-                            fillColor = ~color_pal(level.1),
+                            fillColor = ~color_pal(level.1.x),
                             fillOpacity = 0.9,
                             color = "white",
                             radius = 8,
@@ -762,7 +762,7 @@ m <- leaflet:: leaflet(data = df) %>%
                               direction = "auto")) %>%
   
   leaflet::addLegend(pal = color_pal,
-                     values = ~df$level.1,
+                     values = ~df$level.1.x,
                      opacity = 0.9,
                      title = "Cluster",
                      position = "bottomright")
