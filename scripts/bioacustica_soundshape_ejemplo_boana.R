@@ -16,9 +16,11 @@ library(SoundShape)
 # Set Working Directory:  -------------------------------------------------
 
 
-# path <- "camino/para/datos/vocalizaciones"
+path <- "D:/biologa/00_beca_posdoctoral_UY/05_disciplina_R/curso_r-main/datos/vocalizaciones"
+
 setwd(path)
-dir()
+
+dir() # check files
 
 # Indicate where are stored the ".wav" files
 
@@ -112,23 +114,23 @@ seewave::spectro(boana_marginata,
                  grid = FALSE)
 
 
-## Boana marginata 2 -------------------------------------------------------
-# 1- Import:
-boana_marginata_2 <- tuneR::readWave("boana_marginata_2.wav")
-boana_marginata_2
-
-
-# 2- Plot:
-seewave::spectro(boana_marginata_2,
-                 flim = c(0, 4),
-                 wl = 512,
-                 f = 44100,
-                 ovlp = 70,
-                 grid = FALSE)
-
-
-
-
+# ## Boana marginata 2 -------------------------------------------------------
+# # 1- Import:
+# boana_marginata_2 <- tuneR::readWave("boana_marginata_2.wav")
+# boana_marginata_2
+# 
+# 
+# # 2- Plot:
+# seewave::spectro(boana_marginata_2,
+#                  flim = c(0, 4),
+#                  wl = 512,
+#                  f = 44100,
+#                  ovlp = 70,
+#                  grid = FALSE)
+# 
+# 
+# 
+# 
 
 ## Boana faber -------------------------------------------------------------
 # 1- Import:
@@ -222,11 +224,8 @@ dimnames(eig_boana)[[3]]
 sample_gr <- factor(c("faber",
                       "faber",
                       "marginata",
-                      "marginata",
                       "pardalis",
-                      "pardalis",
-                      "semilineata",
-                      "semilineata" ))
+                      "pardalis"))
 
 
 par(mfrow = c(1,1),
