@@ -155,10 +155,12 @@ presentación de artículos
     - Datos: [Vocalizaciones](datos/vocalizaciones)
       
 - **Clase 6:**
+  - [Mapas (Script)](scripts/primeros_mapas.R)
   - [Bioinformática (Script)]()
     - Datos: [Sequencias de ADN](datos/sequence_boana.fa)
-  - [Mapas (Script)]()
     - Datos: [Datos para mapa](datos/dados_boana.csv)
+
+
 
 
 
