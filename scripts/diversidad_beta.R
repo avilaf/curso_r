@@ -15,9 +15,20 @@ library(betapart)  # para diversidad beta
 library(vegan)     # para ecología
 
 # 2. IMPORTAR Y PREPARAR DATOS ----------------------------------
-# Importar datos del enlace
-url_datos <- "https://raw.githubusercontent.com/avilaf/curso_r/refs/heads/main/datos/dados_beta.csv"
-biologica <- read.csv(url_datos, header = TRUE, sep = ",")
+
+#  Importar datos del enlace
+# rl_datos <- "https://raw.githubusercontent.com/avilaf/curso_r/refs/heads/main/datos/dados_beta.csv"
+# biologica <- read.csv(url_datos, header = TRUE, sep = ",")
+
+#  Importar datos del directorio local
+path <- "D:/biologa/00_beca_posdoctoral_UY/05_disciplina_R/curso_r-main"
+
+setwd(path)
+
+dir() # check files
+
+biologica <- read.csv("datos/dados_beta.csv", header = TRUE, sep = ",")
+
 
 # Verificar estructura
 str(biologica)
@@ -100,3 +111,5 @@ citation("vegan")
 # Dra. Fernanda Rodrigues de Avila 
 # <https://avilaf.github.io/>
 # fernandar.avila@gmail.com
+
+
