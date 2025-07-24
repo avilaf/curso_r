@@ -58,7 +58,7 @@ matriz_numero$pop <- datos$pop
 # 2.1 Gráfico de Barras - Composición Media de la Dieta
 # Preparar datos para gráfico de barras
 dieta_resumen <- datos %>%
-  select(pop, all_of(columnas_volumen)) %>%
+  dplyr::select(pop, dplyr::all_of(columnas_volumen)) %>%
   group_by(pop) %>%
   summarise_all(mean, na.rm = TRUE) %>%
   pivot_longer(-pop, names_to = "item_alimentario", values_to = "volumen_medio") %>%
@@ -82,7 +82,7 @@ p1
 # Calcular proporciones por población
 
 prop_dieta <- datos %>%
-  select(pop, all_of(columnas_volumen)) %>%
+  dplyr::select(pop, dplyr::all_of(columnas_volumen)) %>%
   group_by(pop) %>%
   summarise_all(sum, na.rm = TRUE) %>%
   pivot_longer(-pop, names_to = "item", values_to = "volumen") %>%
@@ -107,7 +107,7 @@ p2
 # Calcular índices de diversidad
 
 diversidad_shannon <- datos %>%
-  select(pop, all_of(columnas_volumen)) %>%
+  dplyr::select(pop, dplyr::all_of(columnas_volumen)) %>%
   group_by(pop) %>%
   group_modify(~ {
     matriz <- .x[, -1]
@@ -262,7 +262,7 @@ print(anosim_resultado)
 # Identificar ítems más abundantes (por volumen total)
 
 items_principales <- datos %>%
-  select(all_of(columnas_volumen)) %>%
+  dplyr::select(dplyr::all_of(columnas_volumen)) %>%
   summarise_all(sum, na.rm = TRUE) %>%
   pivot_longer(everything(), names_to = "item", values_to = "total") %>%
   arrange(desc(total)) %>%
@@ -271,7 +271,7 @@ items_principales <- datos %>%
 
 # Boxplots de los principales ítems
 datos_long <- datos %>%
-  select(pop, all_of(items_principales)) %>%
+  dplyr::select(pop, dplyr::all_of(items_principales)) %>%
   pivot_longer(-pop, names_to = "item", values_to = "volumen") %>%
   mutate(item = str_remove(item, "_v"),
          item = str_replace_all(item, "_", " "),

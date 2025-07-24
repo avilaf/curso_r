@@ -1,0 +1,407 @@
+---
+title: "SoundShape R Notebook"
+output: html_soundShape_notebook
+editor_options: 
+  markdown: 
+    wrap: 80
+---
+
+# Tutorial: Análisis de Vocalizaciones con SoundShape en R
+
+## Introducción
+
+Este tutorial te enseñará a analizar vocalizaciones de anfibios usando R y el
+paquete SoundShape. Aprenderás a convertir sonidos en datos morfométricos que
+pueden ser analizados estadísticamente.
+
+### ¿Qué es SoundShape?
+
+SoundShape es un paquete de R que permite analizar sonidos como si fueran formas
+tridimensionales, aplicando técnicas de morfometría geométrica tradicionalmente
+usadas en biología para estudiar formas de organismos.
+
+### Objetivos del tutorial:
+
+-   Importar y visualizar archivos de audio
+-   Alinear sonidos para comparación
+-   Realizar análisis de componentes principales (PCA)
+-   Crear superficies hipotéticas de sonido
+
+--------------------------------------------------------------------------------
+
+## Parte 1: Preparación del Entorno
+
+### 1.1 ¿Qué es un paquete en R?
+
+Un paquete es una colección de funciones que extienden las capacidades básicas
+de R. Es como una "caja de herramientas" especializada.
+
+### 1.2 Instalación y carga de paquetes
+
+``` r
+# IMPORTANTE: Solo necesitas instalar un paquete UNA VEZ
+# Descomenta la siguiente línea si es tu primera vez usando SoundShape:
+# install.packages("SoundShape")
+
+# Cargar el paquete (esto lo haces cada vez que abres R)
+library(SoundShape)
+```
+
+**💡 Consejo para principiantes:** - `install.packages()` = descargar e instalar
+(solo una vez) - `library()` = cargar para usar (cada sesión de R)
+
+### 1.3 Configuración del directorio de trabajo
+
+``` r
+# ¿Qué es un directorio de trabajo?
+# Es la carpeta donde R buscará tus archivos por defecto
+
+# MODIFICA esta ruta según donde tengas tus archivos de audio:
+path <- "D:/curso_r-main/datos/vocalizaciones"
+setwd(path)
+
+# Verificar qué archivos tienes en la carpeta
+dir()
+```
+
+**🔧 Ejercicio 1:** Cambia la ruta `path` por la carpeta donde tienes tus
+archivos de audio. Si no tienes archivos, crea una carpeta llamada
+"vocalizaciones" en tu escritorio.
+
+### 1.4 Crear carpeta para resultados
+
+``` r
+# Crear una subcarpeta para guardar los resultados
+store_at <- file.path(getwd(), "output")
+dir.create(store_at)
+
+# getwd() = obtener directorio actual
+# file.path() = crear rutas de archivos de forma segura
+# dir.create() = crear una nueva carpeta
+```
+
+--------------------------------------------------------------------------------
+
+## Parte 2: Importación y Visualización de Audio
+
+### 2.1 ¿Qué es un archivo .wav?
+
+Un archivo .wav es un formato de audio sin compresión que preserva toda la
+información del sonido, ideal para análisis científicos.
+
+### 2.2 Importar nuestro primer archivo de audio
+
+``` r
+# Importar el primer archivo de audio
+boana_pardalis <- tuneR::readWave("boana_pardalis.wav")
+
+# Ver información básica del archivo
+boana_pardalis
+```
+
+**¿Qué significa `tuneR::`?** - `tuneR` es otro paquete de R para análisis de
+audio - `::` significa "usar la función de este paquete específico" - Es como
+decir "usa la función readWave del paquete tuneR"
+
+### 2.3 Crear un espectrograma
+
+Un espectrograma es una representación visual del sonido que muestra: - **Eje
+X**: Tiempo - **Eje Y**: Frecuencia (Hz) - **Colores**: Intensidad del sonido
+
+``` r
+# Crear espectrograma
+seewave::spectro(boana_pardalis,
+                 flim = c(0, 1.8),    # límites de frecuencia (0-1.8 kHz)
+                 wl = 512,            # ventana de análisis
+                 f = 44100,           # frecuencia de muestreo
+                 ovlp = 70,           # solapamiento entre ventanas (70%)
+                 grid = FALSE)        # sin cuadrícula
+```
+
+**📊 Parámetros explicados:** - `flim`: rango de frecuencias a mostrar - `wl`:
+tamaño de la ventana de análisis (más grande = mejor resolución frecuencial) -
+`ovlp`: solapamiento entre ventanas (más alto = más suave pero más lento)
+
+### 2.4 Analizar múltiples especies
+
+Vamos a importar y visualizar vocalizaciones de diferentes especies:
+
+``` r
+# Boana pardalis (muestra 2)
+boana_pardalis_2 <- tuneR::readWave("boana_pardalis_2.wav")
+seewave::spectro(boana_pardalis_2,
+                 flim = c(0, 1.8), wl = 512, f = 44100, ovlp = 70, grid = FALSE)
+
+# Boana marginata
+boana_marginata <- tuneR::readWave("boana_marginata.wav")
+seewave::spectro(boana_marginata,
+                 flim = c(0, 4),      # Nota: rango de frecuencia diferente
+                 wl = 512, f = 44100, ovlp = 70, grid = FALSE)
+
+# Boana faber
+boana_faber <- tuneR::readWave("boana_faber.wav")
+seewave::spectro(boana_faber,
+                 flim = c(0, 1.8), wl = 512, f = 44100, ovlp = 70, grid = FALSE)
+
+# Boana faber (muestra 2)
+boana_faber_2 <- tuneR::readWave("boana_faber_2.wav")
+seewave::spectro(boana_faber_2,
+                 flim = c(0, 1.8), wl = 512, f = 44100, ovlp = 70, grid = FALSE)
+```
+
+**🔍 Ejercicio 2:** Observa los espectrogramas y anota las diferencias que ves
+entre especies: - ¿Cuál tiene frecuencias más altas? - ¿Cuál dura más tiempo? -
+¿Ves patrones diferentes?
+
+--------------------------------------------------------------------------------
+
+## Parte 3: Alineación de Sonidos
+
+### 3.1 ¿Por qué alinear sonidos?
+
+Para comparar sonidos de diferentes grabaciones, necesitamos que todos comiencen
+en el mismo punto temporal y tengan la misma duración.
+
+``` r
+# Alinear todos los sonidos
+SoundShape::align.wave(wav.at = path,           # carpeta con archivos originales
+                       wav.to = "Aligned",      # subcarpeta para archivos alineados
+                       time.length = 0.15,      # duración estándar (150 ms)
+                       flim = c(0.1, 5))        # rango de frecuencias
+```
+
+**⚙️ Parámetros explicados:** - `time.length`: todos los sonidos tendrán esta
+duración - `flim`: solo analizar frecuencias en este rango
+
+### 3.2 Verificar la alineación
+
+``` r
+# Crear visualización 2D para verificar alineación
+SoundShape::eigensound(analysis.type = "twoDshape",
+                       wav.at = file.path(path, "Aligned"),
+                       store.at = store_at,
+                       plot.exp = TRUE,
+                       flim = c(0, 6),
+                       tlim = c(0, 0.3))
+```
+
+Esta función crea una representación bidimensional que te permite ver si todos
+los sonidos están correctamente alineados.
+
+--------------------------------------------------------------------------------
+
+## Parte 4: Análisis de Eigenvectores (Análisis Principal)
+
+### 4.1 ¿Qué son los eigenvectores en este contexto?
+
+Los eigenvectores son direcciones principales de variación en los datos. En
+SoundShape, representan las formas principales en que los sonidos difieren entre
+sí.
+
+``` r
+# Realizar análisis 3D completo
+eig_boana <- SoundShape::eigensound(analysis.type = "threeDshape",
+                                    wav.at = file.path(path, "Aligned"),
+                                    store.at = store_at,
+                                    plot.exp = TRUE, 
+                                    flim = c(0, 6), 
+                                    tlim = c(0, 0.3))
+
+# Ver el resultado
+eig_boana
+```
+
+**📈 ¿Qué hace esta función?** 1. Convierte cada sonido en una superficie 3D 2.
+Identifica puntos de referencia (semilandmarks) 3. Calcula las principales
+diferencias entre sonidos
+
+--------------------------------------------------------------------------------
+
+## Parte 5: Análisis de Componentes Principales (PCA)
+
+### 5.1 ¿Qué es un PCA?
+
+El PCA es una técnica que simplifica datos complejos identificando las
+dimensiones de mayor variación. Es como encontrar los ejes principales que mejor
+explican las diferencias entre tus datos.
+
+``` r
+# Realizar PCA
+pca_eig_boana <- stats::prcomp(geomorph::two.d.array(eig_boana))
+
+# Ver resumen de resultados
+summary(pca_eig_boana)
+```
+
+**📊 Interpretando el resumen:** - **Standard deviation**: cuánta variación
+explica cada componente - **Proportion of Variance**: porcentaje de variación
+total que explica cada PC - **Cumulative Proportion**: porcentaje acumulado
+
+### 5.2 Asignar grupos (especies)
+
+``` r
+# Ver los nombres de las muestras
+dimnames(eig_boana)[[3]]
+
+# Crear vector de grupos (especies)
+sample_gr <- factor(c("faber",      # muestra 1
+                      "faber",      # muestra 2  
+                      "marginata",  # muestra 3
+                      "pardalis",   # muestra 4
+                      "pardalis"))  # muestra 5
+```
+
+**💡 ¿Qué es un factor?** Un factor es un tipo de variable en R que representa
+categorías (como especies, tratamientos, etc.).
+
+### 5.3 Crear gráfico de PCA
+
+``` r
+# Configurar área de gráfico
+par(mfrow = c(1,1),    # 1 fila, 1 columna
+    mar = c(4,4,1,1))  # márgenes del gráfico
+
+# Crear gráfico de PCA
+SoundShape::pca.plot(pca_eig_boana,
+                     groups = sample_gr,        # colorear por especie
+                     conv.hulls = sample_gr,    # envolturas convexas por grupo
+                     leg.pos = "bottom",        # posición de leyenda
+                     cex = 1.2)                 # tamaño de puntos
+```
+
+**🎨 Ejercicio 3:** Interpreta el gráfico de PCA: - ¿Qué especies se separan
+mejor? - ¿Cuánta variación explican PC1 y PC2 juntos? - ¿Hay solapamiento entre
+especies?
+
+--------------------------------------------------------------------------------
+
+## Parte 6: Superficies Hipotéticas de Sonido
+
+### 6.1 ¿Qué son las superficies hipotéticas?
+
+Son representaciones 3D que muestran cómo se vería un sonido "promedio" o cómo
+cambiarían los sonidos a lo largo de los componentes principales.
+
+### 6.2 Superficie promedio (consenso)
+
+``` r
+# Crear superficie del sonido promedio
+SoundShape::hypo.surf(eig_boana,
+                      PC = "mean",      # usar promedio
+                      flim = c(0, 4),   # límites de frecuencia
+                      tlim = c(0, 0.8), # límites de tiempo
+                      x.length = 70,    # resolución eje X
+                      y.length = 47,    # resolución eje Y
+                      cex.lab = 0.7,    # tamaño etiquetas
+                      cex.axis = 0.5,   # tamaño números ejes
+                      cex.main = 1)     # tamaño título
+```
+
+### 6.3 Variación a lo largo del PC1
+
+``` r
+# Mostrar variación en el Componente Principal 1
+SoundShape::hypo.surf(eig_boana,
+                      PC = 1,           # usar PC1
+                      flim = c(0, 4), tlim = c(0, 0.8),
+                      x.length = 70, y.length = 47,
+                      cex.lab = 0.7, cex.axis = 0.5, cex.main = 1)
+```
+
+Esta función creará dos gráficos: - Mínimo PC1: sonido en el extremo negativo -
+Máximo PC1: sonido en el extremo positivo
+
+### 6.4 Variación a lo largo del PC2
+
+``` r
+# Mostrar variación en el Componente Principal 2
+SoundShape::hypo.surf(eig_boana,
+                      PC = 2,           # usar PC2
+                      flim = c(0, 4), tlim = c(0, 0.8),
+                      x.length = 70, y.length = 47,
+                      cex.lab = 0.7, cex.axis = 0.5, cex.main = 1)
+```
+
+**🔬 Ejercicio 4:** Compara las superficies hipotéticas: - ¿En qué se diferencia
+PC1 del promedio? - ¿Qué características del sonido cambian más en PC2?
+
+--------------------------------------------------------------------------------
+
+## Parte 7: Información del Sistema y Referencias
+
+### 7.1 Citar el software utilizado
+
+``` r
+# Citar SoundShape
+citation("SoundShape")
+
+# Citar R
+citation()
+
+# Ver versión de RStudio
+RStudio.Version()
+```
+
+**📚 ¿Por qué es importante citar?** En ciencia, siempre debemos reconocer las
+herramientas que usamos. Esto permite: - Reproducibilidad de los análisis -
+Reconocimiento a los desarrolladores - Verificación de métodos por otros
+investigadores
+
+--------------------------------------------------------------------------------
+
+## Ejercicios Adicionales para Practicar
+
+### Ejercicio 5: Análisis completo
+
+1.  Consigue 3-5 archivos de audio de diferentes especies
+2.  Repite todo el análisis
+3.  Interpreta los resultados
+
+### Ejercicio 6: Modificar parámetros
+
+1.  Cambia los valores de `flim` en los espectrogramas
+2.  Prueba diferentes valores de `time.length` en la alineación
+3.  Observa cómo cambian los resultados
+
+### Ejercicio 7: Interpretación biológica
+
+1.  ¿Qué significan biológicamente las diferencias encontradas?
+2.  ¿Podrían estas diferencias estar relacionadas con el tamaño corporal?
+3.  ¿Qué hipótesis evolutivas podrías plantear?
+
+--------------------------------------------------------------------------------
+
+## Glosario de Términos
+
+-   **Espectrograma**: Representación visual de un sonido mostrando frecuencia
+    vs tiempo
+-   **PCA**: Análisis que encuentra las principales direcciones de variación en
+    los datos
+-   **Eigenvector**: Vector que representa una dirección principal de variación
+-   **Semilandmark**: Punto de referencia en una forma que puede deslizarse a lo
+    largo de contornos
+-   **Factor**: Variable categórica en R (como especie, tratamiento, etc.)
+-   **Frecuencia de muestreo**: Cuántas veces por segundo se mide el sonido (Hz)
+
+--------------------------------------------------------------------------------
+
+## Consejos para el Éxito
+
+1.  **Empieza simple**: Usa pocos archivos al principio
+2.  **Verifica cada paso**: Revisa que cada gráfico tenga sentido
+3.  **Guarda tu trabajo**: Usa `save()` para guardar objetos importantes
+4.  **Documenta todo**: Escribe comentarios explicando qué hace cada línea
+5.  **Practica**: La bioacústica requiere experiencia interpretando patrones
+
+--------------------------------------------------------------------------------
+
+## Recursos Adicionales
+
+-   **Manual de SoundShape**: <https://cran.r-project.org/package=SoundShape>
+-   **Introducción a R**:
+    <https://cran.r-project.org/doc/manuals/r-release/R-intro.html>
+-   **Morfometría geométrica**: Zelditch et al. (2012) - Geometric Morphometrics
+    for Biologists
+
+¡Felicitaciones! Has completado tu primer análisis de morfometría acústica en R.
+🎉

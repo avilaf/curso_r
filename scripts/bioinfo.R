@@ -59,7 +59,7 @@ library("leaflet")         # Mapas interactivos
 # ============================================================================
 
 # Cambia esta ruta por la carpeta donde tienes tus datos
-path <- "tu_carpeta_de_trabajo"
+path <- "D:/curso_r-main"
 setwd(path)
 dir() # Ver qué archivos hay en la carpeta
 

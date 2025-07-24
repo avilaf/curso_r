@@ -138,7 +138,7 @@ cat("Aplicando filtros de calidad...\n")
 # Proceso de limpieza paso a paso:
 datos_limpios <- datos_crudos$data %>%
   # 1. Seleccionar solo las columnas que necesitamos
-  select(species, decimalLongitude, decimalLatitude, eventDate, 
+  dplyr::select(species, decimalLongitude, decimalLatitude, eventDate, 
          locality, institutionCode, basisOfRecord) %>%
   
   # 2. Filtrar registros con coordenadas válidas
@@ -458,7 +458,7 @@ cat("\nPASO 9: Exportando datos a CSV...\n")
 # Preparar datos para exportación
 datos_para_excel <- datos_crudos$data %>%
   # Seleccionar columnas más importantes y útiles
-  select(
+  dplyr::select(
     # Información básica de la especie
     species, scientificName, vernacularName,
     

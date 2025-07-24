@@ -21,7 +21,7 @@ library(vegan)     # para ecología
 # biologica <- read.csv(url_datos, header = TRUE, sep = ",")
 
 #  Importar datos del directorio local
-path <- "D:/biologa/00_beca_posdoctoral_UY/05_disciplina_R/curso_r-main"
+path <- "D:/curso_r-main"
 
 setwd(path)
 
@@ -82,9 +82,9 @@ permutest(bd_anidamiento, permutations = 999, pairwise = TRUE)
 # ===============================================================
 # PCoAs (Análisis de Coordenadas Principales)
 par(mfrow = c(1, 3))
-plot(bd_total, main = "PCoA - Beta Total")
-plot(bd_recambio, main = "PCoA - Recambio")
-plot(bd_anidamiento, main = "PCoA - Anidamiento")
+graphics::plot(bd_total, main = "PCoA - Beta Total", sub = "")
+graphics::plot(bd_recambio, main = "PCoA - Recambio")
+graphics::plot(bd_anidamiento, main = "PCoA - Anidamiento")
 
 # Gráficos de cajas (boxplots)
 par(mfrow = c(1, 3))

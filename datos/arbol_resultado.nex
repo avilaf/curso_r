@@ -1,0 +1,71 @@
+#NEXUS
+[R-package APE, Thu Jul 24 16:03:58 2025]
+
+BEGIN TAXA;
+	DIMENSIONS NTAX = 29;
+	TAXLABELS
+		secuencia_1
+		secuencia_2
+		secuencia_3
+		secuencia_4
+		secuencia_5
+		secuencia_6
+		secuencia_7
+		secuencia_8
+		secuencia_9
+		secuencia_10
+		secuencia_11
+		secuencia_12
+		secuencia_13
+		secuencia_14
+		secuencia_15
+		secuencia_16
+		secuencia_17
+		secuencia_18
+		secuencia_19
+		secuencia_20
+		secuencia_21
+		secuencia_22
+		secuencia_23
+		secuencia_24
+		secuencia_25
+		secuencia_26
+		secuencia_27
+		secuencia_28
+		secuencia_29
+	;
+END;
+BEGIN TREES;
+	TRANSLATE
+		1	secuencia_1,
+		2	secuencia_2,
+		3	secuencia_3,
+		4	secuencia_4,
+		5	secuencia_5,
+		6	secuencia_6,
+		7	secuencia_7,
+		8	secuencia_8,
+		9	secuencia_9,
+		10	secuencia_10,
+		11	secuencia_11,
+		12	secuencia_12,
+		13	secuencia_13,
+		14	secuencia_14,
+		15	secuencia_15,
+		16	secuencia_16,
+		17	secuencia_17,
+		18	secuencia_18,
+		19	secuencia_19,
+		20	secuencia_20,
+		21	secuencia_21,
+		22	secuencia_22,
+		23	secuencia_23,
+		24	secuencia_24,
+		25	secuencia_25,
+		26	secuencia_26,
+		27	secuencia_27,
+		28	secuencia_28,
+		29	secuencia_29
+	;
+	TREE * UNTITLED = [&R] ((((20:0.004958127475,21:0.002610462875)1:0.01558065279,(((24:0.003784295175,25:5.421010862e-18)0.99:0.001483615722,26:0.002300679453)0.51:0.000912285444,(22:0.0004336171555,23:0.001458530432)0.84:0.002872009731)1:0.006652081362)0.45:0.0005819598666,((27:0.0007459427989,28:0.002092278582)0.91:0.001201513718,29:0.006367076632)1:0.011480481)1:0.01604807857,(((((((3:0,4:0)0.86:0.0008869441816,((8:0,9:0)0.79:0.0009756385998,((5:0,6:0)0.33:0,7:0)0.93:0.001862582781)0.37:5.912961211e-05)0.54:0.0005912961211,10:0.002227215389)0.78:0.002392285557,((11:0,12:0)1:0.002923959319,13:0.002752483444)0.71:0.001648237938)0.46:0.0007575981552,((16:0.0009867254021,17:0.002797569773)0.93:0.00200301561,(14:0,15:0)1:0.00556557474)0.73:0.001812076238)1:0.007301275229,(18:0.001524230001,19:0.0003679175865)1:0.01185154525)0.59:0.002014348786,(1:0.008135538984,2:0.007001641716)0.82:0.003684513955)1:0.02047554371)1;
+END;
