@@ -162,6 +162,8 @@ presentación de artículos
 
 
 
+Para acceder a todos los materiales esenciales del curso, descarga todos los archivos de este directorio en tu computadora.
+![<Haz clic en el botón 'Code' y después en 'Download ZIP'>](<download.PNG>)
 
 
 
