@@ -1,834 +1,557 @@
 
-# Bioinformatics for biogeography ------------------------------------------------------------------
-
+# ============================================================================
+# ANÁLISIS FILOGENÉTICO Y BIOGEOGRÁFICO DE SECUENCIAS DE ADN
+# ============================================================================
+#
 # Dra. Fernanda Rodrigues de Avila
 # mail: fernandar.avila@gmail.com
 # https://avilaf.github.io/
+#
+# 
+# Este script te enseñará paso a paso cómo:
+# 1. Alinear secuencias de ADN
+# 2. Calcular distancias evolutivas
+# 3. Construir árboles filogenéticos 
+# 4. Analizar estructura poblacional
+# 5. Crear mapas biogeográficos
+#
+# Ejemplo: Estudio de ranas del género Boana en Sudamérica
+# ============================================================================
 
-# More information here -> https://rpubs.com/mvillalobos/L01_Phylogeny
-# and here -> https://cran.r-project.org/web/packages/rhierbaps/vignettes/introduction.html
+# PASO 1: INSTALACIÓN Y CARGA DE PAQUETES
+# ============================================================================
 
+# ¿Qué necesitamos?
+# - Paquetes para biología molecular (alineamiento, árboles)
+# - Paquetes para gráficos y mapas
+# - Paquetes para manipular datos
 
-# Prepare r -------------------------------------------------------------
+# Instalar BiocManager (solo la primera vez)
+# install.packages("BiocManager")
 
+# Cargar paquetes de biología molecular
+library("BiocManager")     # Gestor de paquetes biológicos
+library("msa")             # Alineamiento múltiple de secuencias
+library("Biostrings")      # Manipulación de secuencias de ADN
+library("phangorn")        # Análisis filogenéticos
+library("ape")             # Análisis filogenéticos y evolutivos
+library("rhierbaps")       # Análisis de estructura poblacional
 
-## Clean memory ------------------------------------------------------------
+# Cargar paquetes para manipular datos
+library("dplyr")           # Manipulación de datos
+library("plyr")            # Manipulación de datos
 
-rm(list = ls())
+# Cargar paquetes para gráficos
+library("ggtree")          # Visualización de árboles
+library("ggplot2")         # Gráficos elegantes
+library("gridExtra")       # Combinar gráficos
+library("plotly")          # Gráficos interactivos
+library("reshape2")        # Transformar datos
+library("pheatmap")        # Mapas de calor
 
+# Cargar paquetes para mapas
+library("rnaturalearth")   # Mapas del mundo
+library("sf")              # Datos espaciales
+library("leaflet")         # Mapas interactivos
 
-## Packages ----------------------------------------------------------------
+# ============================================================================
+# PASO 2: CONFIGURAR DIRECTORIO DE TRABAJO
+# ============================================================================
 
-
-### Molecular biology: ------------------------------------------------------
-
-#install.packages("BiocManager")
-library("BiocManager") 
-
-#BiocManager::install("msa")
-library("msa") 
-
-# Load the 'msa' package into the R session
-library("msa")
-
-# BiocManager::install("Biostrings")
-library("Biostrings")
-
-# BiocManager::install("phangorn")
-library("phangorn")
-
-# install.packages("ape")
-library("ape")
-
-# install.packages("stringdist")
-library("stringdist")
-
-# install.packages("rhierbaps")
-library("rhierbaps")
-
-
-### Edit data ---------------------------------------------------------------
-
-# install.packages("dplyr")
-library("dplyr")
-
-# install.packages("plyr")
-require("plyr")
-
-
-### Graphics ----------------------------------------------------------------
-
-# bioconductor::install("ggtree")
-library("ggtree")
-
-# install.packages("ggplot2")
-library("ggplot2")
-
-# install.packages("gridExtra")
-library("gridExtra")
-
-# install.packages("plotly")
-library("plotly")
-
-# install.packages("reshape2")
-library("reshape2")
-
-# install.packages("pheatmap")
-library("pheatmap")
-
-
-
-### Maps --------------------------------------------------------------------
-
-# install.packages("rnaturalearth")
-library("rnaturalearth")
-
-
-# install.packages("sf")
-library("sf")
-
-# install.packages("leaflet")
-library("leaflet")
-
-## Define directory --------------------------------------------------------
-
-path <- "D:/biologa/00_beca_posdoctoral_UY/05_disciplina_R/curso_r-main"
-
+# Cambia esta ruta por la carpeta donde tienes tus datos
+path <- "tu_carpeta_de_trabajo"
 setwd(path)
+dir() # Ver qué archivos hay en la carpeta
 
-dir() # check files
+# ============================================================================
+# PASO 3: CARGAR SECUENCIAS DE ADN
+# ============================================================================
 
+print("=== CARGANDO SECUENCIAS DE ADN ===")
 
+# Las secuencias están en formato FASTA (estándar para ADN)
+# Cada secuencia tiene un nombre y una cadena de nucleótidos (A, T, G, C)
+secuencias <- Biostrings::readDNAStringSet("datos/bioinfo/sequence_boanas.fa")
 
-# Data --------------------------------------------------------------------
+# Darles nombres simples a las secuencias
+nombres <- paste("secuencia", 1:length(secuencias), sep="_")
+names(secuencias) <- nombres
 
-sequences <- Biostrings::readDNAStringSet("datos/bioinfo/sequence_boanas.fa")
+print(paste("Cargadas", length(secuencias), "secuencias de ADN"))
+print("Primeras 3 secuencias:")
+print(secuencias[1:3])
 
+# ============================================================================
+# PASO 4: ALINEAMIENTO MÚLTIPLE DE SECUENCIAS
+# ============================================================================
 
-names <- c(rep("seq", 29))
-names(sequences) <- names
+print("=== ALINEANDO SECUENCIAS ===")
 
-# Perform multiple sequence alignment on the DNAStringSet object using the 'msa' package
-msa_result_sample <- msa::msa(sequences,
-                              method = "ClustalW",
-                              verbose = T)
+# ¿Por qué alinear?
+# Las secuencias pueden tener diferentes longitudes o inserciones/deleciones
+# El alineamiento nos permite comparar posición por posición
 
-## Distances --------------------------------------------------------------
+# Usar el algoritmo ClustalW (muy usado en biología)
+alineamiento <- msa::msa(secuencias,
+                         method = "ClustalW",
+                         verbose = TRUE)
 
+print("¡Alineamiento completado!")
+print("Ahora todas las secuencias tienen la misma longitud")
 
-### Hamming -----------------------------------------------------------------
+# ============================================================================
+# PASO 5: CALCULAR DISTANCIAS EVOLUTIVAS
+# ============================================================================
 
+print("=== CALCULANDO DISTANCIAS EVOLUTIVAS ===")
 
-# Define a vector containing four DNA sequences
-# Convert the multiple sequence alignment result to a phyDat object for downstream analyses in phangorn
-phyDat_msa_sample <- phangorn::as.phyDat(msa_result_sample)
+# Convertir el alineamiento a formato especial para análisis
+datos_filogeneticos <- phangorn::as.phyDat(alineamiento)
+names(datos_filogeneticos) <- names(secuencias)
 
-# Assign custom names to the sequences
-names(phyDat_msa_sample) <- names(sequences)
+# DISTANCIA HAMMING
+# Cuenta cuántas posiciones difieren entre dos secuencias
+print("1. Calculando distancia Hamming...")
+dist_hamming <- phangorn::dist.hamming(datos_filogeneticos, ratio = FALSE)
+matriz_hamming <- round(as.matrix(dist_hamming), 2)
 
+# Visualizar como mapa de calor
+print("Creando mapa de calor de distancias Hamming...")
+pheatmap::pheatmap(matriz_hamming, 
+                   main = "Distancias Hamming entre secuencias",
+                   show_rownames = FALSE,
+                   show_colnames = FALSE)
 
-# Compute the Hamming distance matrix for the aligned sequences
-D_hamming <- phangorn::dist.hamming(phyDat_msa_sample, 
-                                    ratio = FALSE)
+# DISTANCIA P (proporción de sitios diferentes)
+print("2. Calculando distancia P...")
+dist_p <- phangorn::dist.hamming(datos_filogeneticos, ratio = TRUE)
+matriz_p <- round(as.matrix(dist_p), 2)
 
-# Round the values in the distance matrix to two decimal places
-D_hamming <- round(as.matrix(D_hamming), 2)
+pheatmap::pheatmap(matriz_p,
+                   main = "Distancia P (proporción de diferencias)",
+                   show_rownames = FALSE,
+                   show_colnames = FALSE)
 
+# DISTANCIA JUKES-CANTOR
+# Considera múltiples sustituciones en el mismo sitio
+print("3. Calculando distancia Jukes-Cantor...")
+dist_jc <- ape::dist.dna(as.DNAbin(datos_filogeneticos), model = "JC69")
+matriz_jc <- round(as.matrix(dist_jc), 2)
 
-# plot distance
-pheatmap::pheatmap(D_hamming, 
-                   show_rownames = F,
-                   show_colnames = F)
+pheatmap::pheatmap(matriz_jc,
+                   main = "Distancia Jukes-Cantor",
+                   show_rownames = FALSE,
+                   show_colnames = FALSE)
 
+# ============================================================================
+# PASO 6: CONSTRUIR ÁRBOLES FILOGENÉTICOS
+# ============================================================================
 
-### P dist --------------------------------------------------------------------
+print("=== CONSTRUYENDO ÁRBOLES FILOGENÉTICOS ===")
 
-# Compute the distance matrix using the 'dist.hamming' function (assuming it's from a specific package)
-D_p <- phangorn::dist.hamming(phyDat_msa_sample, 
-                              ratio = T)
+# Un árbol filogenético muestra las relaciones evolutivas
+# Diferentes métodos pueden dar diferentes árboles
 
-# Convert the distance matrix to a matrix and round the values
-D_p <- round(as.matrix(D_p), 2)
+print("Construyendo árboles con diferentes métodos...")
 
-# plot distance
-pheatmap::pheatmap(D_p,
-                   show_rownames = F,
-                   show_colnames = F)
+# Método UPGMA (muy usado)
+arbol_upgma <- phangorn::upgma(dist_hamming)
+arbol_upgma <- phangorn::midpoint(arbol_upgma)
 
-### Edit distance -----------------------------------------------------------
+# Método de Neighbor-Joining
+arbol_wpgma <- phangorn::wpgma(dist_hamming)
+arbol_wpgma <- phangorn::midpoint(arbol_wpgma)
 
-# Convert the sequences into character strings (if they are not already).
-seq_chars <- as.character(sequences)
-
-# Calculate the Levenshtein distance matrix (edit distance) between the character sequences.
-D_Edit <- stringdist::stringdistmatrix(seq_chars, seq_chars, method = "lv")
-
-# Assign custom names to the sequences
-colnames(D_Edit) <- names(sequences)
-rownames(D_Edit) <- names(sequences)
-
-# Round the values in the distance matrix to two decimal places.
-D_Edit <- round(D_Edit, 2)
-
-# plot distance
-pheatmap::pheatmap(D_Edit,
-                   show_rownames = F,
-                   show_colnames = F)
-
-### Junkes-Cantor -----------------------------------------------------------
-
-# Compute the p distance matrix for the aligned sequences
-D_JK69 <- ape::dist.dna(as.DNAbin(phyDat_msa_sample), 
-                        model = "JC69")
-
-# Convert the distance matrix to a matrix and round the values
-D_JK69 <- round(as.matrix(D_JK69),2)
-
-# plot distance
-pheatmap::pheatmap(D_JK69,
-                   show_rownames = F,
-                   show_colnames = F)
-
-### Kimura 2 parameter ------------------------------------------------------
-
-# Calculate the distance matrix with the K80 model and store it in 'D_K80'
-D_K80 <- ape::dist.dna(as.DNAbin(phyDat_msa_sample), 
-                       model = "K80")
-
-# Convert the distance matrix to a matrix and round the values to two decimal places
-D_K80 <- round(as.matrix(D_K80), 2)
-
-# Replace any NA (Not Available) values in the matrix with 0
-D_K80[which(is.na(D_K80))] = 0
-
-# plot distance
-pheatmap::pheatmap(D_K80, 
-                   show_rownames = F,
-                   show_colnames = F)
-
-## Ultrametric tree -----------------------------------------------------
-
-# Distance Calculation
-# Calculate the Hamming distance matrix for the given aligned sequences
-# This serves as a measure of pairwise sequence dissimilarity for tree construction
-D_hamming <- phangorn::dist.hamming(phyDat_msa_sample)
-
-# Nearest Neighbor Clustering (NNC)
-# Construct a phylogenetic tree using the Nearest Neighbor Clustering method
-# This method groups sequences based on the nearest (smallest) pairwise distance
-tree_NNC <- phangorn::upgma(D_hamming, "single")
-tree_NNC <- phangorn::midpoint(tree_NNC)
-
-# Furthest Neighbor (FN)
-# Construct a phylogenetic tree using the Furthest Neighbor method
-# This method groups sequences based on the furthest (largest) pairwise distance
-tree_FN <- phangorn::upgma(D_hamming, "complete")
-tree_FN <- phangorn::midpoint(tree_FN)
-
-# Weighted Pair Group Method with Arithmetic Mean (WPGMA)
-# Construct a phylogenetic tree using the WPGMA method
-# This method considers all pairwise distances for clustering and calculates average distances
-tree_WPGMA <- phangorn::wpgma(D_hamming)
-tree_WPGMA <- phangorn::midpoint(tree_WPGMA)
-
-# Unweighted Pair-Group Centroid Method (UPGMC)
-# Construct a phylogenetic tree using the UPGMC method
-# This method clusters sequences based on the centroid distance without considering the number of sequences in each cluster
-tree_UPGMC <- phangorn::upgma(D_hamming, "centroid")
-tree_UPGMC <- phangorn::midpoint(tree_UPGMC)
-
-# Weighted Pair-Group Centroid Method (WPGGMC)
-# Construct a phylogenetic tree using the WPGGMC method
-# This method clusters sequences based on the centroid distance and considers the number of sequences in each cluster
-tree_WPGGMC <- phangorn::wpgma(D_hamming, "centroid")
-tree_WPGGMC <- phangorn::midpoint(tree_WPGGMC)
-
-# Unweighted Pair Group Method with Arithmetic Mean (UPGMA)
-# Construct a phylogenetic tree using the UPGMA method
-# This method is similar to WPGMA but does not consider the number of sequences in each cluster for centroid calculation
-tree_UPGMA <- phangorn::upgma(D_hamming)
-tree_UPGMA <- phangorn::midpoint(tree_UPGMA)
-
-
-
-# Function to plot trees
-plot_tree <- function(tree_plot, title_plot, max_x) {
-  g <- ggtree(tree_plot, color = "#00A499", size = 1)
+# Función para dibujar árboles de forma bonita
+dibujar_arbol <- function(arbol, titulo, max_distancia = 50) {
+  grafico <- ggtree::ggtree(arbol, color = "#00A499", size = 1)
   
-  # Customize the appearance of the plot and tip labels
-  g <- g +
-    geom_nodepoint(size = 1, color = "#c7254e", show.legend = F) +
-    labs(title = title_plot) +
-    xlim(0, max_x) +
+  grafico <- grafico +
+    ggtree::geom_nodepoint(size = 2, color = "#c7254e") +
+    labs(title = titulo) +
+    xlim(0, max_distancia) +
+    theme_minimal() +
     theme(
-      plot.title = element_text(size = 11),
-      # Remove axis lines and text
+      plot.title = element_text(size = 12, face = "bold"),
       axis.line = element_blank(),
       axis.text = element_blank(),
-      # Remove all grids
-      panel.grid.major = element_blank(),
-      panel.grid.minor = element_blank(),
-      # Adjust margins and legend position
-      plot.margin = margin(t = 0, r = 0, b = 0, l = 0, unit = "pt"),
-      legend.position = 'top'
+      panel.grid = element_blank(),
+      plot.margin = margin(5, 5, 5, 5)
     )
   
-  
-  return(g)
+  return(grafico)
 }
 
-# Generate plots for each tree
-g_NNC    <- plot_tree(tree_NNC, "NNC", .07)
-g_FN     <- plot_tree(tree_FN, "FN", .07)
-g_WPGMA  <- plot_tree(tree_WPGMA, "WPGMA", 0.07)
-g_UPGMC  <- plot_tree(tree_UPGMC, "UPGMC", 0.07)
-g_WPGGMC <- plot_tree(tree_WPGGMC, "WPGGMC", 0.07)
-g_UPGMA  <- plot_tree(tree_UPGMA, "UPGMA", 0.07)
+# Dibujar los árboles
+grafico_upgma <- dibujar_arbol(arbol_upgma, "Árbol UPGMA")
+grafico_wpgma <- dibujar_arbol(arbol_wpgma, "Árbol WPGMA")
 
-# Arrange the plots in a grid
-gridExtra::grid.arrange(g_NNC, g_FN, g_WPGMA, 
-                        g_UPGMC, g_WPGGMC, g_UPGMA, 
-                        nrow = 2, ncol = 3)
+# Mostrar árboles lado a lado
+gridExtra::grid.arrange(grafico_upgma, grafico_wpgma, 
+                        nrow = 1, ncol = 2)
+
+print("¡Árboles filogenéticos creados!")
+
+# ============================================================================
+# PASO 7: ANÁLISIS DE BOOTSTRAPPING
+# ============================================================================
+
+print("=== ANÁLISIS DE CONFIANZA (BOOTSTRAPPING) ===")
+
+# El bootstrapping nos dice qué tan confiables son las ramas del árbol
+# Valores altos (>70%) indican ramas confiables
+
+print("Calculando árbol Neighbor-Joining...")
+distancia <- phangorn::dist.hamming(datos_filogeneticos)
+arbol_nj <- phangorn::NJ(distancia)
+arbol_nj <- ape::multi2di(arbol_nj)
+arbol_nj <- phangorn::midpoint(arbol_nj)
+
+print("Realizando análisis de bootstrap (puede tomar unos minutos)...")
+
+# Función para el bootstrap
+funcion_bootstrap <- function(x) phangorn::NJ(phangorn::dist.hamming(x))
+
+# Hacer 100 réplicas de bootstrap (en investigación real se usan 1000+)
+bootstrap_resultado <- ape::boot.phylo(arbol_nj,
+                                       B = 100,  # 100 réplicas para ser rápido
+                                       as.DNAbin(datos_filogeneticos),
+                                       funcion_bootstrap, 
+                                       trees = TRUE)
+
+# Agregar valores de confianza al árbol
+arbol_con_bootstrap <- phangorn::addConfidences(arbol_nj, 
+                                                bootstrap_resultado$trees)
+
+# Visualizar árbol con valores de bootstrap
+print("Creando visualización del árbol bootstrapped...")
+
+# Paleta de colores para los valores de bootstrap
+paleta_colores <- colorRampPalette(c("red", "orange", "green"))(100)
+valores_bootstrap <- as.numeric(arbol_con_bootstrap$node.label)
+valores_bootstrap[is.na(valores_bootstrap)] <- 0
+posiciones_color <- pmax(1, round(valores_bootstrap, 0))
+colores_nodos <- paleta_colores[posiciones_color]
+
+# Dibujar árbol con bootstrap
+grafico_bootstrap <- ggtree::ggtree(arbol_con_bootstrap, 
+                                    layout = "rectangular")
+
+grafico_bootstrap <- grafico_bootstrap + 
+  ggtree::geom_tiplab(size = 3, color = "black") +
+  ggtree::geom_nodepoint(size = 3, color = colores_nodos) +
+  labs(title = "Árbol Neighbor-Joining con valores de Bootstrap",
+       subtitle = "Verde = alta confianza, Rojo = baja confianza") +
+  theme_minimal()
+
+print(grafico_bootstrap)
+
+# ============================================================================
+# PASO 8: ANÁLISIS DE ESTRUCTURA POBLACIONAL
+# ============================================================================
+
+print("=== ANÁLISIS DE ESTRUCTURA POBLACIONAL DE Boana pulchella ===")
+
+# hierBAPS identifica grupos genéticamente similares
+print("Analizando estructura poblacional con hierBAPS...")
+
+# Cargar datos para hierBAPS
+matriz_snp <- rhierbaps::load_fasta("datos/bioinfo/sequence_boana_pulchella.fa")
+
+# Ejecutar análisis (buscar 2-3 grupos)
+resultado_baps <- rhierbaps::hierBAPS(matriz_snp,
+                                      max.depth = 2,
+                                      n.pops = 10,
+                                      quiet = TRUE,
+                                      assignment.probs = TRUE)
+
+# Extraer resultados
+clusters <- resultado_baps$partition.df
+probabilidades <- resultado_baps$cluster.assignment.prob[[1]]
+
+resultados_finales <- data.frame(clusters, probabilidades)
+print("Primeros resultados del análisis de poblaciones:")
+print(head(resultados_finales))
+
+# Crear gráfico de barras con las probabilidades de asignación
+print("Creando gráfico de estructura poblacional...")
+
+grafico_estructura <- plotly::plot_ly(resultados_finales,
+                                      x = ~Isolate,
+                                      y = ~Cluster.1,
+                                      type = 'bar',
+                                      name = 'Grupo 1',
+                                      marker = list(color = '#FF6B6B'))
+
+grafico_estructura <- grafico_estructura %>% 
+  plotly::add_trace(y = ~Cluster.2, 
+                    name = 'Grupo 2',
+                    marker = list(color = '#4ECDC4'))
 
 
+grafico_estructura <- grafico_estructura %>% 
+  plotly::add_trace(y = ~Cluster.3, 
+                    name = 'Grupo 3',
+                    marker = list(color = '#900C3F'))
 
-# Hierarchical Clustering -------------------------------------------------------------------
-# hierarchical Bayesian analysis of populations structure
+grafico_estructura <- grafico_estructura %>% 
+  plotly::add_trace(y = ~Cluster.4, 
+                    name = 'Grupo 4',
+                    marker = list(color = '#DAF7A6'))
 
+grafico_estructura <- grafico_estructura %>% 
+  plotly::layout(
+    title = "Estructura Poblacional - Probabilidad de Asignación a Grupos",
+    yaxis = list(title = "Probabilidad"),
+    xaxis = list(title = "Muestras"),
+    barmode = 'stack'
+  )
 
-# Loading data:
-snp_matrix <- rhierbaps::load_fasta("datos/bioinfo/sequence_boanas.fa")
+print(grafico_estructura)
 
+# ============================================================================
+# PASO 9: CREAR MAPAS BIOGEOGRÁFICOS
+# ============================================================================
 
-# Running hierBAPS
-hb_results <- rhierbaps::hierBAPS(snp_matrix,
-                                  max.depth = 2,
-                                  n.pops = 2,
-                                  quiet = T,
-                                  n.extra.rounds = Inf,
-                                  assignment.probs = T)
+print("=== CREANDO MAPAS BIOGEOGRÁFICOS ===")
 
-# Exporting results:
-clust <- hb_results$partition.df
-prob <- hb_results$cluster.assignment.prob[[1]]
-
-hb_results_export <- data.frame(clust,prob)
-hb_results_export
-
-# export
-readr::write_csv(hb_results_export, "datos/bioinfo/sequence_boanas_rhierbaps.csv")
-
-
-## Bar graph --------------------------------------------------------------
-
-
-names(hb_results_export)
-hb_results$cluster.assignment.prob
-
-
-fig <- plotly::plot_ly(hb_results_export,
-                       x = ~Isolate,
-                       y = ~Cluster.1,
-                       type = 'bar',
-                       name = 'Cluster 1',
-                       marker = list(color = '#cc0000')
-) 
-# second layer:
-fig <- fig %>% plotly::add_trace(y = ~Cluster.2, name = 'Cluster 2',
-                                 marker = list(color = '#82A92D'))
-# Adjust layout:
-fig <- fig %>% plotly::layout(yaxis = list(title = FALSE),
-                              xaxis = list(title = FALSE,
-                                           type = "category",
-                                           categoryorder = "array",
-                                           categoryarray = unique(hb_results_export$Isolate)),
-                              bargap = 0.01,
-                              barmode = 'stack')
-
-# View:
-fig
-
-
-
-
-##  BAPS + Tree ---------------------------------------------------------
-
-
-# tree_UPGMA
-tree_UPGMA$tip.label <- (hb_results$partition.df$Isolate)
-
-{
-  p <- ggtree(tree_UPGMA, branch.length = "none") + 
-    geom_tiplab(geom = "text", size = 3) + theme(legend.position='none')
+# Si tienes datos de localidades geográficas
+if(file.exists("datos/mapas/complete_data_pulchella.csv")) {
   
-  df <- cbind.data.frame(hb_results$partition.df$Isolate,
-                         hb_results$cluster.assignment.prob[[1]])
+  print("Cargando datos geográficos...")
+  datos_geograficos <- read.csv("datos/mapas/complete_data_pulchella.csv")
   
+  # Cargar mapa base de Sudamérica
+  mapa_mundo <- rnaturalearth::ne_countries(scale = 'medium', 
+                                            returnclass = 'sf')
   
-  df <- melt(df, id = "hb_results$partition.df$Isolate")
+  sudamerica <- mapa_mundo[mapa_mundo$continent == 'South America',]
   
-  p2 <- p + geom_facet(panel = 'bar', 
-                       data = df, 
-                       geom = geom_bar, 
-                       mapping = aes(x = value, 
-                                     fill = as.factor(variable)), 
-                       orientation = 'y', 
-                       width = 0.8, 
-                       stat='identity') + 
-    xlim_tree(14)
-  
-  
-  facet_widths(p2, widths = c(3, 1))
-  
-}
-
-
-# Bootstraped tree ------------------------------------------------------------
-
-# Calculate the Hamming distance for the given phylogenetic data
-names(phyDat_msa_sample) <- rownames(snp_matrix)
-distance <- phangorn::dist.hamming(phyDat_msa_sample)
-
-# Construct a Neighbor Joining tree based on the calculated distance
-nj_tree <- phangorn::NJ(distance)
-
-# Resolve multifurcations in the tree
-nj_tree <- ape::multi2di(nj_tree)
-
-# Place the root of the tree at its midpoint
-nj_tree <- phangorn::midpoint(nj_tree)
-
-# Define a function that computes the NJ tree based on Hamming distance
-f <- function(x) nj(dist.hamming(x))
-
-# Perform bootstrap analysis on the tree
-bootstrapped_trees <- ape::boot.phylo(nj_tree,
-                                      B = 999,
-                                      as.DNAbin(phyDat_msa_sample),
-                                      f, 
-                                      trees = T)
-
-# Add bootstrap confidence values to the nodes of the original tree
-bootstrapped_conf_tree <- phangorn::addConfidences(nj_tree, 
-                                                   bootstrapped_trees$trees)
-
-# Define a color palette for visualizing bootstrap support
-color_palette <- colorRampPalette(c("red3", "mediumseagreen"))(100)
-color_positions <- round(bootstrapped_conf_tree$node.label * 97, 0)
-colors <- color_palette[color_positions]
-
-# Create a plot of the bootstrapped tree using ggtree
-g <- ggtree(bootstrapped_conf_tree, 
-            layout = "dendrogram", 
-            ladderize = T)
-
-g <- g + 
-  geom_tiplab(size = 4, 
-              color = "black")  # Add labels to terminal nodes
-
-g <- g + 
-  theme(plot.margin = margin(t = 0, r = 0, b = 150, 
-                             l = 0, unit = "pt"), 
-        legend.position = "top")
-
-g <- g + geom_nodepoint(size = 4, 
-                        color = colors) + 
-  theme(legend.position='top')
-
-
-g <- g + 
-  labs(title = "NJ tree Bootstrapping (999 trees)")
-
-# Create a data frame with values from 1 to 100 for color mapping
-color_data <- data.frame(x = 1:100, y = 1)
-color_data$colors <- color_palette
-
-# Create a color bar plot using ggplot2
-g1 <- ggplot(color_data, aes(x = x, y = y, fill = colors)) +
-  
-  geom_bar(stat = "identity", width = 1, position = "identity") + 
-  
-  scale_fill_manual(values = rev(color_data$colors)) +
-  
-  labs(title = NULL,
-       x = "% of node support",
-       y = NULL) +
-  
-  theme_minimal() + 
-  
-  theme(axis.text.y = element_blank(),  # Remove y-axis labels
-        axis.title.y = element_blank(),
-        panel.grid = element_blank())  # Remove y-axis title
-
-g1 <- g1 + 
-  guides(fill = "none")
-
-# Arrange the tree plot and the color bar plot
-grid.arrange(g, g1, 
-             nrow = 2, ncol = 1, 
-             heights = c(0.8, 0.2))
-
-
-
-## BAPS + bootstraped tree -------------------------------------------------
-
-# Level 1
-{
-  p <- ggtree(bootstrapped_conf_tree, branch.length = "none") +
-    
-    geom_tiplab(geom = "text", size = 2) + 
-    
-    theme(legend.position = 'none')
-  
-  
-  df <- cbind.data.frame(hb_results$partition.df$Isolate,
-                         hb_results$cluster.assignment.prob[[1]])
-  
-  
-  df <- melt(df, id = "hb_results$partition.df$Isolate")
-  
-  p2 <- p + geom_facet(panel = 'bar', 
-                       data = df, 
-                       geom = geom_bar, 
-                       mapping = aes(x = value, 
-                                     fill = as.factor(variable)), 
-                       orientation = 'y', 
-                       width = 0.8,
-                       stat='identity') + 
-    xlim_tree(14)
-  
-  
-  facet_widths(p2, widths = c(3, 1))
-  
-}
-
-# Level 2
-{
-  p <- ggtree(bootstrapped_conf_tree, branch.length = "none") +
-    
-    geom_tiplab(geom = "text", size = 2) + 
-    
-    theme(legend.position = 'none')
-  
-  
-  df <- cbind.data.frame(hb_results$partition.df$Isolate,
-                         hb_results$cluster.assignment.prob[[2]])
-  
-  
-  df <- melt(df, id = "hb_results$partition.df$Isolate")
-  
-  p2 <- p + geom_facet(panel = 'bar', 
-                       data = df, 
-                       geom = geom_bar, 
-                       mapping = aes(x = value, 
-                                     fill = as.factor(variable)), 
-                       orientation = 'y', 
-                       width = 0.8,
-                       stat='identity') + 
-    xlim_tree(14)
-  
-  
-  facet_widths(p2, widths = c(3, 1))
-  
-}
-
-
-
-# Saving trees: -----------------------------------------------------------
-
-# Saving to Newick
-write.tree(bootstrapped_conf_tree, file = "datos/bioinfo/output_newick_file.nwk")
-
-# Saving to Nexus (using 'ape' package)
-write.nexus(bootstrapped_conf_tree, file = "datos/bioinfo/output_nexus_file.nex")
-
-
-
-# For Newick
-tree_newick <- read.tree("datos/bioinfo/output_newick_file.nwk")
-
-# For Nexus
-tree_nexus <- read.nexus("datos/bioinfo/output_nexus_file.nex")
-
-
-
-# Boigeography: Boana pulchella ------------------------------------------------------------------
-
-
-## BAPS --------------------------------------------------------------------
-
-data_pulc <- rhierbaps::load_fasta("datos/bioinfo/sequence_boana_pulchella.fa")
-class(data_pulc)
-
-hb_pulchella <- rhierbaps::hierBAPS(data_pulc,
-                                    max.depth = 2,
-                                    n.pops = 19,
-                                    quiet = T,
-                                    n.extra.rounds = Inf,
-                                    assignment.probs = T
-)
-
-
-clust <- hb_pulchella$partition.df
-prob <- data.frame(hb_pulchella$cluster.assignment.prob[[1]])
-
-# View(prob) 
-
-hb_results_export <- data.frame(cbind(clust, prob))
-hb_results_export
-
-
-
-# export
-readr::write_csv(hb_results_export, "datos/bioinfo/hb_pulchella.csv")
-
-
-
-# Map ---------------------------------------------------------------------
-
-
-## Occurrences --------------------------------------------------------------
-
-
-# Load occurences data
-occ_data <- read.csv("datos/mapas/complete_data_pulchella.csv", 
-                     header = T)
-head(occ_data) # view data
-
-occ_data2 <- base::merge(occ_data, hb_results_export, 
-                         by = "Isolate") # merge occ data + cluster data
-head(occ_data2) # view
-
-# export
-readr::write_csv(occ_data2, "datos/mapas/complete_data_pulchella.csv")
-
-
-
-# Load base maps
-worldmap <- rnaturalearth::ne_countries(scale = 'medium', 
-                                        type = 'map_units',
-                                        returnclass = 'sf') # world countries
-
-
-ggplot() + geom_sf(data = worldmap) + theme_bw() # plot basemap
-
-
-sa <- worldmap[worldmap$continent == 'South America',] # select South America
-
-ggplot() + geom_sf(data = sa) + theme_bw() # plot sa
-
-
-sa_cropped <- sf::st_crop(worldmap, 
-                          xmin = -65, xmax = -45,
-                          ymin = -40, ymax = -26) # crop sa to our study area
-
-ggplot() + geom_sf(data = sa_cropped) + theme_bw() # plot cropped sa
-
-
-# Plot sa + sample occ
-
-(map <- ggplot() + 
-    
-    geom_sf(data = worldmap) +
-    
-    coord_sf(xlim = c(-65, -45), 
-             ylim = c(-40, -26), 
-             expand = FALSE) +
-    
-    geom_point(data = occ_data2, 
-               aes(x = long, y = lat,
-                   colour = factor(level.1)),
+  # Crear mapa estático
+  mapa_estatico <- ggplot() + 
+    geom_sf(data = sudamerica, fill = "lightgray", color = "white") +
+    coord_sf(xlim = c(-80, -30), ylim = c(-60, 15)) +
+    geom_point(data = datos_geograficos, 
+               aes(x = long, y = lat, color = factor(level.1)),
                size = 3) +
-    
-    scale_colour_brewer(palette = "Set1") +
-    
-    theme_bw()
+    scale_color_brewer(palette = "Set1", name = "Grupo Genético") +
+    labs(title = "Distribución Geográfica de Grupos Genéticos",
+         subtitle = "Boana pulchella en Sudamérica") +
+    theme_minimal() +
+    theme(axis.text = element_text(size = 8))
   
-)
-
-
-## Neotropical provinces --------------------------------------------------------
-
-
-# load shapefile
-neotropical <- sf::st_read(dsn = "datos/mapas/neotropical_provinces_crop/neotropical_provinces_crop.shp")
-
-neotrop <- as.data.frame(neotropical$Provincias)
-
-neotrop_valid <- sf::st_make_valid(neotropical) # adjust shapefile
-
-neotrop_croped <- sf::st_crop(neotrop_valid,
-                              xmin = -64, ymin = -40,
-                              xmax = -45, ymax = -26) # crop shapefile
-
-
-# Plot Neotropical Provinces:
-
-(mapa_neotrop <- ggplot(neotrop_croped) + 
-    
-    geom_sf(data = neotrop_croped,
-            aes(fill = Provincias)) +
-    
-    scale_fill_viridis_d(alpha = 0.4) +
-    
-    coord_sf(xlim = c(-64, -48), 
-             ylim = c(-38.5, -26.5), 
-             expand = FALSE) +
-    
-    labs(fill = "Provinces",
-         colour = "Clusters") +
-    
-    theme_bw()
-)
-
-
-# Plot Neotropical map + samples clusters:
-
-(mapa_neotrop_amostras <-   
-    
-    mapa_neotrop +
-    
-    geom_point(data = occ_data2, 
-               aes(x = long, y = lat,
-                   colour = factor(level.1.x)),
-               size = 4,
-               show.legend = T) +
-    
-    scale_colour_brewer(palette = "Set1") +
-    
-    guides(fill = guide_legend(override.aes = list(colour = NA)))
-)
-
-
-# Interative plots --------------------------------------------------------
-
-# https://r-graph-gallery.com/414-map-multiple-charts-in-ggiraph.html
-dir()
-
-data <- read.csv("datos/mapas/complete_data_pulchella.csv", 
-                 h = T)
-
-df <- data %>%
-  dplyr::mutate_at(vars(level.1.x, level.2.x), factor)
-
-
-summary(data)
-summary(df)
-
-
-# get the palette
-my_colors <- c("#af7ac5", 
-               "#a2d9ce", 
-               "#fcf3cf", 
-               "#e6b0aa")
-
-# Prepare the text for the tooltip:
-mytext <- paste(
-  "Local: ", data$local, "<br/>",
-  "Level 1: ", data$level.1.x, "<br/>", 
-  "Level 2: ", data$level.2.x, "<br/>"
-) %>%
-  lapply(htmltools::HTML)
-
-
-# Create a proper color palette function
-color_pal <- leaflet::colorFactor(palette = my_colors, 
-                                  domain = df$level.1)
-
-
-
-# Full map ----------------------------------------------------------------
-
-
-m <- leaflet:: leaflet(data = df) %>%
+  print(mapa_estatico)
   
-  leaflet::addTiles() %>% 
+  # Crear mapa interactivo
+  print("Creando mapa interactivo...")
   
-  leaflet::setView(lat = -35, lng = -50, zoom = 4) %>%
+  colores_mapa <- c("#FF6B6B", "#4ECDC4", "#900C3F", "#DAF7A6")
+  pal_colores <- leaflet::colorFactor(palette = colores_mapa, 
+                                      domain = datos_geograficos$level.1)
   
-  leaflet::addProviderTiles("Esri.WorldImagery") %>%
+  # Preparar texto para tooltips
+  texto_tooltip <- paste(
+    "<b>Localidad:</b>", datos_geograficos$local, "<br/>",
+    "<b>Grupo Genético:</b>", datos_geograficos$level.1, "<br/>",
+    "<b>Coordenadas:</b>", datos_geograficos$lat, ",", datos_geograficos$long
+  )
   
-  leaflet::addCircleMarkers(~long, ~lat,
-                            fillColor = ~color_pal(level.1.x),
-                            fillOpacity = 0.9,
-                            color = "white",
-                            radius = 8,
-                            stroke = FALSE,
-                            label = mytext,
-                            labelOptions = labelOptions(
-                              style = list("font-weight" = "normal", 
-                                           padding = "3px 8px"),
-                              textsize = "13px",
-                              direction = "auto")) %>%
+  mapa_interactivo <- leaflet::leaflet(data = datos_geograficos) %>%
+    leaflet::addTiles() %>% 
+    leaflet::setView(lat = -15, lng = -60, zoom = 4) %>%
+    leaflet::addProviderTiles("OpenStreetMap") %>%
+    leaflet::addCircleMarkers(~long, ~lat,
+                              fillColor = ~pal_colores(level.1),
+                              fillOpacity = 0.8,
+                              color = "white",
+                              radius = 8,
+                              stroke = TRUE,
+                              popup = texto_tooltip) %>%
+    leaflet::addLegend(pal = pal_colores,
+                       values = ~level.1,
+                       opacity = 0.9,
+                       title = "Grupo Genético",
+                       position = "topright")
   
-  leaflet::addLegend(pal = color_pal,
-                     values = ~df$level.1.x,
-                     opacity = 0.9,
-                     title = "Cluster",
-                     position = "bottomright")
-
-# Display the map
-m
-
-
-# save the widget in a html file if needed.
-# library(htmlwidgets)
-# saveWidget(m, file=paste0( getwd(), "/HtmlWidget/bubblemap.html"))
+  print("¡Mapa interactivo creado! Haz clic en los puntos para ver detalles.")
+  print(mapa_interactivo)
+  
+} else {
+  print("Datos geográficos no encontrados. Saltando creación de mapas.")
+}
 
 
 
-# Citations ---------------------------------------------------------------
+if(file.exists("datos/mapas/complete_data_pulchella.csv")) {
+  
+  print("Cargando datos geográficos...")
+  datos_geograficos <- read.csv("datos/mapas/complete_data_pulchella.csv")
+  
+  # Cargar mapa base de Sudamérica
+  mapa_mundo <- rnaturalearth::ne_countries(scale = 'medium', 
+                                            returnclass = 'sf')
+  
+  sudamerica <- mapa_mundo[mapa_mundo$continent == 'South America',]
+  
+  # Crear mapa estático
+  mapa_estatico <- ggplot() + 
+    geom_sf(data = sudamerica, fill = "lightgray", color = "white") +
+    coord_sf(xlim = c(-80, -30), ylim = c(-60, 15)) +
+    geom_point(data = datos_geograficos, 
+               aes(x = long, y = lat, color = factor(level.1)),
+               size = 3) +
+    scale_color_brewer(palette = "Set1", name = "Grupo Genético") +
+    labs(title = "Distribución Geográfica de Grupos Genéticos",
+         subtitle = "Boana pulchella en Sudamérica") +
+    theme_minimal() +
+    theme(axis.text = element_text(size = 8))
+  
+  print(mapa_estatico)
+  
+  # Crear mapa interactivo
+  print("Creando mapa interactivo...")
+  
+  colores_mapa <- c("#FF6B6B", "#4ECDC4", "#900C3F", "#DAF7A6")
+  pal_colores <- leaflet::colorFactor(palette = colores_mapa, 
+                                      domain = datos_geograficos$level.1)
+  
+  # Preparar texto para tooltips
+  texto_tooltip <- paste(
+    "<b>Localidad:</b>", datos_geograficos$local, "<br/>",
+    "<b>Grupo Genético:</b>", datos_geograficos$level.1, "<br/>",
+    "<b>Coordenadas:</b>", datos_geograficos$lat, ",", datos_geograficos$long
+  )
+  
+  mapa_interactivo <- leaflet::leaflet(data = datos_geograficos) %>%
+    leaflet::addTiles() %>% 
+    leaflet::setView(lat = -15, lng = -60, zoom = 4) %>%
+    leaflet::addProviderTiles("Esri.WorldImagery") %>%
+    leaflet::addCircleMarkers(~long, ~lat,
+                              fillColor = ~pal_colores(level.1),
+                              fillOpacity = 0.8,
+                              color = "white",
+                              radius = 8,
+                              stroke = TRUE,
+                              popup = texto_tooltip) %>%
+    leaflet::addLegend(pal = pal_colores,
+                       values = ~level.1,
+                       opacity = 0.9,
+                       title = "Grupo Genético",
+                       position = "topright")
+  
+  print("¡Mapa interactivo creado! Haz clic en los puntos para ver detalles.")
+  print(mapa_interactivo)
+  
+} else {
+  print("Datos geográficos no encontrados. Saltando creación de mapas.")
+}
 
-citation("leaflet")
 
-citation("dplyr")
 
-citation("tibble")
+# ============================================================================
+# PASO 10: GUARDAR RESULTADOS
+# ============================================================================
 
-citation()
+print("=== GUARDANDO RESULTADOS ===")
 
-RStudio.Version()
+# Guardar árbol en formato estándar
+if(exists("arbol_con_bootstrap")) {
+  ape::write.tree(arbol_con_bootstrap, file = "datos/arbol_resultado.nwk")
+  ape::write.nexus(arbol_con_bootstrap, file = "datos/arbol_resultado.nex")
+  print("Árbol guardado en formatos Newick (.nwk) y Nexus (.nex)")
+}
 
-# Citations ---------------------------------------------------------------
+# Guardar resultados de estructura poblacional
+if(exists("resultados_finales")) {
+  write.csv(resultados_finales, "datos/estructura_poblacional.csv", row.names = FALSE)
+  print("Resultados de estructura poblacional guardados en estructura_poblacional.csv")
+}
 
-## Molecular biology ------------------------------------------------------
+# ============================================================================
+# PASO 11: RESUMEN Y INTERPRETACIÓN
+# ============================================================================
 
-citation("BiocManager") 
-citation("msa") 
-citation("msa")
-citation("Biostrings")
-citation("phangorn")
+
+mostrar_resumen <- function() {
+  
+  # Limpiar consola y crear separador
+  cat("\n")
+  cat(rep("=", 80), sep = "")
+  cat("\n")
+  cat("                       RESUMEN DEL ANÁLISIS FILOGENÉTICO")
+  cat("\n")
+  cat(rep("=", 80), sep = "")
+  cat("\n\n")
+  
+  # Sección 1: ¿Qué hemos aprendido?
+  cat("🧬 ¿QUÉ HEMOS APRENDIDO?\n")
+  cat(rep("-", 50), sep = "")
+  cat("\n\n")
+  
+  cat("1️⃣  ALINEAMIENTO DE SECUENCIAS:\n")
+  cat("   ✓ Comparamos secuencias de ADN posición por posición\n")
+  cat("   ✓ Identificamos regiones similares y diferentes\n\n")
+  
+  cat("2️⃣  DISTANCIAS EVOLUTIVAS:\n")
+  cat("   ✓ Hamming: Diferencias absolutas entre secuencias\n")
+  cat("   ✓ Distancia P: Proporción de sitios diferentes\n")
+  cat("   ✓ Jukes-Cantor: Considera múltiples mutaciones\n\n")
+  
+  cat("3️⃣  ÁRBOLES FILOGENÉTICOS:\n")
+  cat("   ✓ Muestran relaciones evolutivas entre especies\n")
+  cat("   ✓ Ramas cortas = especies muy relacionadas\n")
+  cat("   ✓ Ramas largas = especies más divergentes\n\n")
+  
+  cat("4️⃣  ANÁLISIS DE CONFIANZA (Bootstrap):\n")
+  cat("   ✓ Verde (>70%): rama muy confiable\n")
+  cat("   ✓ Amarillo (50-70%): moderadamente confiable\n")
+  cat("   ✓ Rojo (<50%): poco confiable\n\n")
+  
+  cat("5️⃣  ESTRUCTURA POBLACIONAL:\n")
+  cat("   ✓ Identificamos grupos genéticamente similares\n")
+  cat("   ✓ Cada color representa un linaje evolutivo\n\n")
+  
+  cat("6️⃣  MAPAS BIOGEOGRÁFICOS:\n")
+  cat("   ✓ Visualizamos dónde vive cada grupo genético\n")
+  cat("   ✓ Entendemos patrones de dispersión y evolución\n\n")
+  
+  # Sección 2: Interpretación práctica
+  cat("📊 INTERPRETACIÓN PRÁCTICA:\n")
+  cat(rep("-", 50), sep = "")
+  cat("\n\n")
+  
+  cat("🔍 Cómo leer los resultados:\n")
+  cat("   • Árboles más ramificados = mayor diversidad evolutiva\n")
+  cat("   • Grupos en el mapa = poblaciones genéticamente distintas\n")
+  cat("   • Distancias altas = especies evolucionaron hace mucho tiempo\n\n")
+  
+  cat("🎯 Aplicaciones en la vida real:\n")
+  cat("   • Conservación: identificar poblaciones únicas\n")
+  cat("   • Medicina: rastrear origen de enfermedades\n")
+  cat("   • Agricultura: mejorar cultivos usando diversidad genética\n\n")
+  
+  require(beepr, quietly = T)
+  beepr::beep(8)
+  }
+
+# Mostrar el resumen
+mostrar_resumen()
+
+# Sección opcional: Citar paquetes utilizados
+cat("📄 CÓMO CITAR ESTE ANÁLISIS:\n")
+cat(rep("-", 30), sep = "")
+cat("\n")
 citation("ape")
-citation("stringdist")
-citation("rhierbaps")
-
-
-## Edit data ---------------------------------------------------------------
-
-citation("dplyr")
-citation("plyr")
-
-
-## Graphics ----------------------------------------------------------------
-
+citation("phangorn") 
 citation("ggtree")
-citation("ggplot2")
-citation("gridExtra")
-citation("plotly")
-citation("reshape2")
-
-
-## Maps --------------------------------------------------------------------
-
-citation("rnaturalearth")
-citation("sf")
-citation("leaflet")
-
-
-## R and RStudio -----------------------------------------------------------
-
+citation("rhierbaps")
 citation()
 RStudio.Version()
 
-# end ---------------------------------------------------------------------
-
+# ============================================================================
+#
+# Dra. Fernanda Rodrigues de Avila
+# mail: fernandar.avila@gmail.com
+# https://avilaf.github.io/
+#
+# ============================================================================
