@@ -141,13 +141,13 @@ presentación de artículos
     - Datos: [Datos Chicago (para gráficos)](datos/chicago-nmmaps-custom.csv)
     - [Ejercício 3 Gráficos](ejercicios/ejercicio_3.Rmd)
   - [Instrucciones para la tarea (Presentación)](https://avilaf.github.io/00_slides/curso_r_slides_tarea.html)
-    - [Ejemplo Tarea (Script)]()
+    - [Ejemplo Tarea (Script)](scripts/ejemplo_tarea.R)
     
 - **Clase 4:**
   - [Ecología de Comunidades (Script)](scripts/diversidad_beta.R)
     - Datos: [Ecología de comunidades](datos/dados_beta.csv)
-  - [Morfología (Script)]()
-    - Datos: [Morfología]()
+  - [Morfología (Script)](scripts/morfo.R)
+    - Datos: [Morfología](datos/dados_morfo.csv)
       
 - **Clase 5:**
   - [Bioacustica (Tutorial 'soundshape')](https://avilaf.github.io/sound_shape.html)
@@ -156,7 +156,7 @@ presentación de artículos
       
 - **Clase 6:**
   - [Mapas (Script)](scripts/primeros_mapas.R)
-  - [Bioinformática (Script)]()
+  - [Bioinformática (Script)](scripts/bioinfo.R)
     - Datos: [Sequencias de ADN](datos/sequence_boana.fa)
     - Datos: [Datos para mapa](datos/dados_boana.csv)
 
