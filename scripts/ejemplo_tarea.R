@@ -1,8 +1,10 @@
+
 # ===============================================================
-# Curso R :)
+# Ecología de la herpetofauna en el ambiente R para no programadores
+# ===============================================================
 # Ejemplo Tarea con datos
 # ===============================================================
-
+#
 # Dra. Fernanda Rodrigues de Avila 
 # <https://avilaf.github.io/>
 # fernandar.avila@gmail.com
@@ -215,31 +217,6 @@ p4 <- ggplot(acp_df, aes(x = PC1,
 
 p4
 
-# 4.2 NMDS
-nmds_resultado <- metaMDS(acp_datos_final, distance = "bray", k = 2, trymax = 100)
-
-# DataFrame para gráfico NMDS
-nmds_df <- data.frame(
-  NMDS1 = nmds_resultado$points[, 1],
-  NMDS2 = nmds_resultado$points[, 2],
-  pop = datos_final$pop,
-  vol_total = datos_final$vol_total
-)
-
-# Gráfico NMDS
-p5 <- ggplot(nmds_df, aes(x = NMDS1, y = NMDS2, color = pop, size = vol_total)) +
-  geom_point(alpha = 0.7) +
-  stat_ellipse(aes(fill = pop), alpha = 0.2, geom = "polygon", show.legend = FALSE) +
-  theme_minimal() +
-  labs(
-    title = paste("NMDS - Estrés:", round(nmds_resultado$stress, 3)),
-    color = "Población", size = "Volumen Total"
-  ) +
-  scale_color_brewer(type = "qual", palette = "Set2") +
-  scale_size_continuous(range = c(2, 6))
-
-p5
-
 # 5. ANÁLISIS ESTADÍSTICOS
 
 # 5.1 PERMANOVA
@@ -277,7 +254,7 @@ datos_long <- datos %>%
          item = str_replace_all(item, "_", " "),
          item = str_to_title(item))
 
-p6 <- ggplot(datos_long, aes(x = pop, y = volumen, fill = pop)) +
+p5 <- ggplot(datos_long, aes(x = pop, y = volumen, fill = pop)) +
   geom_boxplot(alpha = 0.7) +
   geom_jitter(width = 0.2, alpha = 0.5) +
   facet_wrap(~item, scales = "free_y", ncol = 2) +
@@ -287,7 +264,7 @@ p6 <- ggplot(datos_long, aes(x = pop, y = volumen, fill = pop)) +
   scale_fill_brewer(type = "qual", palette = "Set2") +
   theme(legend.position = "bottom")
 
-p6
+p5
 
 # 6.2 Correlación entre Volumen y Número
 # Correlación volumen vs número para cada ítem
@@ -334,7 +311,7 @@ if(nrow(correlaciones) > 0) {
       item = str_to_title(item)) %>%
     filter(!is.na(correlacion))
   
-  p7 <- ggplot(cor_long, aes(x = reorder(item, correlacion), y = correlacion, fill = grupo)) +
+  p6 <- ggplot(cor_long, aes(x = reorder(item, correlacion), y = correlacion, fill = grupo)) +
     geom_bar(stat = "identity", position = "dodge") +
     coord_flip() +
     theme_minimal() +
@@ -344,12 +321,12 @@ if(nrow(correlaciones) > 0) {
     geom_hline(yintercept = 0, linetype = "dashed", alpha = 0.5)
 }
 
-p7
+p6
 
 # 7. PANEL DE GRÁFICOS FINAL
 # Combinar gráficos principales
 
-grid.arrange(p1, p3, p4, p7, ncol = 2, nrow = 2,
+grid.arrange(p1, p3, p4, p6, ncol = 2, nrow = 2,
              top = "Análisis Comparativo de la Dieta entre Poblaciones A y B")
 
 # Guardar resultados

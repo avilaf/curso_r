@@ -1,11 +1,14 @@
+
+
+# =============================================================================
+# Ecología de la herpetofauna en el ambiente R para no programadores
+# =============================================================================
+# Dra. Fernanda Rodrigues de Avila
+# mail: fernandar.avila@gmail.com
+# https://avilaf.github.io/
 # =====================================================================
 # ANÁLISIS DE VOCALIZACIONES DE ANUROS CON SOUNDSHAPE
-# Versión didáctica para principiantes
 # =====================================================================
-# Autora original: Fernanda Rodrigues de Avila
-# Adaptación didáctica con comentarios explicativos
-# Contacto: fernandar.avila@gmail.com
-# Web: https://avilaf.github.io/
 
 # =====================================================================
 # ¿QUÉ VAMOS A HACER?

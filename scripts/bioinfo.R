@@ -1,13 +1,14 @@
+# =============================================================================
+# Ecología de la herpetofauna en el ambiente R para no programadores
+# =============================================================================
+# Dra. Fernanda Rodrigues de Avila
+# mail: fernandar.avila@gmail.com
+# https://avilaf.github.io/
 
 # ============================================================================
 # ANÁLISIS FILOGENÉTICO Y BIOGEOGRÁFICO DE SECUENCIAS DE ADN
 # ============================================================================
 #
-# Dra. Fernanda Rodrigues de Avila
-# mail: fernandar.avila@gmail.com
-# https://avilaf.github.io/
-#
-# 
 # Este script te enseñará paso a paso cómo:
 # 1. Alinear secuencias de ADN
 # 2. Calcular distancias evolutivas

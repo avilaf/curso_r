@@ -6,9 +6,6 @@
 # Dra. Fernanda Rodrigues de Avila
 # mail: fernandar.avila@gmail.com
 # https://avilaf.github.io/
-# Fecha: 2025
-# Objetivo: Análisis morfométrico de datos de anuros con diferentes técnicas
-
 
 
 # -----------------------------

@@ -1,11 +1,17 @@
+
+# =============================================================================
+# Ecología de la herpetofauna en el ambiente R para no programadores
+# =============================================================================
+# ECOLOGÍA DE COMUNIDADES
+# =============================================================================
+# Dra. Fernanda Rodrigues de Avila
+# mail: fernandar.avila@gmail.com
+# https://avilaf.github.io/
+
 # ===============================================================
 # Análisis de Partición de Diversidad Beta (Sorensen)
 # con comparación entre grupos
 # ===============================================================
-
-# Dra. Fernanda Rodrigues de Avila 
-# <https://avilaf.github.io/>
-# fernandar.avila@gmail.com
 
 # 1. CARGAR PAQUETES -------------------------------------------
 # Instalar si es necesario:

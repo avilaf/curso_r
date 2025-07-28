@@ -1,10 +1,14 @@
+
+
 # =============================================================================
-# ANÁLISIS MORFOMÉTRICO DE COMUNIDADES DE ANUROS - VERSIÓN COMENTADA
+# Ecología de la herpetofauna en el ambiente R para no programadores
+# =============================================================================
+# ANÁLISIS MORFOMÉTRICO DE COMUNIDADES DE ANUROS 
 # =============================================================================
 # Dra. Fernanda Rodrigues de Avila
 # mail: fernandar.avila@gmail.com
 # https://avilaf.github.io/
-# Fecha: 2025
+#
 # Objetivo: Análisis morfométrico de datos de anuros con diferentes técnicas
 # 
 # INTERPRETACIÓN DE ANÁLISIS MORFOMÉTRICOS:

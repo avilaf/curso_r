@@ -1,3 +1,13 @@
+# =============================================================================
+# Ecología de la herpetofauna en el ambiente R para no programadores
+# =============================================================================
+# PRIMEROS MAPAS EN R
+# =============================================================================
+# Dra. Fernanda Rodrigues de Avila
+# mail: fernandar.avila@gmail.com
+# https://avilaf.github.io/
+
+
 # ================================================================
 # TUTORIAL PASO A PASO: MAPAS DE REPTILES CON DATOS DE GBIF
 # 
