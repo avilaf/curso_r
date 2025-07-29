@@ -126,6 +126,7 @@ Para acceder a todos los materiales esenciales del curso, descarga todos los arc
 
 ![Haz clic en el botón 'Code' y después en 'Download ZIP'](download.PNG)
 
+
 **IMPORTANTE:** También debes instalar previamente R y RStudio, así como los paquetes esenciales para el curso. 
 
 Sigue los pasos disponibles en el tutorial de [instalación de R, RStudio y paquetes](https://avilaf.github.io/00_instalacion.html).
