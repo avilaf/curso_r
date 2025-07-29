@@ -124,7 +124,8 @@ presentación de artículos
 
 Para acceder a todos los materiales esenciales del curso, descarga todos los archivos de este directorio en tu computadora.
 
-![Haz clic en el botón 'Code' y después en 'Download ZIP'](download.PNG)
+![Haz clic en el botón 'Code' y después en 'Download ZIP']([download.PNG](https://github.com/avilaf/curso_r/blob/2102dda23335814334399bebbfc9500c262c26ca/download.PNG))
+<img src="[download.PNG](https://github.com/avilaf/curso_r/blob/2102dda23335814334399bebbfc9500c262c26ca/download.PNG)" alt="Haz clic en el botón 'Code' y después en 'Download ZIP'" width="200"/>
 
 
 **IMPORTANTE:** También debes instalar previamente R y RStudio, así como los paquetes esenciales para el curso. 
