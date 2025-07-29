@@ -114,8 +114,7 @@ Carga Horaria: 30 hrs
 
 **Reunión inicial**: lunes, 4 de agosto. 9:00 hrs
 
-**Ganancia del curso**: Asistencia al 75% de las clases y
-presentación de artículos
+**Ganancia del curso**: Presentación final de la actividad práctica y asistencia al 75% de las clases.
 
 **Aprobación del curso**: Examen Final
 
