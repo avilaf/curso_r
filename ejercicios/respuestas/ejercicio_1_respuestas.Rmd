@@ -1,0 +1,384 @@
+---
+title: "Ejercicios 1"
+output: html_ejercicios
+---
+
+## Ejercicios 1
+
+### Introducción al lenguaje R
+
+Este es un archivo escrito en [R Markdown](http://rmarkdown.rstudio.com), un R Notebook. Tiene áreas determinadas para texto y áreas para código. Cuando ejecutes el código dentro del notebook, los resultados de los comandos aparecerán debajo del código.
+
+Usa los espacios de código para resolver los ejercicios.
+
+Puedes ejecutar el código haciendo clic en el botón *Run* o posicionando tu cursor dentro del bloque de código y presionando *Ctrl + Shift + Enter*. Hazlo en el ejemplo siguiente:
+
+```{r}
+
+plot(cars)
+
+
+```
+
+### 1- Vectores atómicos:
+
+Crea un vector atómico y asígnalo a un objeto. Imprímelo en la consola y verifica si es efectivamente un vector:
+
+```{r vectores atomicos}
+
+# Crear vector:
+
+Vector <- 10 
+
+
+# Imprimir vector:
+
+Vector 
+
+
+# Verificar: 
+
+is.vector(Vector) # [1] TRUE
+
+```
+
+### 2- Vectores atómicos: Numéricos, Enteros, Caracteres, Lógicos y factores
+
+#### 2a- Vectores numéricos y enteros:
+
+Crea dos vectores atómicos, asignados cada uno a un objeto. Uno de ellos debe ser un vector numérico decimal (con punto flotante) y el otro debe ser un valor entero.
+
+Imprímelos en la consola y evalúa a qué clases pertenecen.
+
+```{r numericos enteros}
+
+# Crear:
+
+Numerico <- 10.5 # Crear vector numérico decimal
+
+Entero <- 10L # Crear vector numérico entero
+
+
+# Imprimir:
+
+Numerico # Imprimir numérico decimal
+
+Entero # Imprimir numérico entero
+
+
+# Verificar clase:
+
+class(Numerico) # Verificar clase del numérico decimal
+
+class(Entero) # Verificar clase del numérico entero
+
+
+
+```
+
+#### 2b- Vectores caracteres:
+
+Crea un vector que almacene texto, asígnalo a un objeto, imprímelo en la consola, verifica a qué clase pertenece:
+
+```{r caracteres}
+
+# Crear vector de texto:
+Texto <- "Physalaemus"
+
+
+# Imprimir vector de texto:
+Texto
+
+# Verificar la clase:
+class(Texto) #"character"
+
+```
+
+#### 2c- Vectores lógicos:
+
+Construye un objeto vector llamado Verdadero y almacena en él la información para vector lógico verdadero.
+
+Construye un objeto vector de nombre Falso y almacena en él la información para vector lógico falso.
+
+Imprime los valores en la consola y verifica si ambos pertenecen a la categoría lógico.
+
+```{r logicos}
+
+# Crear vectores lógicos:
+
+Verdadero <- TRUE   # Crear Verdadero
+
+Falso <- FALSE  # Crear Falso
+
+
+# Imprimir vectores lógicos:
+
+Verdadero # Imprimir Verdadero
+
+Falso # Imprimir Falso
+
+
+# Verificar vectores lógicos:
+
+is.logical(c(Verdadero, Falso)) # Verificar Verdadero y Falso
+
+
+
+
+```
+
+#### 2d- Vectores de factor:
+
+Crea un vector categórico y asígnalo a un objeto. Imprímelo en la consola, verifica si es efectivamente un vector y evalúa a qué clase pertenece:
+
+```{r fator}
+
+
+# Crear factor: 
+
+f <- factor(c("Physalaemus", "Elachistocleis", "Odontophrynus")) 
+
+
+# Imprimir factor:
+
+f
+
+
+# Verificar factor:
+
+class(f) # "factor"
+
+```
+
+### 3- Estructuras de datos compuestas:
+
+#### 3a- Listas:
+
+Crea 3 listas asignadas a objetos: una con elementos numéricos, otra con elementos de texto y una tercera lista con datos mixtos.
+
+Imprime las tres en la consola y asegúrate de que sean listas.
+
+Selecciona e imprime en la consola los segundos elementos de cada lista:
+
+```{r listas}
+
+# Creando listas:
+
+lista_num <- list(1, 2, 3) # Numérica
+
+lista_tex <- list("a", "b", "c") # Texto
+
+lista_mis <- list(1, "a", 2, "b", 3, "c") # Mixta
+
+
+# Imprimiendo listas:
+
+lista_num # Imprimir lista numérica
+
+lista_tex # Imprimir lista de texto
+
+lista_mis # Imprimir lista mixta
+
+
+# Verificando las listas:
+
+is.list(c(lista_num, lista_tex, lista_mis))
+
+
+# Imprimir el segundo elemento de las listas:
+
+lista_num[2]
+
+lista_tex[2]
+
+lista_mis[2]
+
+
+```
+
+#### 3b- Matrices:
+
+Crea una matriz con 8 líneas y 10 columnas. Asigna tu matriz a un objeto.
+
+Imprime tu matriz en la consola y verifica cuál es la clase de tu objeto.
+
+Selecciona e imprime en la consola los siguientes elementos:
+
+-   línea 3;
+
+-   columna 8;
+
+-   celda en la intersección de la columna 8 y línea 3.
+
+```{r matrices}
+
+# Crear matriz:
+
+matriz <- matrix(1:80, nrow = 10, ncol = 8)  # Matriz 10x8 (10 líneas x 8 columnas)
+
+
+# Imprimir la matriz:
+
+matriz 
+
+
+# Verificar:
+
+is.matrix(matriz)
+
+
+# Imprimir elementos:
+
+matriz[3,] # línea 3
+
+matriz[,8] # columna 8
+
+matriz[3,8] # línea 3 y columna 8
+
+
+```
+
+#### 3c- Arrays:
+
+Crea 3 matrices asignadas a objetos: una solamente con elementos numéricos, otra solamente con elementos de texto y una tercera matriz con datos mixtos. Las matrices deben tener cada una dos líneas y tres columnas.
+
+Usa esas matrices para componer un array. Imprime tu array en la consola y verifica cuál es la clase de tu objeto.
+
+Una vez finalizado el array, selecciona por el índice del array e imprime en la consola:
+
+-   La primera, la segunda y la tercera matriz completas;
+
+-   Las celdas:
+
+    -   línea 1, columna 1 de la primera matriz;
+    -   línea 1, columna 1 de la segunda matriz;
+    -   línea 2, columna 3 de la tercera matriz.
+
+```{r matrices}
+
+# Crear listas: 
+
+matriz_tex <- matrix(c("a", "b", "c", "d", "e", "f"), nrow = 2, ncol = 3) # Texto
+
+matriz_mis <- matrix(c(1, "a", 2, "b", 3, "c"), nrow = 2, ncol = 3) # Mixta
+
+matriz_num <- matrix(1:6, nrow = 2, ncol = 3)  # Numerica
+
+
+
+# Crear array:
+
+ar <- array(c(matriz_tex, matriz_mis, matriz_num), dim = c(2,3,3))  # Array con 3 dimensiones
+
+
+# BONUS: nombrar dimensiones
+
+dimnames(ar)[[1]] <- c("a", "b")
+
+attributes(ar) # Verificar nombres
+
+
+
+dimnames(ar)[[2]] <- c("V1", "V2", "V3")
+
+attributes(ar) # Verificar nombres
+
+
+dimnames(ar)[[3]] <- c("matriz_tex", "matriz_mis", "matriz_num")
+
+attributes(ar) # Verificar nombres
+
+
+# Imprimir
+ar
+
+
+# Verificar:
+
+is.array(ar)
+
+
+
+# Imprimir matrices:
+
+ar[1:2, 1:3, 1] # primera
+
+ar[1:2, 1:3,"matriz_tex"]
+
+
+
+ar[1:2, 1:3, 2] # segunda
+
+ar[1:2, 1:3,"matriz_mis"]
+
+
+
+ar[1:2, 1:3, 3] # tercera
+
+ar[1:2, 1:3,"matriz_num"]
+
+
+
+# Imprimir celdas:
+
+
+ar[1, 1, 1]  # Primera de la matriz_tex
+
+ar[1, 1,"matriz_tex"]
+
+
+
+ar[1, 1, 2] # primera de la matriz_mis
+
+ar[1, 1,"matriz_mis"]
+
+
+
+ar[2, 3, 3] # última de la matriz_num
+
+ar[2, 3,"matriz_mis"]
+
+
+
+```
+
+#### 3d- Dataframes:
+
+Genera un dataframe con seis líneas (observaciones) y tres columnas (variables) que contenga los siguientes datos:
+
+`Locales_de_colecta: punto_1, punto_2, punto_3, punto_4, punto_5, punto_6` `Tipo_de_cultivo: convencional, convencional, convencional, organico, organico, organico` `Riqueza: 3, 1, 0, 15, 11, 20`
+
+Imprime en la consola el objeto creado y, aplicando una función, evalúa a qué clase pertenece.
+
+Selecciona la columna "Riqueza" y crea un objeto que contenga solamente ella.
+
+```{r dataframes}
+
+
+df <- data.frame(Locales_de_colecta = c( "punto_1", "punto_2", "punto_3", "punto_4", "punto_5", "punto_6"), Tipo_de_cultivo = c("convencional", "convencional", "convencional", "organico", "organico", "organico"), Riqueza = c(3, 1, 0, 15, 11, 20))  
+
+df # para imprimir el data frame "df" en la consola
+
+is.data.frame(df) # retorna "TRUE"
+
+riq <- df$Riqueza
+
+riq
+
+class(riq)
+
+is.vector(riq)
+
+
+```
+
+# 4- Funciones:
+
+A partir de los elementos creados en el ejercicio anterior, utiliza la función `mean()` para calcular la media general de la riqueza:
+
+```{r functions}
+
+mean(riq)
+
+
+```
