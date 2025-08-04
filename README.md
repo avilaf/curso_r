@@ -92,12 +92,9 @@ Springer-Verlag, 2002. 
 
 ## **Docentes responsables**: 
 
-Dr. Raúl Maneyro (*rmaneyro\@fcien.edu.uy*). Laboratorio de Sistemática e
-Historia Natural de Vertebrados - Herpetología - Facultad de Ciencias (UdelaR)
+Dr. Raúl Maneyro (*rmaneyro\@fcien.edu.uy*). Laboratorio de Herpetología - Facultad de Ciencias (UdelaR)
 
-Dra. Fernanda Rodrigues de Avila (*fernandar.avila\@gmail.com*). Laboratorio de
-Sistemática e Historia Natural de Vertebrados - Herpetología - Facultad de
-Ciencias (UdelaR)
+Dra. Fernanda Rodrigues de Avila (*fernandar.avila\@gmail.com*). Laboratorio de Herpetología - Facultad de Ciencias (UdelaR)
 
 **Dirección para consultas o preguntas**:
 herpetologia\@fcien.edu.uy
