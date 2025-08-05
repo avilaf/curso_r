@@ -17,13 +17,19 @@
 library(readr)
 
 
+# Directorio --------------------------------------------------------------
+
+
+path <- "D:/curso_r-main"
+
+setwd(path)
 
 # Cargar datos: ---------------------------------------------------------
 
 
-# Aqui vamos abrir directamente desde el repositorio en l?nea de GitHub:
+# Aqui vamos abrir directamente desde el repositorio en linea de GitHub:
 
-url <- "https://raw.githubusercontent.com/avilaf/curso_r/main/dados_odonto.csv"
+url <- "https://raw.githubusercontent.com/avilaf/curso_r/refs/heads/main/datos/dados_odonto.csv"
 
 datos_odonto <- readr::read_csv(url, locale = locale(encoding = "UTF-8"))
 
@@ -94,7 +100,7 @@ shapiro.test(x = datos_odonto$vol_total)
 # Para el factor sexo:
 
 # 1- Crear la imagen
-jpg('output/grafico_odonto_sex.jpg')
+jpeg('output/grafico_odonto_sex.jpeg')
 
 # 2- Graficar:
 sex_plot
@@ -105,7 +111,7 @@ dev.off()
 # Para el factor poblacion:
 
 # 1- Crear la imagen
-jpg('output/grafico_odonto_pop.jpg')
+jpeg('output/grafico_odonto_pop.jpeg')
 
 # 2- Graficar:
 pop_plot 
