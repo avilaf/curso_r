@@ -147,6 +147,7 @@ Sigue los pasos disponibles en el tutorial de [instalación de R, RStudio y paqu
   - [Gráficos (Tutorial)](https://avilaf.github.io/03_graficos_pt1.html)
     - Datos: [Datos Chicago (para gráficos)](datos/chicago-nmmaps-custom.csv)
     - [Ejercício 3 Gráficos](ejercicios/ejercicio_3.Rmd)
+    - [Colores para gráficos](https://htmlcolorcodes.com/)
   - [Instrucciones para la tarea (Presentación)](https://avilaf.github.io/00_slides/curso_r_slides_tarea.html)
     - [Ejemplo Tarea (Script)](scripts/ejemplo_tarea.R)
     
