@@ -70,6 +70,8 @@ ggplot2::ggplot(data = datos_odonto,
 # install.packages('ggtext')
 library(ggtext)
 
+# cambiando la posicion del titulo del grafico con: hjust = 1
+
 ggplot(data = datos_odonto,
                 aes(x = pop, 
                     y = vol_total,
@@ -80,8 +82,7 @@ ggplot(data = datos_odonto,
        x = "Población", 
        y = "Volumen Total (mm<sup>3</sup>)") +
   theme_bw() +
-  theme(plot.title = element_markdown(),
-        plot.title.position = 
+  theme(plot.title = element_markdown(hjust = 1),
         axis.title = element_markdown())
 
   
