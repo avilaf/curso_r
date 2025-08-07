@@ -270,43 +270,48 @@ resultado_baps <- rhierbaps::hierBAPS(matriz_snp,
 clusters <- resultado_baps$partition.df
 probabilidades <- resultado_baps$cluster.assignment.prob[[1]]
 
-resultados_finales <- data.frame(clusters, probabilidades)
+resultados <- data.frame(clusters, probabilidades)
 print("Primeros resultados del análisis de poblaciones:")
-print(head(resultados_finales))
+print(head(resultados))
 
 # Crear gráfico de barras con las probabilidades de asignación
 print("Creando gráfico de estructura poblacional...")
 
-grafico_estructura <- plotly::plot_ly(resultados_finales,
+
+
+
+grafico_estructura <- plotly::plot_ly(resultados,
                                       x = ~Isolate,
                                       y = ~Cluster.1,
                                       type = 'bar',
                                       name = 'Grupo 1',
                                       marker = list(color = '#FF6B6B'))
 
+
 grafico_estructura <- grafico_estructura %>% 
   plotly::add_trace(y = ~Cluster.2, 
                     name = 'Grupo 2',
-                    marker = list(color = '#4ECDC4'))
-
+                    marker = list(color = '#4ECDC4')) 
 
 grafico_estructura <- grafico_estructura %>% 
   plotly::add_trace(y = ~Cluster.3, 
                     name = 'Grupo 3',
-                    marker = list(color = '#900C3F'))
+                    marker = list(color = '#900C3F')) 
 
 grafico_estructura <- grafico_estructura %>% 
   plotly::add_trace(y = ~Cluster.4, 
                     name = 'Grupo 4',
-                    marker = list(color = '#DAF7A6'))
-
+                    marker = list(color = '#DAF7A6')) 
 grafico_estructura <- grafico_estructura %>% 
   plotly::layout(
     title = "Estructura Poblacional - Probabilidad de Asignación a Grupos",
     yaxis = list(title = "Probabilidad"),
-    xaxis = list(title = "Muestras"),
+    xaxis = list(title = "Muestras", 
+                 categoryarray = resultados$level.1, 
+                 categoryorder = "array ascending"),
+    legend = list(traceorder = "normal"),
     barmode = 'stack'
-  )
+  ) 
 
 print(grafico_estructura)
 
