@@ -169,7 +169,7 @@ Sigue los pasos disponibles en el tutorial de [instalación de R, RStudio y paqu
     - Datos: [Datos para mapa](datos/dados_boana.csv)
 
 - **EXAMEN FINAL:**
-  - Al final del curso estaran disponibles en este link las informaciones para el [examen final]()
+  - Al final del curso estaran disponibles en este link las informaciones para el [examen final](examen_final)
   - Formulario de respuestas para evaluación del examen: [https://forms.gle/CGwZ3AjjHYagnDkJ8](https://docs.google.com/forms/d/e/1FAIpQLSdeI2X_0tDLA5S2E2Am3kAHS8ZJfWNWl7QNt3GOYu3egGxJtw/viewform?usp=header)
  
 - **Check-out: Curso R**
