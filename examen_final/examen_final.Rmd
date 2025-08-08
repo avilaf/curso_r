@@ -1,0 +1,111 @@
+---
+title: "Examen Final"
+output: html_document
+editor_options: 
+  markdown: 
+    wrap: 70
+---
+
+# **Ecología de la herpetofauna en el ambiente R para no programadores**
+
+# Examen Final
+
+## **Docentes responsables:**
+
+Dr. Raúl Maneyro
+([*rmaneyro\@fcien.edu.uy*](mailto:rmaneyro@fcien.edu.uy)).
+Laboratorio de Sistemática e Historia Natural de Vertebrados -
+Herpetología - Facultad de Ciencias (UdelaR)
+
+Dra. Fernanda Rodrigues de Avila
+([*fernandar.avila\@gmail.com*](mailto:fernandar.avila@gmail.com)).
+Laboratorio de Sistemática e Historia Natural de Vertebrados -
+Herpetología - Facultad de Ciencias (UdelaR)
+
+## Instrucciones:
+
+El siguiente script en R está diseñado para generar datos aleatorios y
+crear un gráfico de puntos usando ggplot2. Sin embargo, **contiene
+varios errores** que impiden que funcione correctamente.
+
+**Tu tarea es:**
+
+1.  Identificar todos los errores en el código fornecido
+
+2.  Corregir los errores para que el script funcione
+
+3.  El resultado final debe ser un gráfico de puntos que muestre la
+    relación entre LHC y masa de 50 anuros
+
+4.  El código corregido debe ser pegado en este formulario de
+    respuestas para evaluación:
+    [https://forms.gle/7PPuEYGKTwyHZiNYA](https://docs.google.com/forms/d/e/1FAIpQLSdeI2X_0tDLA5S2E2Am3kAHS8ZJfWNWl7QNt3GOYu3egGxJtw/viewform?usp=sharing&ouid=107982496750133933059)
+
+----------------------------------------------------------------------
+
+## Script con Errores (Para Corregir)
+
+```{r para_corregir, eval=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Cargar librería necesaria
+library(ggplot)
+
+# Generar datos aleatorios
+set.seed(123)
+n <- 50
+
+# Crear dataset
+lhc <- rnorm(n, mean = 30, sd = 2)  # LHC en mm
+masa <- .5 * altura + rnorm(n, mean = 0, sd = .5) # masa en g
+sexo <- rep(c(M,H), each = 25) # factor sexo
+
+# Crear data frame
+datos <- data.frame(
+  lhc = lhc,
+  masa = masa  
+  sexo = sexo
+)
+
+# Crear gráfico de puntos
+grafico <- ggplot(data = datos, aes(x = lhc, y = masa) +  
+  geom_point(color = "blue", size = 3) +
+  labs(title = "Relación entre LHC y masa",
+       x = "LHC (mm)",
+       y = "Masa (g)") +
+  theme_minimal()
+
+# Mostrar gráfico
+print(grafico)
+
+# Resumen de los datos
+summary(datos)
+
+```
+
+----------------------------------------------------------------------
+
+## Lista de Verificación
+
+Marca cada error que encuentres y corrijas:
+
+-   [ ] Error en cargar la librería
+-   [ ] Error de sintaxis en la creación del data frame
+-   [ ] Error de sintaxis en la función ggplot
+-   [ ] Error lógico con los valores generados (factores)
+
+----------------------------------------------------------------------
+
+## Criterios de Evaluación
+
+**Excelente (90-100%):** Identifica y corrige todos los errores, el
+código funciona perfectamente **Bueno (70-89%):** Identifica y corrige
+3 de los 4 errores principales **Regular (50-69%):** Identifica y
+corrige 2 errores **Necesita Mejorar (\<50%):** Identifica solo 1
+error o ninguno
+
+----------------------------------------------------------------------
+
+## Extensiones Opcionales
+
+Para estudiantes avanzados, pueden intentar: - Añadir color por sexo
+usando `color = sexo` en aes() - Agregar una línea de tendencia con
+`geom_smooth()` - Personalizar más el tema del gráfico
