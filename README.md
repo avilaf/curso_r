@@ -173,8 +173,8 @@ Sigue los pasos disponibles en el tutorial de [instalación de R, RStudio y paqu
   - Formulario de respuestas para evaluación del examen: [https://forms.gle/CGwZ3AjjHYagnDkJ8](https://docs.google.com/forms/d/e/1FAIpQLSdeI2X_0tDLA5S2E2Am3kAHS8ZJfWNWl7QNt3GOYu3egGxJtw/viewform?usp=header)
  
 - **Check-out: Curso R**
-Respondiendo este formulario me vas a ayudar a progresar con mi didáctica y hacer este material cada vez más accesible y completo.
-Este formulario es anónimo, no necesitas identificarte si no quieres: [https://forms.gle/cXNW59YxfhZNwna6A](https://docs.google.com/forms/d/e/1FAIpQLSd34knFVOTo0EAHCPxKH8m7Bv66zRk4ht2b8O7XIYw4Zi3tgA/viewform?usp=dialog) 
+- Respondiendo este formulario me vas a ayudar a progresar con mi didáctica y hacer este material cada vez más accesible y completo.
+- Este formulario es anónimo, no necesitas identificarte si no quieres: [https://forms.gle/cXNW59YxfhZNwna6A](https://docs.google.com/forms/d/e/1FAIpQLSd34knFVOTo0EAHCPxKH8m7Bv66zRk4ht2b8O7XIYw4Zi3tgA/viewform?usp=dialog) 
 
 
 
