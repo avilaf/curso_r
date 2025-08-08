@@ -14,13 +14,11 @@ editor_options:
 
 Dr. Raúl Maneyro
 ([*rmaneyro\@fcien.edu.uy*](mailto:rmaneyro@fcien.edu.uy)).
-Laboratorio de Sistemática e Historia Natural de Vertebrados -
-Herpetología - Facultad de Ciencias (UdelaR)
+Laboratorio de Herpetología - Facultad de Ciencias (UdelaR)
 
 Dra. Fernanda Rodrigues de Avila
 ([*fernandar.avila\@gmail.com*](mailto:fernandar.avila@gmail.com)).
-Laboratorio de Sistemática e Historia Natural de Vertebrados -
-Herpetología - Facultad de Ciencias (UdelaR)
+Laboratorio de Herpetología - Facultad de Ciencias (UdelaR)
 
 ## Instrucciones:
 
