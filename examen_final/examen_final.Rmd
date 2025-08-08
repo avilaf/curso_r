@@ -105,5 +105,5 @@ error o ninguno
 ## Extensiones Opcionales
 
 Para estudiantes avanzados, pueden intentar: - Añadir color por sexo
-usando `color = sexo` en aes() - Agregar una línea de tendencia con
+usando `color = sexo` en aes() - Agregar líneas de tendencia con
 `geom_smooth()` - Personalizar más el tema del gráfico
